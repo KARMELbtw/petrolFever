@@ -8,5 +8,5 @@ Gameplay loop:
 - wydobywasz
 - sprzedajesz u jednej z firm.
 ---
-## Słaby koncept art:
+## Epicki i potężny koncept art:
 ![image](concepts/klocki.png)
