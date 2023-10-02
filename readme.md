@@ -9,4 +9,4 @@ Gameplay loop:
 - sprzedajesz u jednej z firm.
 ---
 ## Epicki i potężny koncept art:
-![image](concepts/klocki.png)
+![image](concepts/klockivol.2upgradedsupereditionremastered.png)
