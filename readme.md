@@ -14,6 +14,7 @@ Gameplay loop:
 - złoza ropy generowane losowo
 - wyszukiwanie ropy za pomocą ludzi z patykami
 - wydobywanie ropy pompami
+- długość rury ograniczona można powiększyć ilością pomp/ulepszeniami
 - pociąg jadacy do miasta zasilany węglem
 - pociąg jezdzi okresloną ilosc czasu do miasta, którą można przyspieszyć ulepszeniami albo zużywając więcej węgla 
 - możliwość ulepszenia pociągu
@@ -23,7 +24,7 @@ Gameplay loop:
 - możliwość kupienia nowych chunków max 6
 - 10% szansy że kupiony chunk będzie mial jezioro pod ziemią i trzeba będzie wodę wypompować
 - 10-25% szansy że chunk będzie mial w niektórych miejscach twardą skałę i trzeba będzie użyć twardszego wiertła żeby się przewiercić 
-- możliwość ukrycia chunków aby lepiej widzieć inne
+- możliwość podniesienia chunków w górę aby lepiej widzieć inne
 
 
 ---
