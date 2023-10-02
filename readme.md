@@ -8,7 +8,9 @@ Gameplay loop:
 - wydobywasz
 - kupujesz węgiel do pociągu 
 - wysyłasz pociąg
-- sprzedajesz u klienta 
+- sprzedajesz u klienta
+- ulepszasz sprzęt
+- kupujesz nowe chunki
 ---
 ## Mechaniki
 - złoza ropy generowane losowo
