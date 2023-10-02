@@ -30,5 +30,7 @@ Gameplay loop:
 
 
 ---
-## Epicki i potężny koncept art:
+## Epicki i potężny koncept arty:
 ![image](concepts/klockivol.2upgradedsupereditionremastered.png)
+![image](https://github.com/KARMELbtw/petrolFever/assets/56600554/49af1abf-66d2-474a-ab66-2f62617d6e12)
+![image](https://github.com/KARMELbtw/petrolFever/assets/56600554/303bd533-a444-46b7-b717-fc68a623b2e2)
