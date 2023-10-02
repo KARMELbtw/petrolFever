@@ -22,6 +22,7 @@ Gameplay loop:
 - są rozni klienci, którzy będą mieć coraz wyższe ceny jeśli będziemy z nim współpracować 
 - możliwość kupienia nowych chunków max 6
 - 10% szansy że kupiony chunk będzie mial jezioro pod ziemią i trzeba będzie wodę wypompować
+- 10-25% szansy że chunk będzie mial w niektórych miejscach twardą skałę i trzeba będzie użyć twardszego wiertła żeby się przewiercić 
 - możliwość ukrycia chunków aby lepiej widzieć inne
 
 
