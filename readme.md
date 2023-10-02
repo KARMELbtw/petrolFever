@@ -10,5 +10,6 @@ Gameplay loop:
 - wysyłasz pociąg
 - sprzedajesz u klienta 
 ---
+## Mechaniki
 ## Epicki i potężny koncept art:
 ![image](concepts/klockivol.2upgradedsupereditionremastered.png)
