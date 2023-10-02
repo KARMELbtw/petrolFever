@@ -6,7 +6,9 @@ Gameplay loop:
 - Stawiasz wiertło
 - podłączasz wiertło rurami do ropy
 - wydobywasz
-- sprzedajesz u jednej z firm.
+- kupujesz węgiel do pociągu 
+- wysyłasz pociąg
+- sprzedajesz u klienta 
 ---
 ## Epicki i potężny koncept art:
 ![image](concepts/klockivol.2upgradedsupereditionremastered.png)
