@@ -20,7 +20,8 @@ Gameplay loop:
 - kupowanie wegla i sprzedawanie ropy po zmieniających się cenach
 - klient bedzie mial niższe ceny im więcej u niego sprzedajemy
 - są rozni klienci, którzy będą mieć coraz wyższe ceny jeśli będziemy z nim współpracować 
-- możliwość kupienia nowych chunków
+- możliwość kupienia nowych chunków max 6
+- 10% szansy że kupiony chunk będzie mial jezioro pod ziemią i trzeba będzie wodę wypompować
 - możliwość ukrycia chunków aby lepiej widzieć inne
 
 
