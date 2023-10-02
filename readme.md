@@ -1,5 +1,5 @@
 # Petrol Fever
-Jeśteśmy ignacym (wynalazcą ropy naftowej) i wydobywamy ropę.
+Jesteśmy ignacym (wynalazcą ropy naftowej) i wydobywamy ropę.
 Widok izometryczny.
 Gameplay loop:
 - Znajdujesz ropę pod ziemią.
