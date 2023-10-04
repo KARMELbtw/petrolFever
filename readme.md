@@ -38,6 +38,8 @@ Widok izometryczny.
 
 ---
 ## Epickie i potężne koncept arty:
-![image](concepts/klockivol.2upgradedsupereditionremastered.png)
-![image](https://github.com/KARMELbtw/petrolFever/assets/56600554/49af1abf-66d2-474a-ab66-2f62617d6e12)
-![image](https://github.com/KARMELbtw/petrolFever/assets/56600554/303bd533-a444-46b7-b717-fc68a623b2e2)
+| Widok Chunków | Widok Miasteczka |
+| --- | ---|
+| <img src="https://github.com/KARMELbtw/petrolFever/assets/56600554/49af1abf-66d2-474a-ab66-2f62617d6e12" width=400px></img> | <img src="https://github.com/KARMELbtw/petrolFever/assets/56600554/303bd533-a444-46b7-b717-fc68a623b2e2" width=400px></img>
+| <img src="concepts/klockivol.2upgradedsupereditionremastered.png" width=400px></img>
+
