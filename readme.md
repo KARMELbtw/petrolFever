@@ -29,7 +29,7 @@ Widok izometryczny.
 #### Pociąg:
 - [ ] pociąg jadacy do miasta zasilany węglem
 - [ ] pociąg jezdzi okresloną ilosc czasu do miasta, którą można przyspieszyć ulepszeniami albo zużywając więcej węgla 
-- [x] możliwość ulepszenia pociągu Zwiększając jego pojemność
+- [ ] możliwość ulepszenia pociągu Zwiększając jego pojemność
 #### Sprzedaż Ropy:
 - [ ] kupowanie wegla i sprzedawanie ropy po zmieniających się cenach
 - [ ] klient bedzie mial niższe ceny im więcej u niego sprzedajemy
