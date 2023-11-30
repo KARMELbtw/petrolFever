@@ -46,3 +46,10 @@ Thumbs.db
 # Jetbrains
 ###
 .idea/
+Petrol Fever/.vscode/extensions.json
+Petrol Fever/.vscode/launch.json
+Petrol Fever/.vscode/settings.json
+Petrol Fever/Packages/manifest.json
+Petrol Fever/Packages/manifest.json
+Petrol Fever/Packages/manifest.json
+Petrol Fever/Packages/packages-lock.json
