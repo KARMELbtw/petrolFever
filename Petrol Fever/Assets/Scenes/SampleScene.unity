@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 6586574516731836393, guid: ad53188071d23534fa54d73f50c8e7f4, type: 3}
+  oil: {fileID: 3904943155693376493, guid: e5eae7fe6ac113a4fae7af9c2f3217ae, type: 3}
   startPosition: {fileID: 1403992027}
 --- !u!4 &504017758
 Transform:

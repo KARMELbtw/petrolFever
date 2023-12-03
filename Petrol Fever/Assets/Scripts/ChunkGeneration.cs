@@ -40,15 +40,15 @@ public class ChunkGeneration : MonoBehaviour
     {
         Vector3 currentPosition = startPosition.position;
         // Kierunek Y
-        for (int i = 0; i < 10; i++)
+        for (int y = 0; y < 10; y++)
         {
             // Kierunek Z
-            for (int j = 0; j < 10; j++)
+            for (int z = 0; z < 10; z++)
             {
                 // Kierunek X
-                for (int k = 0; k < 10; k++)
+                for (int x = 0; x < 10; x++)
                 {
-                    currentPosition = new Vector3(k, i, j);
+                    currentPosition = new Vector3(x, y, z);
                     Instantiate(cubePrefab, currentPosition, Quaternion.identity, this.transform);
                     Debug.Log("Wygenerowano klocek at: " + currentPosition);
                 }
