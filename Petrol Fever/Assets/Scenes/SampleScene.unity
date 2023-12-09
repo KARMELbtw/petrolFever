@@ -152,9 +152,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a1faece896372429b1be8121a3353f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubePrefab: {fileID: 6586574516731836393, guid: ad53188071d23534fa54d73f50c8e7f4, type: 3}
-  oil: {fileID: 3904943155693376493, guid: e5eae7fe6ac113a4fae7af9c2f3217ae, type: 3}
+  dirtCubePrefab: {fileID: 6586574516731836393, guid: ad53188071d23534fa54d73f50c8e7f4, type: 3}
+  oilCubePrefab: {fileID: 3904943155693376493, guid: e5eae7fe6ac113a4fae7af9c2f3217ae, type: 3}
+  oilVeinPrefab: {fileID: 7899295289814158179, guid: 69bf7df8e958e424fac262b48f46ce66, type: 3}
   startPosition: {fileID: 1403992027}
+  chunkWidth: 15
+  chunkDepth: 15
+  chunkHeight: 25
 --- !u!4 &504017758
 Transform:
   m_ObjectHideFlags: 0
@@ -373,7 +377,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.16042997, y: 0.37686962, z: -0.066452265, w: 0.9098438}
-  m_LocalPosition: {x: -10, y: 15, z: -10}
+  m_LocalPosition: {x: -10, y: 22.6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

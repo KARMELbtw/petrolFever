@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ChunkGeneration : MonoBehaviour
 {
-    public GameObject cubePrefab;
-    public GameObject oil;
-    public Transform startPosition;
     public System.Random random = new System.Random();
+    public GameObject dirtCubePrefab;
+    public GameObject oilCubePrefab;
+    public GameObject oilVeinPrefab;
+    public Transform startPosition;
     public int chunkWidth = 15;
     public int chunkDepth = 15;
     public int chunkHeight = 25;
@@ -23,7 +25,9 @@ public class ChunkGeneration : MonoBehaviour
         
         int shift = 0;
 
-        Instantiate(oil, startingPosition, Quaternion.identity, this.transform);
+        GameObject oilVeinParent = (GameObject)Instantiate(oilVeinPrefab, startingPosition, Quaternion.identity, this.transform);
+        
+        Instantiate(oilCubePrefab, startingPosition, Quaternion.identity, oilVeinParent.transform );
         Vector3 currentPosition = startingPosition;
         for(int i = 0; i < random.Next(veinMinSize, veinMaxSize); i++) {
             int whichDirection = random.Next(1,3);
@@ -74,7 +78,7 @@ public class ChunkGeneration : MonoBehaviour
                 }
             }
             
-            Instantiate(oil, currentPosition, Quaternion.identity, this.transform);
+            Instantiate(oilCubePrefab, currentPosition, Quaternion.identity, oilVeinParent.transform);
         }
     }
     
@@ -84,20 +88,20 @@ public class ChunkGeneration : MonoBehaviour
         Vector3 currentPosition = startPosition.position;
         Vector3 startingPosition = startPosition.position;
         //Kierunek Y
-        for (int y = 0; y < chunkHeight; y++)
-        {
-            // Kierunek Z
-            for (int z = 0; z < chunkDepth; z++)
-            {
-                // Kierunek X
-                for (int x = 0; x < chunkWidth; x++)
-                {
-                    currentPosition = new Vector3(x, y, z);
-                    Instantiate(cubePrefab, currentPosition, Quaternion.identity, this.transform);
-                    Debug.Log("Wygenerowano klocek at: " + currentPosition);
-                }
-            }
-        }
+        // for (int y = 0; y < chunkHeight; y++)
+        // {
+        //     // Kierunek Z
+        //     for (int z = 0; z < chunkDepth; z++)
+        //     {
+        //         // Kierunek X
+        //         for (int x = 0; x < chunkWidth; x++)
+        //         {
+        //             currentPosition = new Vector3(x, y, z);
+        //             Instantiate(dirtCubePrefab, currentPosition, Quaternion.identity, this.transform);
+        //             Debug.Log("Wygenerowano klocek at: " + currentPosition);
+        //         }
+        //     }
+        // }
 
         int amountOfOilVeins = random.Next(3,6);
         int whichWall;
