@@ -136,7 +136,7 @@ GameObject:
   m_Layer: 0
   m_Name: Chunk
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -152,10 +152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a1faece896372429b1be8121a3353f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dirtCubePrefab: {fileID: 6586574516731836393, guid: ad53188071d23534fa54d73f50c8e7f4, type: 3}
+  dirtCubePrefab: {fileID: 3904943155693376493, guid: e82eca1643da77f47bcc52337d7a6b11, type: 3}
   oilCubePrefab: {fileID: 3904943155693376493, guid: e5eae7fe6ac113a4fae7af9c2f3217ae, type: 3}
   oilVeinPrefab: {fileID: 7899295289814158179, guid: 69bf7df8e958e424fac262b48f46ce66, type: 3}
-  startPosition: {fileID: 1403992027}
   chunkWidth: 15
   chunkDepth: 15
   chunkHeight: 25
@@ -167,11 +166,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 504017756}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1403992027}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -384,7 +382,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 20, y: 45, z: 0}
---- !u!1 &1403992026
+--- !u!1 &1050874527
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -392,26 +390,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1403992027}
+  - component: {fileID: 1050874529}
+  - component: {fileID: 1050874528}
   m_Layer: 0
-  m_Name: StartPosition
+  m_Name: Chunk (1)
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1403992027
+--- !u!114 &1050874528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050874527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a1faece896372429b1be8121a3353f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dirtCubePrefab: {fileID: 3904943155693376493, guid: e82eca1643da77f47bcc52337d7a6b11, type: 3}
+  oilCubePrefab: {fileID: 3904943155693376493, guid: e5eae7fe6ac113a4fae7af9c2f3217ae, type: 3}
+  oilVeinPrefab: {fileID: 7899295289814158179, guid: 69bf7df8e958e424fac262b48f46ce66, type: 3}
+  chunkWidth: 15
+  chunkDepth: 15
+  chunkHeight: 25
+--- !u!4 &1050874529
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1403992026}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 1050874527}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 63, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 504017758}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
