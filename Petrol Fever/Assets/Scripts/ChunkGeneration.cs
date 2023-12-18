@@ -14,7 +14,6 @@ public class ChunkGeneration : MonoBehaviour
     public int chunkWidth = 15;
     public int chunkDepth = 15;
     public int chunkHeight = 25;
-    // public int chunkPosition = 
 
     private void GenerateOilVein(Vector3 startingPosition, int whichWall)
     {
@@ -31,6 +30,7 @@ public class ChunkGeneration : MonoBehaviour
             "Oil Vein " + oilVeinParent.transform.position.x + ", " + oilVeinParent.transform.position.z;
         Instantiate(oilCubePrefab, startingPosition, Quaternion.identity, oilVeinParent.transform );
         Vector3 currentPosition = startingPosition;
+
         for(int i = 0; i < Random.Next(veinMinSize, veinMaxSize); i++) {
             int whichDirection = Random.Next(1,3);
 
@@ -42,7 +42,7 @@ public class ChunkGeneration : MonoBehaviour
                     case 1:
                     {
                         //sprawdzanie czy przesunięcie nie wychodzi poza chunka nie przekracz maskymalnej szerokości złoża ropy ani nie jest równe zero 
-                        while(currentPosition.x + shift < 0 || currentPosition.x + shift > chunkWidth - 1 || shift == 0 || currentPosition.x + shift > startingPosition.x + veinMaxWidth/2 || currentPosition.x + shift < startingPosition.x - veinMaxWidth/2) {
+                        while(currentPosition.x + shift < 0 || currentPosition.x + shift > chunkWidth - 1 + currentPosition.x || shift == 0 || currentPosition.x + shift > startingPosition.x + veinMaxWidth/2 || currentPosition.x + shift < startingPosition.x - veinMaxWidth/2) {
                             shift = Random.Next(-1,2);
                         }
 
@@ -53,7 +53,7 @@ public class ChunkGeneration : MonoBehaviour
                     case 2:
                     {
                         //sprawdzanie czy przesunięcie nie wychodzi poza chunka nie przekracz maskymalnej wysokości złoża ropy ani nie jest równe zero 
-                        while(currentPosition.y + shift < 0 || currentPosition.y + shift > chunkHeight - 3 || shift == 0 || currentPosition.y + shift > startingPosition.y + veinMaxHeight/2 || currentPosition.y + shift < startingPosition.y - veinMaxHeight/2) {
+                        while(currentPosition.y + shift < 0 || currentPosition.y + shift > chunkHeight - 3 + currentPosition.y || shift == 0 || currentPosition.y + shift > startingPosition.y + veinMaxHeight/2 || currentPosition.y + shift < startingPosition.y - veinMaxHeight/2) {
                             shift = Random.Next(-1,2);
                         }
 
@@ -72,7 +72,7 @@ public class ChunkGeneration : MonoBehaviour
                     case 1:
                     {
                         //sprawdzanie czy przesunięcie nie wychodzi poza chunka nie przekracz maskymalnej szerokości złoża ropy ani nie jest równe zero 
-                        while(currentPosition.z + shift < 0 || currentPosition.z + shift > chunkDepth - 1 || shift == 0 || currentPosition.z + shift > startingPosition.z + veinMaxWidth/2 || currentPosition.z + shift < startingPosition.z - veinMaxWidth/2) {
+                        while(currentPosition.z + shift < 0 || currentPosition.z + shift > chunkDepth - 1 + currentPosition.z|| shift == 0 || currentPosition.z + shift > startingPosition.z + veinMaxWidth/2 || currentPosition.z + shift < startingPosition.z - veinMaxWidth/2) {
                             shift = Random.Next(-1,2);
                         }
 
@@ -83,7 +83,7 @@ public class ChunkGeneration : MonoBehaviour
                     case 2:
                     {
                         //sprawdzanie czy przesunięcie nie wychodzi poza chunka nie przekracz maskymalnej wysokości złoża ropy ani nie jest równe zero 
-                        while(currentPosition.y + shift < 0 || currentPosition.y + shift > chunkHeight - 3 || shift == 0 || currentPosition.y + shift > startingPosition.y + veinMaxHeight/2 || currentPosition.y + shift < startingPosition.y - veinMaxHeight/2) {
+                        while(currentPosition.y + shift < 0 || currentPosition.y + shift > chunkHeight - 3 + currentPosition.y || shift == 0 || currentPosition.y + shift > startingPosition.y + veinMaxHeight/2 || currentPosition.y + shift < startingPosition.y - veinMaxHeight/2) {
                             shift = Random.Next(-1,2);
                         }
 
@@ -101,25 +101,31 @@ public class ChunkGeneration : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var position = this.transform.position;
+        Vector3 position = this.transform.position;
         Vector3 startingPosition = position;
-        //Kierunek Y
-         for (int y = (int)startingPosition.y; y < chunkHeight+(int)startingPosition.y; y++)
-         {
-             // Kierunek Z
-             for (int z = (int)startingPosition.z; z < chunkDepth+(int)startingPosition.z; z++)
-             {
-                 // Kierunek X
-                 for (int x = (int)startingPosition.x; x < chunkWidth+(int)startingPosition.x; x++)
-                 {
-                     if (z<=1+(int)startingPosition.z||x<=1+(int)startingPosition.x||y==chunkHeight-1)
-                     {
-                         Vector3 currentPosition = new Vector3(x, y, z);
-                         Instantiate(dirtCubePrefab, currentPosition, Quaternion.identity, this.transform);
-                     }
-                 }
-             }
-         }
+        Vector3 chunkSizeV3 = new Vector3(chunkDepth,chunkHeight, chunkWidth);
+
+        GameObject dirtChunk = (GameObject)Instantiate(dirtCubePrefab, startingPosition+chunkSizeV3/2, Quaternion.identity, this.transform);
+        dirtChunk.name = "Dirt of " + this.name;
+        dirtChunk.transform.localScale = chunkSizeV3;
+
+        // //Kierunk Y
+        //  for (int y = (int)startingPosition.y; y < chunkHeight+(int)startingPosition.y; y++)
+        //  {
+        //      // Kierunek Z
+        //      for (int z = (int)startingPosition.z; z < chunkDepth+(int)startingPosition.z; z++)
+        //      {
+        //          // Kierunek X
+        //          for (int x = (int)startingPosition.x; x < chunkWidth+(int)startingPosition.x; x++)
+        //          {
+        //              if (z<=1+(int)startingPosition.z||x<=1+(int)startingPosition.x||y==chunkHeight-1)
+        //              {
+        //                  Vector3 currentPosition = new Vector3(x, y, z);
+        //                  Instantiate(dirtCubePrefab, currentPosition, Quaternion.identity, this.transform);
+        //              }
+        //          }
+        //      }
+        //  }
 
         int amountOfOilVeins = Random.Next(3,6);
 
@@ -130,8 +136,8 @@ public class ChunkGeneration : MonoBehaviour
             //prawa ściana
             if(whichWall == 0) {
                 GenerateOilVein(new Vector3(
-                    Random.Next((int)startingPosition.x, chunkWidth-1),
-                    Random.Next((int)startingPosition.y, chunkHeight-3),
+                    Random.Next((int)startingPosition.x, chunkWidth-1+20),
+                    Random.Next((int)startingPosition.y, chunkHeight-3+20),
                     0),
                     whichWall
                 );
@@ -140,8 +146,8 @@ public class ChunkGeneration : MonoBehaviour
             else {
                 GenerateOilVein(new Vector3(
                     0,
-                    Random.Next((int)startingPosition.y, chunkHeight-3),
-                    Random.Next((int)startingPosition.z, chunkDepth-1)),
+                    Random.Next((int)startingPosition.y, chunkHeight-3+20),
+                    Random.Next((int)startingPosition.z, chunkDepth-1+20)),
                     whichWall
                 );
             }
