@@ -136,8 +136,8 @@ public class ChunkGeneration : MonoBehaviour
             //prawa ściana
             if(whichWall == 0) {
                 GenerateOilVein(new Vector3(
-                    Random.Next((int)startingPosition.x, chunkWidth-1+20),
-                    Random.Next((int)startingPosition.y, chunkHeight-3+20),
+                    Random.Next((int)startingPosition.x, chunkWidth-1+(int)startingPosition.x),
+                    Random.Next((int)startingPosition.y, chunkHeight-3+(int)startingPosition.y),
                     0),
                     whichWall
                 );
@@ -146,8 +146,8 @@ public class ChunkGeneration : MonoBehaviour
             else {
                 GenerateOilVein(new Vector3(
                     0,
-                    Random.Next((int)startingPosition.y, chunkHeight-3+20),
-                    Random.Next((int)startingPosition.z, chunkDepth-1+20)),
+                    Random.Next((int)startingPosition.y, chunkHeight-3+(int)startingPosition.y),
+                    Random.Next((int)startingPosition.z, chunkDepth-1+(int)startingPosition.z)),
                     whichWall
                 );
             }
