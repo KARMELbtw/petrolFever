@@ -19,4 +19,24 @@ public class Grid
         
         Debug.Log("Grid created: "+width+" "+height);
     }
+
+    public void SetValue(int x, int y, int value)
+    {
+        if (x >= 0 && y>= 0 && value>=0)
+        {
+            _gridArray[x, y] = value;
+        }
+    }
+
+    public int GetValue(int x, int y)
+    {
+        if (x >= 0 && y >= 0)
+        {
+            return _gridArray[x, y];
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }
