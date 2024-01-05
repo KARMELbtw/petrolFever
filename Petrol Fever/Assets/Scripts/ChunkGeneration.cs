@@ -27,13 +27,12 @@ public class ChunkGeneration : MonoBehaviour
         
         int shift = 0;
 
-        GameObject oilVeinParent = (GameObject)Instantiate(oilVeinPrefab, startingPosition, Quaternion.identity, this.transform);
-        oilVeinParent.name =
-            "Oil Vein " + oilVeinParent.transform.position.x + " , " + oilVeinParent.transform.position.y + " , " + oilVeinParent.transform.position.z;
-
+        GameObject oilVeinParent = Instantiate(oilVeinPrefab, startingPosition, Quaternion.identity, this.transform);
+        var position = oilVeinParent.transform.position;
+        oilVeinParent.name =  "Oil Vein " + position.x + " , " + position.y + " , " + position.z;
         Instantiate(oilCubePrefab, startingPosition, Quaternion.identity, oilVeinParent.transform );
         Vector3 currentPosition = startingPosition;
-
+        
         for(int i = 0; i < Random.Next(veinMinSize, veinMaxSize); i++) {
             int whichDirection = Random.Next(1,3);
 
@@ -193,28 +192,21 @@ public class ChunkGeneration : MonoBehaviour
         GameObject dirtChunk = (GameObject)Instantiate(dirtCubePrefab, startingPosition+chunkSizeV3/2, Quaternion.identity, this.transform);
         dirtChunk.name = "Dirt of " + this.name;
         dirtChunk.transform.localScale = chunkSizeV3;
-
-        // //Kierunk Y
-        //  for (int y = (int)startingPosition.y; y < chunkHeight+(int)startingPosition.y; y++)
-        //  {
-        //      // Kierunek Z
-        //      for (int z = (int)startingPosition.z; z < chunkDepth+(int)startingPosition.z; z++)
-        //      {
-        //          // Kierunek X
-        //          for (int x = (int)startingPosition.x; x < chunkWidth+(int)startingPosition.x; x++)
-        //          {
-        //              if (z<=1+(int)startingPosition.z||x<=1+(int)startingPosition.x||y==chunkHeight-1)
-        //              {
-        //                  Vector3 currentPosition = new Vector3(x, y, z);
-        //                  Instantiate(dirtCubePrefab, currentPosition, Quaternion.identity, this.transform);
-        //              }
-        //          }
-        //      }
-        //  }
-
-        int amountOfOilVeins = Random.Next(3,6);
-
+        Grid grid = new Grid(chunkWidth, chunkDepth, 1f);
+        
+        
+        for (int x = 0; x < chunkWidth; x++)
+        {
+            for (int z = 0; z < chunkDepth; z++)
+            {
+                Debug.DrawLine(new Vector3(x,chunkHeight,z),new Vector3(x+1,chunkHeight,z), Color.white, 100f);
+                Debug.DrawLine(new Vector3(x,chunkHeight,z),new Vector3(x,chunkHeight,z+1), Color.white, 100f); 
+            }
+        }
+        
         //generowanie ropy
+        int amountOfOilVeins = Random.Next(3,6);
+        
         for (int i = 0; i < amountOfOilVeins; i++) {
             int whichWall = Random.Next(0,2) == 0 ? 0 : 1;
 
@@ -263,10 +255,4 @@ public class ChunkGeneration : MonoBehaviour
             }
         }
     }
-    //
-    // // Update is called once per frame
-    // void Update()
-    // {
-    //     
-    // }
 }
