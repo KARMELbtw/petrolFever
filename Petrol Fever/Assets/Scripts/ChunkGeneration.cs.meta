@@ -4,9 +4,11 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - cubePrefab: {fileID: 6586574516731836393, guid: ad53188071d23534fa54d73f50c8e7f4, type: 3}
-  - oil: {instanceID: 0}
-  - startPosition: {instanceID: 0}
+  - dirtCubePrefab: {fileID: 3904943155693376493, guid: e82eca1643da77f47bcc52337d7a6b11, type: 3}
+  - oilCubePrefab: {fileID: 3904943155693376493, guid: e5eae7fe6ac113a4fae7af9c2f3217ae, type: 3}
+  - oilVeinPrefab: {fileID: 7899295289814158179, guid: 69bf7df8e958e424fac262b48f46ce66, type: 3}
+  - waterCubePrefab: {fileID: 600282509763008403, guid: 750ae8e795d056b489ab7dfcc949ad0b, type: 3}
+  - waterVeinPrefab: {fileID: 7899295289814158179, guid: 6cf5633914d64944d944e69dac6e2d2a, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
