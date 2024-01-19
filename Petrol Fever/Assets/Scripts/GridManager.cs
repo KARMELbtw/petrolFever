@@ -30,6 +30,11 @@ public class GridManager : MonoBehaviour
         Vector3 position = this.transform.position;
         y = (int)(y - position.y);
         z = (int)(z - position.z);
+        if (y < 0 || y >= leftGrid.GetLength(0) || z < 0 || z >= leftGrid.GetLength(1))
+        {
+            Debug.LogError("Index out of bounds in leftSetValue: " + y + " " + z);
+            return;
+        }
         Debug.Log("leftSetValue: " + y + " " + z + " " + value);
         leftGrid[y, z] = value;
     }
@@ -38,6 +43,11 @@ public class GridManager : MonoBehaviour
         Vector3 position = this.transform.position;
         y = (int)(y - position.y);
         x = (int)(x - position.x);
+        if (y < 0 || y >= rightGrid.GetLength(0) || x < 0 || x >= rightGrid.GetLength(1))
+        {
+            Debug.LogError("Index out of bounds in rightSetValue: " + y + " " + x);
+            return;
+        }
         Debug.Log("rightSetValue: " + y + " " + x + " " + value);
         rightGrid[y, x] = value;
     }
@@ -46,6 +56,11 @@ public class GridManager : MonoBehaviour
         Vector3 position = this.transform.position;
         x = (int)(x - position.x);
         z = (int)(z - position.z);
+        if (x < 0 || x >= topGrid.GetLength(0) || z < 0 || z >= topGrid.GetLength(1))
+        {
+            Debug.LogError("Index out of bounds in topSetValue: " + x + " " + z);
+            return;
+        }
         Debug.Log("topSetValue: " + x + " " + z + " " + value);
         topGrid[x, z] = value;
     }
