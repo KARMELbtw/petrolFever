@@ -212,8 +212,7 @@ public class ChunkGeneration : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 position = this.transform.position;
-        Vector3 startingPosition = position;
+        Vector3 startingPosition = this.transform.position;
         Vector3 chunkSizeV3 = new Vector3(chunkDepth,chunkHeight, chunkWidth);
 
         GameObject dirtChunk = (GameObject)Instantiate(dirtCubePrefab, startingPosition+chunkSizeV3/2, Quaternion.identity, this.transform);
@@ -223,26 +222,36 @@ public class ChunkGeneration : MonoBehaviour
         //generowanie ropy
         int amountOfOilVeins = Random.Next(3,6);
         
-        for (int i = 0; i < amountOfOilVeins; i++) {
-            int whichWall = Random.Next(0,2) == 0 ? 0 : 1;
-
+        int x, y, z;
+        for (int i = 0; i < amountOfOilVeins; i++)
+        {
+            int whichWall = Random.Next(0, 2) == 0 ? 0 : 1;
             //prawa ściana
             if(whichWall == 0) {
+                // do
+                // {
+                    x = Random.Next((int)startingPosition.x, chunkWidth - 1 + (int)startingPosition.x);
+                    y = Random.Next((int)startingPosition.y, chunkHeight - 3 + (int)startingPosition.y);
+                    
+                // } while (gridManager.checkArround(y,x,1,0));
                 GenerateOilVein(new Vector3(
-                    Random.Next((int)startingPosition.x, chunkWidth-1+(int)startingPosition.x),
-                    Random.Next((int)startingPosition.y, chunkHeight-3+(int)startingPosition.y),
+                    x,
+                    y,
                     startingPosition.z),
-                    whichWall
-                );
+                    whichWall);
             }
             //lewa ściana
             else {
+                // do
+                // {
+                    y = Random.Next((int)startingPosition.y, chunkHeight - 3 + (int)startingPosition.y);
+                    z = Random.Next((int)startingPosition.z, chunkDepth - 1 + (int)startingPosition.z);
+                // } while (gridManager.checkArround(y,z,1,1));
                 GenerateOilVein(new Vector3(
                     startingPosition.x,
-                    Random.Next((int)startingPosition.y, chunkHeight-3+(int)startingPosition.y),
-                    Random.Next((int)startingPosition.z, chunkDepth-1+(int)startingPosition.z)),
-                    whichWall
-                );
+                    y,
+                    z),
+                    whichWall);
             }
         }
 
@@ -252,22 +261,32 @@ public class ChunkGeneration : MonoBehaviour
             int whichWall = Random.Next(0,2) == 0 ? 0 : 1;
 
             //prawa ściana
-            if(whichWall == 0) {
+            if(whichWall == 0)
+            {
+                // do
+                // {
+                    x = Random.Next((int)startingPosition.x, chunkWidth - 1 + (int)startingPosition.x);
+                    y = Random.Next((int)startingPosition.y, chunkHeight - 3 + (int)startingPosition.y);
+                // } while (gridManager.checkArround(y,x,1,0));
                 GenerateWaterVein(new Vector3(
-                    Random.Next((int)startingPosition.x, chunkWidth-1+(int)startingPosition.x),
-                    Random.Next((int)startingPosition.y, chunkHeight-3+(int)startingPosition.y),
+                    x,
+                    y,
                     startingPosition.z),
-                    whichWall
-                );
+                    whichWall);
             }
             //lewa ściana
-            else {
+            else
+            {
+                // do
+                // {
+                    y = Random.Next((int)startingPosition.y, chunkHeight - 3 + (int)startingPosition.y);
+                    z = Random.Next((int)startingPosition.z, chunkDepth - 1 + (int)startingPosition.z);
+                // } while (gridManager.checkArround(y,z,1,1));
                 GenerateWaterVein(new Vector3(
                     startingPosition.x,
-                    Random.Next((int)startingPosition.y, chunkHeight-3+(int)startingPosition.y),
-                    Random.Next((int)startingPosition.z, chunkDepth-1+(int)startingPosition.z)),
-                    whichWall
-                );
+                    y,
+                    z),
+                    whichWall);
             }
         }
     }
