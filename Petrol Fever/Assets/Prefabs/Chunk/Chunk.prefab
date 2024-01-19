@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1908106794628150904}
   - component: {fileID: -4403376396233618975}
+  - component: {fileID: 6594771835286260578}
   m_Layer: 0
   m_Name: Chunk
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -44,9 +45,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a1faece896372429b1be8121a3353f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridManager: {fileID: 6594771835286260578}
   dirtCubePrefab: {fileID: 3904943155693376493, guid: e82eca1643da77f47bcc52337d7a6b11, type: 3}
   oilCubePrefab: {fileID: 3904943155693376493, guid: e5eae7fe6ac113a4fae7af9c2f3217ae, type: 3}
   oilVeinPrefab: {fileID: 7899295289814158179, guid: 69bf7df8e958e424fac262b48f46ce66, type: 3}
+  waterCubePrefab: {fileID: 600282509763008403, guid: 750ae8e795d056b489ab7dfcc949ad0b, type: 3}
+  waterVeinPrefab: {fileID: 7899295289814158179, guid: 6cf5633914d64944d944e69dac6e2d2a, type: 3}
   chunkWidth: 15
   chunkDepth: 15
   chunkHeight: 25
+--- !u!114 &6594771835286260578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5994376326257153378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 123710256cecd1046ae57436c91c7641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chunkGeneration: {fileID: -4403376396233618975}

@@ -7,12 +7,20 @@ using UnityEngine.Serialization;
 
 public class ChunkGeneration : MonoBehaviour
 {
-    public readonly System.Random Random = new System.Random();
-    public GameObject dirtCubePrefab;
-    public GameObject oilCubePrefab;
-    public GameObject oilVeinPrefab;
-    public GameObject waterCubePrefab;
-    public GameObject waterVeinPrefab;
+    [SerializeField]
+    private GridManager gridManager;
+    
+    private readonly System.Random Random = new System.Random();
+    [SerializeField]
+    private GameObject dirtCubePrefab;
+    [SerializeField]
+    private GameObject oilCubePrefab;
+    [SerializeField]
+    private GameObject oilVeinPrefab;
+    [SerializeField]
+    private GameObject waterCubePrefab;
+    [SerializeField]
+    private GameObject waterVeinPrefab;
     public int chunkWidth = 15;
     public int chunkDepth = 15;
     public int chunkHeight = 25;
@@ -30,7 +38,13 @@ public class ChunkGeneration : MonoBehaviour
         GameObject oilVeinParent = Instantiate(oilVeinPrefab, startingPosition, Quaternion.identity, this.transform);
         var position = oilVeinParent.transform.position;
         oilVeinParent.name =  "Oil Vein " + position.x + " , " + position.y + " , " + position.z;
-        Instantiate(oilCubePrefab, startingPosition, Quaternion.identity, oilVeinParent.transform );
+        
+        Instantiate(oilCubePrefab, startingPosition, Quaternion.identity, oilVeinParent.transform);
+        if (whichWall == 0) {
+            gridManager.rightSetValue((int)startingPosition.y,(int)startingPosition.x,1);
+        } else {
+            gridManager.leftSetValue((int)startingPosition.y,(int)startingPosition.z,1);
+        }
         Vector3 currentPosition = startingPosition;
         
         for(int i = 0; i < Random.Next(veinMinSize, veinMaxSize); i++) {
@@ -65,7 +79,6 @@ public class ChunkGeneration : MonoBehaviour
                     }
                 }
             }
-
             //lewa sciana
             else
             {
@@ -97,6 +110,11 @@ public class ChunkGeneration : MonoBehaviour
             }
             
             Instantiate(oilCubePrefab, currentPosition, Quaternion.identity, oilVeinParent.transform);
+            if (whichWall == 0) {
+                gridManager.rightSetValue((int)currentPosition.y,(int)currentPosition.x,1);
+            } else {
+                gridManager.leftSetValue((int)currentPosition.y,(int)currentPosition.z,1);
+            }
         }
     }
     private void GenerateWaterVein(Vector3 startingPosition, int whichWall)
@@ -113,6 +131,11 @@ public class ChunkGeneration : MonoBehaviour
         waterVeinParent.name =
             "Water Vein " + waterVeinParent.transform.position.x + ", " + waterVeinParent.transform.position.z;
         Instantiate(waterCubePrefab, startingPosition, Quaternion.identity, waterVeinParent.transform );
+        if (whichWall == 0) {
+            gridManager.rightSetValue((int)startingPosition.y,(int)startingPosition.x,2);
+        } else {
+            gridManager.leftSetValue((int)startingPosition.y,(int)startingPosition.z,2);
+        }
         Vector3 currentPosition = startingPosition;
 
         for(int i = 0; i < Random.Next(veinMinSize, veinMaxSize); i++) {
@@ -147,7 +170,6 @@ public class ChunkGeneration : MonoBehaviour
                     }
                 }
             }
-
             //lewa sciana
             else
             {
@@ -179,6 +201,11 @@ public class ChunkGeneration : MonoBehaviour
             }
             
             Instantiate(waterCubePrefab, currentPosition, Quaternion.identity, waterVeinParent.transform);
+            if (whichWall == 0) {
+                gridManager.rightSetValue((int)currentPosition.y,(int)currentPosition.x,2);
+            } else {
+                gridManager.leftSetValue((int)currentPosition.y,(int)currentPosition.z,2);
+            }
         }
     }
 
@@ -192,17 +219,6 @@ public class ChunkGeneration : MonoBehaviour
         GameObject dirtChunk = (GameObject)Instantiate(dirtCubePrefab, startingPosition+chunkSizeV3/2, Quaternion.identity, this.transform);
         dirtChunk.name = "Dirt of " + this.name;
         dirtChunk.transform.localScale = chunkSizeV3;
-        Grid grid = new Grid(chunkWidth, chunkDepth, 1f);
-        
-        
-        for (int x = 0; x < chunkWidth; x++)
-        {
-            for (int z = 0; z < chunkDepth; z++)
-            {
-                Debug.DrawLine(new Vector3(x,chunkHeight,z),new Vector3(x+1,chunkHeight,z), Color.white, 100f);
-                Debug.DrawLine(new Vector3(x,chunkHeight,z),new Vector3(x,chunkHeight,z+1), Color.white, 100f); 
-            }
-        }
         
         //generowanie ropy
         int amountOfOilVeins = Random.Next(3,6);
