@@ -215,7 +215,7 @@ public class ChunkGeneration : MonoBehaviour
         Vector3 startingPosition = this.transform.position;
         Vector3 chunkSizeV3 = new Vector3(chunkDepth,chunkHeight, chunkWidth);
 
-        GameObject dirtChunk = (GameObject)Instantiate(dirtCubePrefab, startingPosition+chunkSizeV3/2, Quaternion.identity, this.transform);
+        GameObject dirtChunk = (GameObject)Instantiate(dirtCubePrefab,  startingPosition + chunkSizeV3/2 - new Vector3(0, 0.1f), Quaternion.identity, this.transform);
         dirtChunk.name = "Dirt of " + this.name;
         dirtChunk.transform.localScale = chunkSizeV3;
         
