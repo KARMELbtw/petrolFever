@@ -3,7 +3,9 @@ guid: 0c698d6c1aa51bc47b3e139b831c75bc
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ChunksCamera: {fileID: 6434728741374607853, guid: 49c2b81245ee9fa45b7504b79acf2e8a, type: 3}
+  - TownCamera: {fileID: 8209674010939137891, guid: b3f3b003d143c85438b82cbbf20ac495, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
