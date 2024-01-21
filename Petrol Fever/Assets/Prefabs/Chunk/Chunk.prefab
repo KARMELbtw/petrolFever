@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1908106794628150904}
   - component: {fileID: -4403376396233618975}
   - component: {fileID: 6594771835286260578}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Chunk
-  m_TagString: Untagged
+  m_TagString: Chunk
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,6 +67,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chunkGeneration: {fileID: -4403376396233618975}
-  buildings:
-  - {fileID: 11400000, guid: 1539beaf32e0493449538e69a6cced85, type: 2}
-  - {fileID: 11400000, guid: bc7826268aefaf7498d261fb34a6e62e, type: 2}
