@@ -18,7 +18,7 @@ public class SceneChanger : MonoBehaviour
     private Vector3 ChunkCameraRotation = new Vector3(31.5f, 45f, 0f);
     
     //zadeklarowanie zmiennej do przechowywania informacji o tym czy kamera patrzy na chunki czy na miasto
-    bool isLookingAtChunk = false;
+    static public bool IsLookingAtChunk { get; private set; } = false;
     
     void OnMouseDown()
     {
@@ -30,21 +30,19 @@ public class SceneChanger : MonoBehaviour
     void MoveCamera()
     {
         //zamiana kamer
-        if (isLookingAtChunk)
+        if (IsLookingAtChunk)
         {
             Camera.main.transform.position = TownCameraPosition;
-            //nwm czemu ale trzeba dodać ten syf do rotacji bo inaczej ustawia roatcje na 0 360 0
-            Camera.main.transform.rotation = Quaternion.Euler(TownCameraRotation);
+            Camera.main.transform.rotation = Quaternion.Euler(TownCameraRotation) ;
             Debug.Log("zmieniono widok na miasto");
-            isLookingAtChunk = false;
+            IsLookingAtChunk = false;
         }
         else
         {
             Camera.main.transform.position = ChunkCameraPosition;
-            //tu działa bez tego syfu nwm czemu
             Camera.main.transform.rotation = Quaternion.Euler(ChunkCameraRotation);
             Debug.Log("zmieniono widok na chunki");
-            isLookingAtChunk = true;
+            IsLookingAtChunk = true;
         }
 
     }
