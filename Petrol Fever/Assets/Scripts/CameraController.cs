@@ -22,14 +22,35 @@ public class CameraController : MonoBehaviour
             if (Input.GetMouseButton(0)) {
                 float x = Input.GetAxis("Mouse X") / cameraSpeed;
                 float y = Input.GetAxis("Mouse Y") / cameraSpeed;
-                if (Math.Round(this.transform.position.x) + Math.Round(-x - y) <= maxX && 
-                    Math.Round(this.transform.position.x) + Math.Round(-x - y) >= minX &&
-                    Math.Round(this.transform.position.z) + Math.Round(x - y) <= maxZ &&
-                    Math.Round(this.transform.position.z) + Math.Round(x - y) >= minZ) {
-                    transform.position += new Vector3((-x - y) / zoom, 0, (x - y) / zoom);
+                transform.position += new Vector3((-x - y) / zoom, 0, (x - y) / zoom);
+            }
+            // Secondary keyboard controls
+            if (Input.GetKey(KeyCode.W)) {
+                if (Math.Round(this.transform.position.z) + 1 <= maxZ) {
+                    transform.position += new Vector3(1 / zoom / cameraSpeed, 0, 1 / zoom / cameraSpeed);
                 }
-
-                float scroll = Input.GetAxis("Mouse ScrollWheel");
+            } else if (Input.GetKey(KeyCode.S)) {
+                if (Math.Round(this.transform.position.z) - 1 >= minZ) {
+                    transform.position += new Vector3(-1 / zoom / cameraSpeed, 0, -1 / zoom / cameraSpeed);
+                }
+            } else if (Input.GetKey(KeyCode.A)) {
+                if (Math.Round(this.transform.position.x) - 1 >= minX) {
+                    transform.position += new Vector3(-1 / zoom / cameraSpeed, 0, 1 / zoom / cameraSpeed);
+                }
+            } else if (Input.GetKey(KeyCode.D)) {
+                if (Math.Round(this.transform.position.x) + 1 <= maxX) {
+                    transform.position += new Vector3(1 / zoom / cameraSpeed, 0, -1 / zoom / cameraSpeed);
+                }
+            } else if (Input.GetKey(KeyCode.Q)) {
+                if (Math.Round(this.transform.position.y) + 1 <= maxY) {
+                    transform.position += new Vector3(0, 1 / zoom / cameraSpeed, 0);
+                }
+            } else if (Input.GetKey(KeyCode.E)) {
+                if (Math.Round(this.transform.position.y) - 1 >= minY) {
+                    transform.position += new Vector3(0, -1 / zoom / cameraSpeed, 0);
+                }
+            }
+            float scroll = Input.GetAxis("Mouse ScrollWheel");
                 if (scroll == 0) return;
                 if (!(Math.Round(this.transform.position.y) + -scroll * zoomSpeed <= maxY) ||
                     !(Math.Round(this.transform.position.y) + -scroll * zoomSpeed >= minY)) return;
@@ -39,7 +60,6 @@ public class CameraController : MonoBehaviour
                 }
 
                 transform.position += new Vector3(scroll * zoomSpeed, -scroll * zoomSpeed, scroll * zoomSpeed);
-            }
         }
     }
 }

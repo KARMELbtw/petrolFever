@@ -14269,12 +14269,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraSpeed: 5
   zoomSpeed: 5
-  maxX: 16
-  minX: -40
-  maxZ: 10
-  minZ: -25
-  maxY: 39
-  minY: 27
+  maxX: 100
+  minX: 100
+  maxZ: 100
+  minZ: 100
+  maxY: 100
+  minY: 100
 --- !u!114 &681230370
 MonoBehaviour:
   m_ObjectHideFlags: 0

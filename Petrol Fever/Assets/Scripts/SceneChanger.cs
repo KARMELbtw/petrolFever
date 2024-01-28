@@ -18,7 +18,7 @@ public class SceneChanger : MonoBehaviour
     private Vector3 ChunkCameraRotation = new Vector3(31.5f, 45f, 0f);
     
     //zadeklarowanie zmiennej do przechowywania informacji o tym czy kamera patrzy na chunki czy na miasto
-    static public bool IsLookingAtChunk { get; private set; } = false;
+    public static bool IsLookingAtChunk { get; private set; } = false;
     
     void OnMouseDown()
     {

@@ -5,21 +5,20 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    [SerializeField] private ChunkGeneration chunkGeneration;
+    [SerializeField] public ChunkGeneration chunkGeneration;
 
     private int[,] leftGrid;
     private int[,] rightGrid;
-    private Building[,] topGrid;
+    private GameObject[,] topGrid;
 
-    private void Awake() {
+    public void InitializeGrids() {
         leftGrid = new int[chunkGeneration.chunkHeight + 1, chunkGeneration.chunkWidth + 1];
         rightGrid = new int[chunkGeneration.chunkHeight + 1, chunkGeneration.chunkDepth + 1];
-        topGrid = new Building[chunkGeneration.chunkDepth + 1, chunkGeneration.chunkWidth + 1];
+        topGrid = new GameObject[chunkGeneration.chunkDepth + 1, chunkGeneration.chunkWidth + 1];
     }
 
-    // funkcja do stawiania budynku po kliknięciu prawym przyciskiem myszy
-    private void Update() {
-        
+    private void Awake() {
+        InitializeGrids();
     }
 
     // Funkcja do stawiania budynku w danym miejscu na jednej z siatek
@@ -27,15 +26,27 @@ public class GridManager : MonoBehaviour
         Vector3 worldPosition = position + this.transform.position;
         Debug.Log("Building: " + building.name + " at " + worldPosition);
         GameObject newBuilding = Instantiate(building.prefab, worldPosition, Quaternion.identity);
-        topSetValue((int)position.x,(int)position.z, building);
-        return;
+         for (int x = 0; x < building.depth; x++) { 
+             for (int z = 0; z < building.width; z++) { 
+                 topSetValue((int)position.x + x,(int)position.z + z, newBuilding);
+             }
+         }
     }
 
     // Funkcja do sprawdzenia czy można postawić budynek w danym miejscu
-    public bool CanPlaceBuilding(Vector3 position) {
-        Debug.Log("Can place building at: " + position);
-        int x = (int)position.x, z = (int)position.z;
-        return topGrid[x, z] == null;
+    public bool canPlaceBuilding(int xGrid, int yGrid, Building building) {
+        for (int x = 0; x < building.depth; x++) {
+            for (int y = 0; y < building.width; y++) {
+                if (xGrid + x >= chunkGeneration.chunkWidth || yGrid + y >= chunkGeneration.chunkDepth) {
+                    return false;
+                }
+                if (topGetBuilging(xGrid + x, yGrid + y) != null) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     private void Start() {
@@ -78,7 +89,7 @@ public class GridManager : MonoBehaviour
         rightGrid[y, x] = value;
     }
 
-    public void topSetValue(int x, int z, Building building) {
+    public void topSetValue(int x, int z, GameObject building) {
         Vector3 position = this.transform.position;
         Debug.Log("Setting position for " + this.name + " at " + position.x + " " + position.z);
         if (x < 0 || x >= topGrid.GetLength(0) || z < 0 || z >= topGrid.GetLength(1)) {
@@ -90,7 +101,7 @@ public class GridManager : MonoBehaviour
         topGrid[x, z] = building;
     }
 
-    public Building topGetBuilging(int x, int z) {
+    public GameObject topGetBuilging(int x, int z) {
         Vector3 position = this.transform.position;
         Debug.Log("Setting position for " + this.name + " located at " + position.x + " " + position.z);
         if (x < 0 || x >= topGrid.GetLength(0) || z < 0 || z >= topGrid.GetLength(1)) {

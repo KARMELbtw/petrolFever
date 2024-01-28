@@ -10,4 +10,6 @@ public class Building : ScriptableObject {
     public GameObject prefab;
     public int id; 
     public bool mustPlaceOnTop;
+    public int width = 1;
+    public int depth = 1;
 }

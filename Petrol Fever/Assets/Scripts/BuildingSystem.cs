@@ -6,12 +6,6 @@ public class BuildingSystem : MonoBehaviour
 {
     [SerializeField] private List<Building> buildings;
     private int currentBuilding = 0;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -47,11 +41,8 @@ public class BuildingSystem : MonoBehaviour
                 return;
             }
 
-            if (chunkgridManager.topGetBuilging(xGrid, zGrid) != null && buildings[currentBuilding].mustPlaceOnTop) {
-                Debug.Log("Building can't be placed on " + this.name + " at " + rayHitPosition + " grid: " + xGrid +
-                          " " + zGrid);
-                Debug.Log("Building placed on " + xGrid + " " + zGrid + " is: " +
-                          chunkgridManager.topGetBuilging(xGrid, zGrid).name);
+            if (chunkgridManager.canPlaceBuilding(xGrid, zGrid, buildings[currentBuilding]) == false) {
+                Debug.Log("Building can't be placed on " + this.name + " at " + rayHitPosition + " grid: " + xGrid + " " + zGrid);
                 return;
             }
             
