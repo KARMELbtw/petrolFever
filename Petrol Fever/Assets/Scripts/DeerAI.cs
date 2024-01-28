@@ -48,7 +48,7 @@ public class DeerAI : MonoBehaviour
 
     public void Move(float x, float z)
     {
-        Vector3 targetPosition = new Vector3(x, 16f, z);
+        Vector3 targetPosition = new Vector3(x, 15.5f, z);
         StartCoroutine(RotateAndMove(targetPosition));
     }
 
@@ -58,7 +58,7 @@ public class DeerAI : MonoBehaviour
         randomX = Random.Range(-54f, -43f);
         randomZ = Random.Range(-51f, -42f);
         nextMove = Random.Range(2500, 5000);
-        this.transform.position = new Vector3(randomX,16,randomZ);
+        this.transform.position = new Vector3(randomX,15.5f,randomZ);
     }
 
     // Update is called once per frame
