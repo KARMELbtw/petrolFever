@@ -93,7 +93,7 @@ public class GridManager : MonoBehaviour
         Vector3 position = this.transform.position;
         Debug.Log("Setting position for " + this.name + " at " + position.x + " " + position.z);
         if (x < 0 || x >= topGrid.GetLength(0) || z < 0 || z >= topGrid.GetLength(1)) {
-            Debug.LogError("Index out of bounds in topSetValue: " + x + " " + z);
+            Debug.LogWarning("Index out of bounds in topSetValue: " + x + " " + z);
             return;
         }
 
@@ -105,7 +105,7 @@ public class GridManager : MonoBehaviour
         Vector3 position = this.transform.position;
         Debug.Log("Setting position for " + this.name + " located at " + position.x + " " + position.z);
         if (x < 0 || x >= topGrid.GetLength(0) || z < 0 || z >= topGrid.GetLength(1)) {
-            Debug.LogError("Index out of bounds in topGetValue: " + x + " " + z);
+            Debug.LogWarning("Index out of bounds in topGetValue: " + x + " " + z);
             return null;
         }
         return topGrid[x, z];
