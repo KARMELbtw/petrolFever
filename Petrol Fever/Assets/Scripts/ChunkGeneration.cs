@@ -15,18 +15,32 @@ public class ChunkGeneration : MonoBehaviour
     [SerializeField] private GameObject oilVeinPrefab;
     [SerializeField] private GameObject waterCubePrefab;
     [SerializeField] private GameObject waterVeinPrefab;
+    [SerializeField] private GameObject grassBlockPrefab;
     public int chunkWidth = 15;
     public int chunkDepth = 15;
     public int chunkHeight = 25;
+
+    private bool isOccupied(string[] occupiedPositions, Vector3 currentPosition, Vector3 startingPosition) {
+        bool isOccupied = false;
+        foreach(string occupiedPosition in occupiedPositions) {
+            Debug.Log(occupiedPosition + "   " + (currentPosition.x - startingPosition.x) + " " + (currentPosition.y - startingPosition.y) + " " + (currentPosition.z - startingPosition.z));
+            if(occupiedPosition == (currentPosition.x - startingPosition.x) + " " + (currentPosition.y - startingPosition.y) + " " + (currentPosition.z - startingPosition.z)) {
+                return true;
+            }
+        }
+        return isOccupied;
+    }
 
     private void GenerateOilVein(Vector3 startingPosition, int whichWall) {
         int veinMaxSize = 8;
         int veinMinSize = 5;
 
         int veinMaxWidth = 4;
-        int veinMaxHeight = 4;
+        int veinMaxHeight = 2;
 
         int shift = 0;
+
+        
 
         GameObject oilVeinParent = Instantiate(oilVeinPrefab, startingPosition, Quaternion.identity, this.transform);
         var position = oilVeinParent.transform.position;
@@ -41,8 +55,12 @@ public class ChunkGeneration : MonoBehaviour
         }
 
         Vector3 currentPosition = startingPosition;
+        
+        int veinSize = Random.Next(veinMinSize, veinMaxSize);
+        string[] occupiedPositions = new string[veinSize];
+        occupiedPositions[0] = 0 + " " + 0 + " " + 0;
 
-        for (int i = 0; i < Random.Next(veinMinSize, veinMaxSize); i++) {
+        for (int i = 0; i < veinSize - 1; i++) {
             int whichDirection = Random.Next(1, 3);
 
             //prawa sciana
@@ -108,7 +126,13 @@ public class ChunkGeneration : MonoBehaviour
                 }
             }
 
-            Instantiate(oilCubePrefab, currentPosition, Quaternion.identity, oilVeinParent.transform);
+            if(isOccupied(occupiedPositions, currentPosition, startingPosition)) {
+                currentPosition = startingPosition;
+            } else {
+                Instantiate(oilCubePrefab, currentPosition, Quaternion.identity, oilVeinParent.transform);
+            }
+            occupiedPositions[i+1] = (currentPosition.x - startingPosition.x) + " " + (currentPosition.y - startingPosition.y) + " " + (currentPosition.z - startingPosition.z);
+
             if (whichWall == 0) {
                 gridManager.rightSetValue((int)currentPosition.y, (int)currentPosition.x, 1);
             }
@@ -141,7 +165,11 @@ public class ChunkGeneration : MonoBehaviour
 
         Vector3 currentPosition = startingPosition;
 
-        for (int i = 0; i < Random.Next(veinMinSize, veinMaxSize); i++) {
+        int veinSize = Random.Next(veinMinSize, veinMaxSize);
+        string[] occupiedPositions = new string[veinSize];
+        occupiedPositions[0] = 0 + " " + 0 + " " + 0;
+
+        for (int i = 0; i < veinSize - 1; i++) {
             int whichDirection = Random.Next(1, 3);
 
             //prawa sciana
@@ -207,7 +235,17 @@ public class ChunkGeneration : MonoBehaviour
                 }
             }
 
-            Instantiate(waterCubePrefab, currentPosition, Quaternion.identity, waterVeinParent.transform);
+            if(isOccupied(occupiedPositions, currentPosition, startingPosition)) {
+                currentPosition = startingPosition;
+                Debug.Log((currentPosition.x - startingPosition.x) + " " + (currentPosition.y - startingPosition.y) + " " + (currentPosition.z - startingPosition.z));
+                Debug.Log("zajemte");
+            } else {
+                Instantiate(waterCubePrefab, currentPosition, Quaternion.identity, waterVeinParent.transform);
+                Debug.Log((currentPosition.x - startingPosition.x) + " " + (currentPosition.y - startingPosition.y) + " " + (currentPosition.z - startingPosition.z));
+                Debug.Log("nie zajemte");
+            }
+            occupiedPositions[i+1] = (currentPosition.x - startingPosition.x) + " " + (currentPosition.y - startingPosition.y) + " " + (currentPosition.z - startingPosition.z);
+
             if (whichWall == 0) {
                 gridManager.rightSetValue((int)currentPosition.y, (int)currentPosition.x, 2);
             }
@@ -222,10 +260,21 @@ public class ChunkGeneration : MonoBehaviour
         Vector3 startingPosition = this.transform.position;
         Vector3 chunkSizeV3 = new Vector3(chunkDepth, chunkHeight, chunkWidth);
 
-        GameObject dirtChunk = (GameObject)Instantiate(dirtCubePrefab,
-            startingPosition + chunkSizeV3 / 2 - new Vector3(0, 0.1f), Quaternion.identity, this.transform);
+        GameObject dirtChunk = (GameObject)Instantiate(dirtCubePrefab, startingPosition + chunkSizeV3 / 2 - new Vector3(0, 0.1f), Quaternion.identity, this.transform);
         dirtChunk.name = "Dirt of " + this.name;
         dirtChunk.transform.localScale = chunkSizeV3;
+
+        GameObject chunkGrass = new GameObject();
+        chunkGrass.name = "chunkGrass";
+        chunkGrass.transform.SetParent(this.transform);
+
+        for(int z2 = 0; z2 < chunkDepth; z2++) {
+            for(int x2 = 0; x2 < chunkWidth; x2++) {
+                Instantiate(grassBlockPrefab, new Vector3(x2, chunkHeight, z2), Quaternion.identity, chunkGrass.transform);
+            }
+        }
+
+        chunkGrass.transform.position = new Vector3(chunkGrass.transform.position.x + 0.5f, 0.4f, chunkGrass.transform.position.z + 0.5f);
 
         //generowanie ropy
         int amountOfOilVeins = Random.Next(3, 6);

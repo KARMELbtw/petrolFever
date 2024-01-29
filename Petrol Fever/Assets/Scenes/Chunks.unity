@@ -31165,6 +31165,10 @@ PrefabInstance:
       propertyPath: waterVeinPrefab
       value: 
       objectReference: {fileID: 7899295289814158179, guid: 6cf5633914d64944d944e69dac6e2d2a, type: 3}
+    - target: {fileID: -4403376396233618975, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: grassBlockPrefab
+      value: 
+      objectReference: {fileID: 1115175866435674372, guid: 7931f11019dceb44aba8c06963179b9c, type: 3}
     - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
       propertyPath: m_RootOrder
       value: 2
