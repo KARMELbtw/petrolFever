@@ -29,6 +29,8 @@ public class DeerAI : MonoBehaviour
 
         // Ensure reaching the exact target rotation
         transform.rotation = targetRotation;
+        transform.Rotate(0, -270, 0);
+
 
         // move to the target position
         float movementDuration = 1f;
@@ -73,6 +75,4 @@ public class DeerAI : MonoBehaviour
         }
         i++;
     }
-    
-
 }
