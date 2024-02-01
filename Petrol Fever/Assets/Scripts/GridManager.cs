@@ -22,7 +22,7 @@ public class GridManager : MonoBehaviour
     }
 
     // Funkcja do stawiania budynku w danym miejscu na jednej z siatek
-    public void BuildBuilding(Vector3 position, Building building) {
+    public void InitializeBuilding(Vector3 position, Building building) {
         Vector3 worldPosition = position + this.transform.position;
         Debug.Log("Building: " + building.name + " at " + worldPosition);
         GameObject newBuilding = Instantiate(building.prefab, worldPosition, Quaternion.identity);
@@ -91,7 +91,6 @@ public class GridManager : MonoBehaviour
 
     public void topSetValue(int x, int z, GameObject building) {
         Vector3 position = this.transform.position;
-        Debug.Log("Setting position for " + this.name + " at " + position.x + " " + position.z);
         if (x < 0 || x >= topGrid.GetLength(0) || z < 0 || z >= topGrid.GetLength(1)) {
             Debug.LogWarning("Index out of bounds in topSetValue: " + x + " " + z);
             return;
@@ -103,7 +102,6 @@ public class GridManager : MonoBehaviour
 
     public GameObject topGetBuilging(int x, int z) {
         Vector3 position = this.transform.position;
-        Debug.Log("Setting position for " + this.name + " located at " + position.x + " " + position.z);
         if (x < 0 || x >= topGrid.GetLength(0) || z < 0 || z >= topGrid.GetLength(1)) {
             Debug.LogWarning("Index out of bounds in topGetValue: " + x + " " + z);
             return null;

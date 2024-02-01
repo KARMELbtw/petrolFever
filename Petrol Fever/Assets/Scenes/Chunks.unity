@@ -14270,11 +14270,11 @@ MonoBehaviour:
   cameraSpeed: 5
   zoomSpeed: 5
   maxX: 100
-  minX: 100
+  minX: -100
   maxZ: 100
-  minZ: 100
-  maxY: 100
-  minY: 100
+  minZ: -100
+  maxY: 42
+  minY: 26
 --- !u!114 &681230370
 MonoBehaviour:
   m_ObjectHideFlags: 0
