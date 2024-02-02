@@ -7,8 +7,7 @@ using UnityEngine.Serialization;
 
 public class ChunkGeneration : MonoBehaviour
 {
-    [SerializeField] private GridManager gridManager;
-
+    private GridManager gridManager;
     private readonly System.Random Random = new System.Random();
     [SerializeField] private GameObject dirtCubePrefab;
     [SerializeField] private GameObject oilCubePrefab;
@@ -20,6 +19,9 @@ public class ChunkGeneration : MonoBehaviour
     public int chunkDepth = 15;
     public int chunkHeight = 25;
 
+    private void Awake() {
+        gridManager = this.GetComponent<GridManager>();
+    }
     private bool isOccupied(string[] occupiedPositions, Vector3 currentPosition, Vector3 startingPosition) {
         bool isOccupied = false;
         foreach(string occupiedPosition in occupiedPositions) {
@@ -270,10 +272,9 @@ public class ChunkGeneration : MonoBehaviour
 
         for(int z2 = 0; z2 < chunkDepth; z2++) {
             for(int x2 = 0; x2 < chunkWidth; x2++) {
-                Instantiate(grassBlockPrefab, new Vector3(x2, chunkHeight, z2), Quaternion.identity, chunkGrass.transform);
+                Instantiate(grassBlockPrefab, new Vector3(x2, chunkHeight-0.4999f, z2), Quaternion.identity, chunkGrass.transform);
             }
         }
-
         chunkGrass.transform.position = new Vector3(chunkGrass.transform.position.x + 0.5f, 0.4f, chunkGrass.transform.position.z + 0.5f);
 
         //generowanie ropy
