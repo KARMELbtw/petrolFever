@@ -1,12 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Codice.Client.Common.Connection;
 using UnityEngine;
 
 public class BuildingSystem : MonoBehaviour
-{
-    [SerializeField] private List<Building> buildings;
+{   
+    [SerializeField]
+    private List<Building> buildings;
     private int currentBuilding = 0;
+    
+    [SerializeField]
+    private int returnPercentage = 80;
     
     //zadeklarowanie zmiennej globalnej amountOfMoney
     private static int money = 300000;
@@ -23,7 +28,11 @@ public class BuildingSystem : MonoBehaviour
         }
     }
 
-    
+    private void Awake() {
+        Building[] temp = Resources.LoadAll<Building>("");
+        buildings = new List<Building>(temp);
+    }
+
     private void BuildBuilding() {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -66,6 +75,45 @@ public class BuildingSystem : MonoBehaviour
         chunkgridManager.InitializeBuilding(new Vector3(xGrid, yGrid, zGrid), buildings[currentBuilding]);
     }
     
+    private void SellBuilding() {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        int layerMask = 1 << 3;
+            
+        if (!Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, layerMask)) {
+            Debug.Log("Raycast didn't hit anything");
+            return;
+        }
+
+        // Check if the raycast hit the current GameObject
+        if (!hitInfo.transform.gameObject.transform.CompareTag("Chunk")) {
+            Debug.Log("Raycast hit something else: "+ hitInfo.transform.gameObject);
+            return;
+        }
+
+        GameObject chunkHit = hitInfo.transform.gameObject;
+        Vector3 rayHitPosition = hitInfo.point;
+        Debug.Log("Position of ray hit: " + rayHitPosition);
+        Vector3 chunkPosition = chunkHit.transform.position;
+        int xGrid = (int)(rayHitPosition.x - chunkPosition.x);
+        int yGrid = (int)(rayHitPosition.y - chunkPosition.y);
+        int zGrid = (int)(rayHitPosition.z - chunkPosition.z);
+        Debug.Log("Grid position of ray: x: " + xGrid + " y: " + yGrid + " z: " + zGrid);
+            
+        GridManager chunkgridManager = chunkHit.GetComponent<GridManager>();
+
+        if (chunkgridManager.topGetBuilging(xGrid,zGrid) == null) {
+            Debug.Log("There is no building to sell on " + this.name + " at " + rayHitPosition + " grid: " + xGrid + " " + zGrid);
+            return;
+        }
+        
+        
+        
+        chunkgridManager.deleteBulding(xGrid, zGrid, out int deletedBuildingPrice);
+        amountOfMoney += deletedBuildingPrice * returnPercentage / 100;
+
+    }
+    
     // Update is called once per frame
     void Update()
     {
@@ -75,6 +123,10 @@ public class BuildingSystem : MonoBehaviour
                 return;
             }
             BuildBuilding();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R)) {
+            SellBuilding();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) {

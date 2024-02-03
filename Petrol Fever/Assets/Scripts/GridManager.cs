@@ -21,18 +21,44 @@ public class GridManager : MonoBehaviour
         InitializeGrids();
     }
 
-    // Funkcja do stawiania budynku w danym miejscu na jednej z siatek
+    // Funkcja do stawiania budynku w danym miejscu
     public void InitializeBuilding(Vector3 position, Building building) {
         Vector3 worldPosition = position + this.transform.position;
+        
         Debug.Log("Building: " + building.name + " at " + worldPosition);
         GameObject newBuilding = Instantiate(building.prefab, worldPosition, Quaternion.identity);
-         for (int x = 0; x < building.depth; x++) { 
-             for (int z = 0; z < building.width; z++) { 
-                 topSetValue((int)position.x + x,(int)position.z + z, newBuilding);
-             }
-         }
+        
+        newBuilding.transform.parent = this.transform.GetChild(0);
+        newBuilding.name = building.name + " " + position.x + " " + position.z;
+        
+        BuildingScript newBuildingSript = newBuilding.GetComponent<BuildingScript>();
+        newBuildingSript.originGrid = new Vector2(position.x, position.z);
+        newBuildingSript.width = building.width;
+        newBuildingSript.depth = building.depth;
+        newBuildingSript.buildingName = building.buildingName;
+        newBuildingSript.price = building.price;
+        
+        for (int x = 0; x < building.depth; x++) { 
+            for (int z = 0; z < building.width; z++) { 
+                topSetValue((int)position.x + x,(int)position.z + z, newBuilding);
+            }
+        }
     }
-
+    
+    public void deleteBulding(int xGrid, int zGrid, out int deletedBuildingPrice) {
+        GameObject building = topGetBuilging(xGrid, zGrid);
+        BuildingScript buildingScript = building.GetComponent<BuildingScript>();
+        xGrid = (int)buildingScript.originGrid.x;
+        zGrid = (int)buildingScript.originGrid.y;
+        deletedBuildingPrice = buildingScript.price;
+        Destroy(building);
+        for (int x = 0; x < buildingScript.depth; x++) {
+            for (int z = 0; z < buildingScript.width; z++) {
+                topSetValue(xGrid + x, zGrid + z, null);
+            }
+        }
+    }
+    
     // Funkcja do sprawdzenia czy można postawić budynek w danym miejscu
     public bool canPlaceBuilding(int xGrid, int yGrid, Building building) {
         for (int x = 0; x < building.depth; x++) {

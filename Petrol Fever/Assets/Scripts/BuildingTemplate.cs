@@ -12,4 +12,6 @@ public class Building : ScriptableObject {
     public bool mustPlaceOnTop;
     public int width = 1;
     public int depth = 1;
+    [HideInInspector]
+    public Vector2 originGrid;
 }
