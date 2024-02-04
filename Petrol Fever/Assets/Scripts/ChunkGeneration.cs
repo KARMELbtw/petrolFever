@@ -18,15 +18,16 @@ public class ChunkGeneration : MonoBehaviour
     public int chunkWidth = 15;
     public int chunkDepth = 15;
     public int chunkHeight = 25;
+    public List<string> occupiedPositions = new List<string>();
 
     private void Awake() {
         gridManager = this.GetComponent<GridManager>();
     }
-    private bool isOccupied(string[] occupiedPositions, Vector3 currentPosition, Vector3 startingPosition) {
+    private bool isOccupied(Vector3 currentPosition, Vector3 startingPosition) {
         bool isOccupied = false;
         foreach(string occupiedPosition in occupiedPositions) {
-            Debug.Log(occupiedPosition + "   " + (currentPosition.x - startingPosition.x) + " " + (currentPosition.y - startingPosition.y) + " " + (currentPosition.z - startingPosition.z));
-            if(occupiedPosition == (currentPosition.x - startingPosition.x) + " " + (currentPosition.y - startingPosition.y) + " " + (currentPosition.z - startingPosition.z)) {
+            Debug.Log(occupiedPosition + "   " + currentPosition);
+            if(occupiedPosition == currentPosition.x + " " + currentPosition.y + " " + currentPosition.z) {
                 return true;
             }
         }
@@ -59,8 +60,7 @@ public class ChunkGeneration : MonoBehaviour
         Vector3 currentPosition = startingPosition;
         
         int veinSize = Random.Next(veinMinSize, veinMaxSize);
-        string[] occupiedPositions = new string[veinSize];
-        occupiedPositions[0] = 0 + " " + 0 + " " + 0;
+        occupiedPositions.Add(startingPosition.x + " " + startingPosition.y + " " + startingPosition.z);
 
         for (int i = 0; i < veinSize - 1; i++) {
             int whichDirection = Random.Next(1, 3);
@@ -128,12 +128,12 @@ public class ChunkGeneration : MonoBehaviour
                 }
             }
 
-            if(isOccupied(occupiedPositions, currentPosition, startingPosition)) {
-                currentPosition = startingPosition;
-            } else {
+            if(!isOccupied(currentPosition, startingPosition)) {
                 Instantiate(oilCubePrefab, currentPosition, Quaternion.identity, oilVeinParent.transform);
+            } else {
+                i--;
             }
-            occupiedPositions[i+1] = (currentPosition.x - startingPosition.x) + " " + (currentPosition.y - startingPosition.y) + " " + (currentPosition.z - startingPosition.z);
+            occupiedPositions.Add(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z);
 
             if (whichWall == 0) {
                 gridManager.rightSetValue((int)currentPosition.y, (int)currentPosition.x, 1);
@@ -168,8 +168,7 @@ public class ChunkGeneration : MonoBehaviour
         Vector3 currentPosition = startingPosition;
 
         int veinSize = Random.Next(veinMinSize, veinMaxSize);
-        string[] occupiedPositions = new string[veinSize];
-        occupiedPositions[0] = 0 + " " + 0 + " " + 0;
+        occupiedPositions.Add(startingPosition.x + " " + startingPosition.y + " " + startingPosition.z);
 
         for (int i = 0; i < veinSize - 1; i++) {
             int whichDirection = Random.Next(1, 3);
@@ -237,7 +236,7 @@ public class ChunkGeneration : MonoBehaviour
                 }
             }
 
-            if(isOccupied(occupiedPositions, currentPosition, startingPosition)) {
+            if(isOccupied(currentPosition, startingPosition)) {
                 currentPosition = startingPosition;
                 Debug.Log((currentPosition.x - startingPosition.x) + " " + (currentPosition.y - startingPosition.y) + " " + (currentPosition.z - startingPosition.z));
                 Debug.Log("zajemte");
@@ -246,7 +245,7 @@ public class ChunkGeneration : MonoBehaviour
                 Debug.Log((currentPosition.x - startingPosition.x) + " " + (currentPosition.y - startingPosition.y) + " " + (currentPosition.z - startingPosition.z));
                 Debug.Log("nie zajemte");
             }
-            occupiedPositions[i+1] = (currentPosition.x - startingPosition.x) + " " + (currentPosition.y - startingPosition.y) + " " + (currentPosition.z - startingPosition.z);
+            occupiedPositions.Add(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z);
 
             if (whichWall == 0) {
                 gridManager.rightSetValue((int)currentPosition.y, (int)currentPosition.x, 2);
