@@ -236,14 +236,10 @@ public class ChunkGeneration : MonoBehaviour
                 }
             }
 
-            if(isOccupied(currentPosition, startingPosition)) {
-                currentPosition = startingPosition;
-                Debug.Log((currentPosition.x - startingPosition.x) + " " + (currentPosition.y - startingPosition.y) + " " + (currentPosition.z - startingPosition.z));
-                Debug.Log("zajemte");
-            } else {
+            if(!isOccupied(currentPosition, startingPosition)) {
                 Instantiate(waterCubePrefab, currentPosition, Quaternion.identity, waterVeinParent.transform);
-                Debug.Log((currentPosition.x - startingPosition.x) + " " + (currentPosition.y - startingPosition.y) + " " + (currentPosition.z - startingPosition.z));
-                Debug.Log("nie zajemte");
+            } else {
+                i--;
             }
             occupiedPositions.Add(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z);
 
