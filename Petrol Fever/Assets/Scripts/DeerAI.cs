@@ -15,24 +15,11 @@ public class DeerAI : MonoBehaviour
         // Calculate rotation to the target
         Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
 
-        // Smoothly rotate to face the target
-        float rotationDuration = 0.25f;
-        float rotationElapsedTime = 0f;
-        Quaternion startRotation = transform.rotation;
-
-        while (rotationElapsedTime < rotationDuration)
-        {
-            transform.rotation = Quaternion.Slerp(startRotation, targetRotation, rotationElapsedTime / rotationDuration);
-            rotationElapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // Ensure reaching the exact target rotation
+        // Set rotation to face the target immediately
         transform.rotation = targetRotation;
         transform.Rotate(270, 180, 0);
 
-
-        // move to the target position
+        // Move to the target position
         float movementDuration = 1f;
         float movementElapsedTime = 0f;
         Vector3 startPosition = transform.position;
@@ -57,7 +44,7 @@ public class DeerAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        randomX = Random.Range(-54f, -43f);
+        randomX = Random.Range(-54f, -45f);
         randomZ = Random.Range(-51f, -42f);
         nextMove = Random.Range(2500, 5000);
         this.transform.position = new Vector3(randomX,15.5f,randomZ);
