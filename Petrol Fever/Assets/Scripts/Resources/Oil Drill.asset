@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Oil Rig
+  m_Script: {fileID: 11500000, guid: 64b3563ab86ac464c96ce49f97efc1ab, type: 3}
+  m_Name: Oil Drill
   m_EditorClassIdentifier: Scripts::Building
   buildingName: Oil Drill
-  price: 10000
-  prefab: {fileID: 8775789415804374649, guid: f0dd995849ee67042b068531fc26eef0, type: 3}
-  id: 1
-  mustPlaceOnTop: 1
-  width: 2
-  depth: 2
+  price: 0
+  prefab: {fileID: 0}
+  id: 0
+  mustPlaceOnTop: 0
+  width: 1
+  depth: 1
   originGrid: {x: 0, y: 0}

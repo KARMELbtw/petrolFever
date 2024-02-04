@@ -7,7 +7,7 @@ using UnityEngine;
 public class BuildingSystem : MonoBehaviour
 {   
     [SerializeField]
-    private List<Building> buildings;
+    private List<BuildingTemplate> buildings;
     private int currentBuilding = 0;
     
     [SerializeField]
@@ -29,11 +29,11 @@ public class BuildingSystem : MonoBehaviour
     }
 
     private void Awake() {
-        Building[] temp = Resources.LoadAll<Building>("");
+        BuildingTemplate[] temp = Resources.LoadAll<BuildingTemplate>("");
         if (temp.Length == 0) {
             Debug.LogError("Failed to load buildings from Resources");
         }
-        buildings = new List<Building>(temp);
+        buildings = new List<BuildingTemplate>(temp);
     }
 
     private void BuildBuilding() {

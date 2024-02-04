@@ -12,7 +12,7 @@ namespace Tests.editMode
             GridManager gridManager = gameObject.AddComponent<GridManager>();
             gridManager.chunkGeneration = gameObject.AddComponent<ChunkGeneration>();
             gridManager.InitializeGrids();
-            var building = ScriptableObject.CreateInstance<Building>();
+            var building = ScriptableObject.CreateInstance<BuildingTemplate>();
             building.depth = 2;
             building.width = 2;
             int xGrid = 0;
@@ -32,7 +32,7 @@ namespace Tests.editMode
             GridManager gridManager = gameObject.AddComponent<GridManager>();
             gridManager.chunkGeneration = gameObject.AddComponent<ChunkGeneration>();
             gridManager.InitializeGrids();
-            var building = ScriptableObject.CreateInstance<Building>();
+            var building = ScriptableObject.CreateInstance<BuildingTemplate>();
             building.depth = 2;
             building.width = 2;
             int xGrid = 0;
@@ -53,7 +53,7 @@ namespace Tests.editMode
             GridManager gridManager = gameObject.AddComponent<GridManager>();
             gridManager.chunkGeneration = gameObject.AddComponent<ChunkGeneration>();
             gridManager.InitializeGrids();
-            var building = ScriptableObject.CreateInstance<Building>();
+            var building = ScriptableObject.CreateInstance<BuildingTemplate>();
             building.depth = gridManager.chunkGeneration.chunkDepth + 1;
             building.width = gridManager.chunkGeneration.chunkWidth + 1;
             int xGrid = 0;

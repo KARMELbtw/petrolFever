@@ -4,14 +4,11 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "New Building", menuName = "Building", order = 1)]
-public class Building : ScriptableObject {
+public class BuildingTemplate : ScriptableObject {
     public string buildingName;
     public int price;
     public GameObject prefab;
-    public int id; 
     public bool mustPlaceOnTop;
     public int width = 1;
     public int depth = 1;
-    [HideInInspector]
-    public Vector2 originGrid;
 }

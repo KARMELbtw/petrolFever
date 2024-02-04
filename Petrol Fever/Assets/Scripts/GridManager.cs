@@ -22,24 +22,24 @@ public class GridManager : MonoBehaviour
     }
 
     // Funkcja do stawiania budynku w danym miejscu
-    public void InitializeBuilding(Vector3 position, Building building) {
+    public void InitializeBuilding(Vector3 position, BuildingTemplate buildingTemplate) {
         Vector3 worldPosition = position + this.transform.position;
         
-        Debug.Log("Building: " + building.name + " at " + worldPosition);
-        GameObject newBuilding = Instantiate(building.prefab, worldPosition, Quaternion.identity);
+        Debug.Log("Building: " + buildingTemplate.name + " at " + worldPosition);
+        GameObject newBuilding = Instantiate(buildingTemplate.prefab, worldPosition, Quaternion.identity);
         
         newBuilding.transform.parent = this.transform.GetChild(0);
-        newBuilding.name = building.name + " " + position.x + " " + position.z;
+        newBuilding.name = buildingTemplate.name + " " + position.x + " " + position.z;
         
         BuildingScript newBuildingSript = newBuilding.GetComponent<BuildingScript>();
         newBuildingSript.originGrid = new Vector2(position.x, position.z);
-        newBuildingSript.width = building.width;
-        newBuildingSript.depth = building.depth;
-        newBuildingSript.buildingName = building.buildingName;
-        newBuildingSript.price = building.price;
+        newBuildingSript.width = buildingTemplate.width;
+        newBuildingSript.depth = buildingTemplate.depth;
+        newBuildingSript.buildingName = buildingTemplate.buildingName;
+        newBuildingSript.price = buildingTemplate.price;
         
-        for (int x = 0; x < building.depth; x++) { 
-            for (int z = 0; z < building.width; z++) { 
+        for (int x = 0; x < buildingTemplate.depth; x++) { 
+            for (int z = 0; z < buildingTemplate.width; z++) { 
                 topSetValue((int)position.x + x,(int)position.z + z, newBuilding);
             }
         }
@@ -60,9 +60,9 @@ public class GridManager : MonoBehaviour
     }
     
     // Funkcja do sprawdzenia czy można postawić budynek w danym miejscu
-    public bool canPlaceBuilding(int xGrid, int yGrid, Building building) {
-        for (int x = 0; x < building.depth; x++) {
-            for (int y = 0; y < building.width; y++) {
+    public bool canPlaceBuilding(int xGrid, int yGrid, BuildingTemplate buildingTemplate) {
+        for (int x = 0; x < buildingTemplate.depth; x++) {
+            for (int y = 0; y < buildingTemplate.width; y++) {
                 if (xGrid + x >= chunkGeneration.chunkWidth || yGrid + y >= chunkGeneration.chunkDepth) {
                     return false;
                 }
