@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
+using System;
 
 public class ChunkGeneration : MonoBehaviour
 {
@@ -26,14 +27,86 @@ public class ChunkGeneration : MonoBehaviour
     private bool isOccupied(Vector3 currentPosition, Vector3 startingPosition) {
         bool isOccupied = false;
         foreach(string occupiedPosition in occupiedPositions) {
-            Debug.Log(occupiedPosition + "   " + currentPosition);
             if(occupiedPosition == currentPosition.x + " " + currentPosition.y + " " + currentPosition.z) {
                 return true;
             }
         }
         return isOccupied;
     }
+    private Vector3 updateCurrentPosition(Vector3 currentPosition, Vector3 startingPosition, int whichWall, int whichDirection, int veinMaxHeight, int veinMaxWidth) {
+        //prawa sciana
+        int shift = 0;
+        if (whichWall == 0) {
+            switch (whichDirection) {
+                case 1: {
+                    //sprawdzanie czy przesunięcie nie wychodzi poza chunka nie przekracz maskymalnej szerokości złoża ropy ani nie jest równe zero 
+                    while (
+                        currentPosition.x + shift < this.transform.position.x ||
+                        currentPosition.x + shift > this.transform.position.x + chunkWidth ||
+                        currentPosition.x + shift > startingPosition.x + veinMaxWidth / 2 ||
+                        currentPosition.x + shift < startingPosition.x - veinMaxWidth / 2 ||
+                        shift == 0) {
+                        shift = Random.Next(-1, 2);
+                    }
 
+                    //przeunięcie pozycji w osi x o shift
+                    currentPosition = new Vector3(currentPosition.x + shift, currentPosition.y, currentPosition.z);
+                    break;
+                }
+                case 2: {
+                    //sprawdzanie czy przesunięcie nie wychodzi poza chunka nie przekracz maskymalnej wysokości złoża ropy ani nie jest równe zero 
+                    while (
+                        currentPosition.y + shift < this.transform.position.y ||
+                        currentPosition.y + shift > this.transform.position.y + chunkHeight - 3 ||
+                        currentPosition.y + shift > startingPosition.y + veinMaxHeight / 2 ||
+                        currentPosition.y + shift < startingPosition.y - veinMaxHeight / 2 ||
+                        shift == 0) {
+                        shift = Random.Next(-1, 2);
+                    }
+
+                    //przeunięcie pozycji w górę lub dół o shift
+                    currentPosition = new Vector3(currentPosition.x, currentPosition.y + shift, currentPosition.z);
+                    break;
+                }
+            }
+        }
+        //lewa sciana
+        else {
+            switch (whichDirection) {
+                case 1: {
+                    //sprawdzanie czy przesunięcie nie wychodzi poza chunka nie przekracz maskymalnej szerokości złoża ropy ani nie jest równe zero 
+                    while (
+                        currentPosition.z + shift < this.transform.position.z ||
+                        currentPosition.z + shift > this.transform.position.z + chunkDepth ||
+                        currentPosition.z + shift > startingPosition.z + veinMaxWidth / 2 ||
+                        currentPosition.z + shift < startingPosition.z - veinMaxWidth / 2 ||
+                        shift == 0) {
+                        shift = Random.Next(-1, 2);
+                    }
+
+                    //przeunięcie pozycji w osi z o shift
+                    currentPosition = new Vector3(currentPosition.x, currentPosition.y, currentPosition.z + shift);
+                    break;
+                }
+                case 2: {
+                    //sprawdzanie czy przesunięcie nie wychodzi poza chunka nie przekracz maskymalnej wysokości złoża ropy ani nie jest równe zero 
+                    while (
+                        currentPosition.y + shift < this.transform.position.y ||
+                        currentPosition.y + shift > this.transform.position.y + chunkHeight - 3 ||
+                        currentPosition.y + shift > startingPosition.y + veinMaxHeight / 2 ||
+                        currentPosition.y + shift < startingPosition.y - veinMaxHeight / 2 ||
+                        shift == 0) {
+                        shift = Random.Next(-1, 2);
+                    }
+
+                    //przeunięcie pozycji w górę lub dół o shift
+                    currentPosition = new Vector3(currentPosition.x, currentPosition.y + shift, currentPosition.z);
+                    break;
+                }
+            }
+        }
+        return currentPosition;
+    }
     private void GenerateOilVein(Vector3 startingPosition, int whichWall) {
         int veinMaxSize = 8;
         int veinMinSize = 5;
@@ -65,68 +138,7 @@ public class ChunkGeneration : MonoBehaviour
         for (int i = 0; i < veinSize - 1; i++) {
             int whichDirection = Random.Next(1, 3);
 
-            //prawa sciana
-            if (whichWall == 0) {
-                switch (whichDirection) {
-                    case 1: {
-                        //sprawdzanie czy przesunięcie nie wychodzi poza chunka nie przekracz maskymalnej szerokości złoża ropy ani nie jest równe zero 
-                        while (currentPosition.x + shift < 0 ||
-                               currentPosition.x + shift > chunkWidth - 1 + currentPosition.x || shift == 0 ||
-                               currentPosition.x + shift > startingPosition.x + veinMaxWidth / 2 ||
-                               currentPosition.x + shift < startingPosition.x - veinMaxWidth / 2) {
-                            shift = Random.Next(-1, 2);
-                        }
-
-                        //przeunięcie pozycji w osi x o shift
-                        currentPosition = new Vector3(currentPosition.x + shift, currentPosition.y, currentPosition.z);
-                        break;
-                    }
-                    case 2: {
-                        //sprawdzanie czy przesunięcie nie wychodzi poza chunka nie przekracz maskymalnej wysokości złoża ropy ani nie jest równe zero 
-                        while (currentPosition.y + shift < 0 ||
-                               currentPosition.y + shift > chunkHeight - 3 + currentPosition.y || shift == 0 ||
-                               currentPosition.y + shift > startingPosition.y + veinMaxHeight / 2 ||
-                               currentPosition.y + shift < startingPosition.y - veinMaxHeight / 2) {
-                            shift = Random.Next(-1, 2);
-                        }
-
-                        //przeunięcie pozycji w górę lub dół o shift
-                        currentPosition = new Vector3(currentPosition.x, currentPosition.y + shift, currentPosition.z);
-                        break;
-                    }
-                }
-            }
-            //lewa sciana
-            else {
-                switch (whichDirection) {
-                    case 1: {
-                        //sprawdzanie czy przesunięcie nie wychodzi poza chunka nie przekracz maskymalnej szerokości złoża ropy ani nie jest równe zero 
-                        while (currentPosition.z + shift < 0 ||
-                               currentPosition.z + shift > chunkDepth - 1 + currentPosition.z || shift == 0 ||
-                               currentPosition.z + shift > startingPosition.z + veinMaxWidth / 2 ||
-                               currentPosition.z + shift < startingPosition.z - veinMaxWidth / 2) {
-                            shift = Random.Next(-1, 2);
-                        }
-
-                        //przeunięcie pozycji w osi z o shift
-                        currentPosition = new Vector3(currentPosition.x, currentPosition.y, currentPosition.z + shift);
-                        break;
-                    }
-                    case 2: {
-                        //sprawdzanie czy przesunięcie nie wychodzi poza chunka nie przekracz maskymalnej wysokości złoża ropy ani nie jest równe zero 
-                        while (currentPosition.y + shift < 0 ||
-                               currentPosition.y + shift > chunkHeight - 3 + currentPosition.y || shift == 0 ||
-                               currentPosition.y + shift > startingPosition.y + veinMaxHeight / 2 ||
-                               currentPosition.y + shift < startingPosition.y - veinMaxHeight / 2) {
-                            shift = Random.Next(-1, 2);
-                        }
-
-                        //przeunięcie pozycji w górę lub dół o shift
-                        currentPosition = new Vector3(currentPosition.x, currentPosition.y + shift, currentPosition.z);
-                        break;
-                    }
-                }
-            }
+            currentPosition = updateCurrentPosition(currentPosition, startingPosition, whichWall, whichDirection, veinMaxHeight, veinMaxWidth);
 
             if(!isOccupied(currentPosition, startingPosition)) {
                 Instantiate(oilCubePrefab, currentPosition, Quaternion.identity, oilVeinParent.transform);
@@ -145,13 +157,13 @@ public class ChunkGeneration : MonoBehaviour
     }
 
     private void GenerateWaterVein(Vector3 startingPosition, int whichWall) {
-        int veinMaxSize = 17;
-        int veinMinSize = 11;
+        int veinMaxSize = 15;
+        int veinMinSize = 9;
 
         int veinMaxWidth = 8;
-        int veinMaxHeight = 2;
+        int veinMaxHeight = 3;
 
-        int shift = 0;
+        
 
         GameObject waterVeinParent =
             (GameObject)Instantiate(waterVeinPrefab, startingPosition, Quaternion.identity, this.transform);
@@ -173,68 +185,7 @@ public class ChunkGeneration : MonoBehaviour
         for (int i = 0; i < veinSize - 1; i++) {
             int whichDirection = Random.Next(1, 3);
 
-            //prawa sciana
-            if (whichWall == 0) {
-                switch (whichDirection) {
-                    case 1: {
-                        //sprawdzanie czy przesunięcie nie wychodzi poza chunka nie przekracz maskymalnej szerokości złoża ropy ani nie jest równe zero 
-                        while (currentPosition.x + shift < 0 ||
-                               currentPosition.x + shift > chunkWidth - 1 + currentPosition.x || shift == 0 ||
-                               currentPosition.x + shift > startingPosition.x + veinMaxWidth / 2 ||
-                               currentPosition.x + shift < startingPosition.x - veinMaxWidth / 2) {
-                            shift = Random.Next(-1, 2);
-                        }
-
-                        //przeunięcie pozycji w osi x o shift
-                        currentPosition = new Vector3(currentPosition.x + shift, currentPosition.y, currentPosition.z);
-                        break;
-                    }
-                    case 2: {
-                        //sprawdzanie czy przesunięcie nie wychodzi poza chunka nie przekracz maskymalnej wysokości złoża ropy ani nie jest równe zero 
-                        while (currentPosition.y + shift < 0 ||
-                               currentPosition.y + shift > chunkHeight - 3 + currentPosition.y || shift == 0 ||
-                               currentPosition.y + shift > startingPosition.y + veinMaxHeight / 2 ||
-                               currentPosition.y + shift < startingPosition.y) {
-                            shift = Random.Next(-1, 2);
-                        }
-
-                        //przeunięcie pozycji w górę lub dół o shift
-                        currentPosition = new Vector3(currentPosition.x, currentPosition.y + shift, currentPosition.z);
-                        break;
-                    }
-                }
-            }
-            //lewa sciana
-            else {
-                switch (whichDirection) {
-                    case 1: {
-                        //sprawdzanie czy przesunięcie nie wychodzi poza chunka nie przekracz maskymalnej szerokości złoża ropy ani nie jest równe zero 
-                        while (currentPosition.z + shift < 0 ||
-                               currentPosition.z + shift > chunkDepth - 1 + currentPosition.z || shift == 0 ||
-                               currentPosition.z + shift > startingPosition.z + veinMaxWidth / 2 ||
-                               currentPosition.z + shift < startingPosition.z - veinMaxWidth / 2) {
-                            shift = Random.Next(-1, 2);
-                        }
-
-                        //przeunięcie pozycji w osi z o shift
-                        currentPosition = new Vector3(currentPosition.x, currentPosition.y, currentPosition.z + shift);
-                        break;
-                    }
-                    case 2: {
-                        //sprawdzanie czy przesunięcie nie wychodzi poza chunka nie przekracz maskymalnej wysokości złoża ropy ani nie jest równe zero 
-                        while (currentPosition.y + shift < 0 ||
-                               currentPosition.y + shift > chunkHeight - 3 + currentPosition.y || shift == 0 ||
-                               currentPosition.y + shift > startingPosition.y + veinMaxHeight / 2 ||
-                               currentPosition.y + shift < startingPosition.y) {
-                            shift = Random.Next(-1, 2);
-                        }
-
-                        //przeunięcie pozycji w górę lub dół o shift
-                        currentPosition = new Vector3(currentPosition.x, currentPosition.y + shift, currentPosition.z);
-                        break;
-                    }
-                }
-            }
+            currentPosition = updateCurrentPosition(currentPosition, startingPosition, whichWall, whichDirection, veinMaxHeight, veinMaxWidth);
 
             if(!isOccupied(currentPosition, startingPosition)) {
                 Instantiate(waterCubePrefab, currentPosition, Quaternion.identity, waterVeinParent.transform);
@@ -274,6 +225,8 @@ public class ChunkGeneration : MonoBehaviour
 
         //generowanie ropy
         int amountOfOilVeins = Random.Next(3, 6);
+
+        Debug.Log(this.transform.position);
 
         int x, y, z;
         for (int i = 0; i < amountOfOilVeins; i++) {
