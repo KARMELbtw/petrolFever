@@ -9,14 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 64b3563ab86ac464c96ce49f97efc1ab, type: 3}
   m_Name: Silo
   m_EditorClassIdentifier: Scripts::Building
-  buildingName: Silo
-  price: 4000
+  buildingName: 
+  price: 0
   prefab: {fileID: 9132130277963996704, guid: 67d477cb2f585f24bbc19f932ed75def, type: 3}
-  id: 2
-  mustPlaceOnTop: 1
-  width: 2
-  depth: 3
-  originGrid: {x: 0, y: 0}
+  mustPlaceOnTop: 0
+  width: 1
+  depth: 1
