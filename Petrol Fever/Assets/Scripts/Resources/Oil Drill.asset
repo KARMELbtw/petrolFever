@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Oil Drill
   m_EditorClassIdentifier: Scripts::Building
   buildingName: Oil Drill
-  price: 0
+  price: 10000
   prefab: {fileID: 8775789415804374649, guid: f0dd995849ee67042b068531fc26eef0, type: 3}
-  mustPlaceOnTop: 0
-  width: 1
-  depth: 1
+  mustPlaceOnTop: 1
+  width: 2
+  depth: 2
