@@ -30,6 +30,9 @@ public class BuildingSystem : MonoBehaviour
 
     private void Awake() {
         Building[] temp = Resources.LoadAll<Building>("");
+        if (temp.Length == 0) {
+            Debug.LogError("Failed to load buildings from Resources");
+        }
         buildings = new List<Building>(temp);
     }
 
