@@ -12,10 +12,15 @@ public class ChunkGeneration : MonoBehaviour
     private readonly System.Random Random = new System.Random();
     [SerializeField] private GameObject dirtCubePrefab;
     [SerializeField] private GameObject oilCubePrefab;
-    [SerializeField] private GameObject oilVeinPrefab;
-    [SerializeField] private GameObject waterCubePrefab;
-    [SerializeField] private GameObject waterVeinPrefab;
     [SerializeField] private GameObject grassBlockPrefab;
+    [SerializeField] private GameObject rockBlockPrefab;
+    [SerializeField] private GameObject magmaBlockPrefab;
+    [SerializeField] private GameObject waterCubePrefab;
+    [SerializeField] private GameObject oilVeinPrefab;
+    [SerializeField] private GameObject waterVeinPrefab;
+    [SerializeField] private GameObject rockVeinPrefab;
+    [SerializeField] private GameObject magmaVeinPrefab;
+    
     public int chunkWidth = 15;
     public int chunkDepth = 15;
     public int chunkHeight = 25;
@@ -114,10 +119,6 @@ public class ChunkGeneration : MonoBehaviour
         int veinMaxWidth = 4;
         int veinMaxHeight = 2;
 
-        int shift = 0;
-
-        
-
         GameObject oilVeinParent = Instantiate(oilVeinPrefab, startingPosition, Quaternion.identity, this.transform);
         var position = oilVeinParent.transform.position;
         oilVeinParent.name = "Oil Vein " + position.x + " , " + position.y + " , " + position.z;
@@ -155,7 +156,6 @@ public class ChunkGeneration : MonoBehaviour
             }
         }
     }
-
     private void GenerateWaterVein(Vector3 startingPosition, int whichWall) {
         int veinMaxSize = 15;
         int veinMinSize = 9;
@@ -163,12 +163,10 @@ public class ChunkGeneration : MonoBehaviour
         int veinMaxWidth = 8;
         int veinMaxHeight = 3;
 
-        
-
         GameObject waterVeinParent =
             (GameObject)Instantiate(waterVeinPrefab, startingPosition, Quaternion.identity, this.transform);
         waterVeinParent.name =
-            "Water Vein " + waterVeinParent.transform.position.x + ", " + waterVeinParent.transform.position.z;
+            "Water Vein " + waterVeinParent.transform.position.x + ", " + waterVeinParent.transform.position.y + ", " + waterVeinParent.transform.position.z;
         Instantiate(waterCubePrefab, startingPosition, Quaternion.identity, waterVeinParent.transform);
         if (whichWall == 0) {
             gridManager.rightSetValue((int)startingPosition.y, (int)startingPosition.x, 2);
@@ -189,6 +187,94 @@ public class ChunkGeneration : MonoBehaviour
 
             if(!isOccupied(currentPosition, startingPosition)) {
                 Instantiate(waterCubePrefab, currentPosition, Quaternion.identity, waterVeinParent.transform);
+            } else {
+                i--;
+            }
+            occupiedPositions.Add(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z);
+
+            if (whichWall == 0) {
+                gridManager.rightSetValue((int)currentPosition.y, (int)currentPosition.x, 2);
+            }
+            else {
+                gridManager.leftSetValue((int)currentPosition.y, (int)currentPosition.z, 2);
+            }
+        }
+    }
+    private void GenerateRockVein(Vector3 startingPosition, int whichWall) {
+        int veinMaxSize = 15;
+        int veinMinSize = 9;
+
+        int veinMaxWidth = 8;
+        int veinMaxHeight = 3;
+
+        GameObject rockVeinParent =
+            (GameObject)Instantiate(rockVeinPrefab, startingPosition, Quaternion.identity, this.transform);
+        rockVeinParent.name =
+            "Rock Vein " + rockVeinParent.transform.position.x + ", " + rockVeinParent.transform.position.y + ", " + rockVeinParent.transform.position.z;
+        Instantiate(rockBlockPrefab, startingPosition, Quaternion.identity, rockVeinParent.transform);
+        if (whichWall == 0) {
+            gridManager.rightSetValue((int)startingPosition.y, (int)startingPosition.x, 2);
+        }
+        else {
+            gridManager.leftSetValue((int)startingPosition.y, (int)startingPosition.z, 2);
+        }
+
+        Vector3 currentPosition = startingPosition;
+
+        int veinSize = Random.Next(veinMinSize, veinMaxSize);
+        occupiedPositions.Add(startingPosition.x + " " + startingPosition.y + " " + startingPosition.z);
+
+        for (int i = 0; i < veinSize - 1; i++) {
+            int whichDirection = Random.Next(1, 3);
+
+            currentPosition = updateCurrentPosition(currentPosition, startingPosition, whichWall, whichDirection, veinMaxHeight, veinMaxWidth);
+
+            if(!isOccupied(currentPosition, startingPosition)) {
+                Instantiate(rockBlockPrefab, currentPosition, Quaternion.identity, rockVeinParent.transform);
+            } else {
+                i--;
+            }
+            occupiedPositions.Add(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z);
+
+            if (whichWall == 0) {
+                gridManager.rightSetValue((int)currentPosition.y, (int)currentPosition.x, 2);
+            }
+            else {
+                gridManager.leftSetValue((int)currentPosition.y, (int)currentPosition.z, 2);
+            }
+        }
+    }
+    private void GenerateMagmaVein(Vector3 startingPosition, int whichWall) {
+        int veinMaxSize = 15;
+        int veinMinSize = 9;
+
+        int veinMaxWidth = 8;
+        int veinMaxHeight = 3;
+
+        GameObject magmaVeinParent =
+            (GameObject)Instantiate(magmaVeinPrefab, startingPosition, Quaternion.identity, this.transform);
+        magmaVeinParent.name =
+            "Magma Vein " + magmaVeinParent.transform.position.x + ", " + magmaVeinParent.transform.position.y + ", " + magmaVeinParent.transform.position.z;
+        Instantiate(magmaBlockPrefab, startingPosition, Quaternion.identity, magmaVeinParent.transform);
+        if (whichWall == 0) {
+            gridManager.rightSetValue((int)startingPosition.y, (int)startingPosition.x, 2);
+        }
+        else {
+            gridManager.leftSetValue((int)startingPosition.y, (int)startingPosition.z, 2);
+        }
+
+        Vector3 currentPosition = startingPosition;
+
+        int veinSize = Random.Next(veinMinSize, veinMaxSize);
+        occupiedPositions.Add(startingPosition.x + " " + startingPosition.y + " " + startingPosition.z);
+
+        for (int i = 0; i < veinSize - 1; i++) {
+            int whichDirection = Random.Next(1, 3);
+
+            currentPosition = updateCurrentPosition(currentPosition, startingPosition, whichWall, whichDirection, veinMaxHeight, veinMaxWidth);
+
+            if(!isOccupied(currentPosition, startingPosition)) {
+                Instantiate(magmaBlockPrefab, currentPosition, Quaternion.identity, magmaVeinParent.transform);
             } else {
                 i--;
             }
@@ -223,37 +309,9 @@ public class ChunkGeneration : MonoBehaviour
         }
         chunkGrass.transform.position = new Vector3(chunkGrass.transform.position.x + 0.5f, 0.4f, chunkGrass.transform.position.z + 0.5f);
 
-        //generowanie ropy
-        int amountOfOilVeins = Random.Next(3, 6);
-
-        Debug.Log(this.transform.position);
-
+        //generowanie wody
         int x, y, z;
-        for (int i = 0; i < amountOfOilVeins; i++) {
-            int whichWall = Random.Next(0, 2) == 0 ? 0 : 1;
-            //prawa ściana
-            if (whichWall == 0) {
-                x = Random.Next((int)startingPosition.x, chunkWidth - 1 + (int)startingPosition.x);
-                y = Random.Next((int)startingPosition.y, chunkHeight - 3 + (int)startingPosition.y);
-                GenerateOilVein(new Vector3(
-                        x,
-                        y,
-                        startingPosition.z),
-                    whichWall);
-            }
-            //lewa ściana
-            else {
-                y = Random.Next((int)startingPosition.y, chunkHeight - 3 + (int)startingPosition.y);
-                z = Random.Next((int)startingPosition.z, chunkDepth - 1 + (int)startingPosition.z);
-                GenerateOilVein(new Vector3(
-                        startingPosition.x,
-                        y,
-                        z),
-                    whichWall);
-            }
-        }
-
-        int amountOfWaterVeins = 1;
+        int amountOfWaterVeins = 2;
 
         for (int i = 0; i < amountOfWaterVeins; i++) {
             int whichWall = Random.Next(0, 2) == 0 ? 0 : 1;
@@ -273,6 +331,91 @@ public class ChunkGeneration : MonoBehaviour
                 y = Random.Next((int)startingPosition.y, chunkHeight - 3 + (int)startingPosition.y);
                 z = Random.Next((int)startingPosition.z, chunkDepth - 1 + (int)startingPosition.z);
                 GenerateWaterVein(new Vector3(
+                        startingPosition.x,
+                        y,
+                        z),
+                    whichWall);
+            }
+        }
+
+        //Generowanie Magmy
+        int amountOfMagmaVeins = 1;
+
+        for (int i = 0; i < amountOfMagmaVeins; i++) {
+            int whichWall = Random.Next(0, 2) == 0 ? 0 : 1;
+
+            //prawa ściana
+            if (whichWall == 0) {
+                x = Random.Next((int)startingPosition.x, chunkWidth - 1 + (int)startingPosition.x);
+                y = Random.Next((int)startingPosition.y, chunkHeight - 3 + (int)startingPosition.y);
+                GenerateMagmaVein(new Vector3(
+                        x,
+                        y,
+                        startingPosition.z),
+                    whichWall);
+            }
+            //lewa ściana
+            else {
+                y = Random.Next((int)startingPosition.y, chunkHeight - 3 + (int)startingPosition.y);
+                z = Random.Next((int)startingPosition.z, chunkDepth - 1 + (int)startingPosition.z);
+                GenerateMagmaVein(new Vector3(
+                        startingPosition.x,
+                        y,
+                        z),
+                    whichWall);
+            }
+        }
+
+        //Generowanie Kamieni
+        int amountOfRockVeins = 3;
+
+        for (int i = 0; i < amountOfRockVeins; i++) {
+            int whichWall = Random.Next(0, 2) == 0 ? 0 : 1;
+
+            //prawa ściana
+            if (whichWall == 0) {
+                x = Random.Next((int)startingPosition.x, chunkWidth - 1 + (int)startingPosition.x);
+                y = Random.Next((int)startingPosition.y, chunkHeight - 3 + (int)startingPosition.y);
+                GenerateRockVein(new Vector3(
+                        x,
+                        y,
+                        startingPosition.z),
+                    whichWall);
+            }
+            //lewa ściana
+            else {
+                y = Random.Next((int)startingPosition.y, chunkHeight - 3 + (int)startingPosition.y);
+                z = Random.Next((int)startingPosition.z, chunkDepth - 1 + (int)startingPosition.z);
+                GenerateRockVein(new Vector3(
+                        startingPosition.x,
+                        y,
+                        z),
+                    whichWall);
+            }
+        }
+
+        //generowanie ropy
+        int amountOfOilVeins = Random.Next(3, 6);
+
+        Debug.Log(this.transform.position);
+
+        for (int i = 0; i < amountOfOilVeins; i++) {
+            int whichWall = Random.Next(0, 2) == 0 ? 0 : 1;
+            //prawa ściana
+            if (whichWall == 0) {
+                x = Random.Next((int)startingPosition.x, chunkWidth - 1 + (int)startingPosition.x);
+                y = Random.Next((int)startingPosition.y, chunkHeight - 3 + (int)startingPosition.y);
+                GenerateOilVein(new Vector3(
+                        x,
+                        y,
+                        startingPosition.z),
+                    whichWall);
+            }
+            //lewa ściana
+            else {
+                y = Random.Next((int)startingPosition.y, chunkHeight - 3 + (int)startingPosition.y);
+                z = Random.Next((int)startingPosition.z, chunkDepth - 1 + (int)startingPosition.z);
+                GenerateOilVein(new Vector3(
                         startingPosition.x,
                         y,
                         z),
