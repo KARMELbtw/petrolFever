@@ -33805,6 +33805,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4403376396233618975, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: rockVeinPrefab
+      value: 
+      objectReference: {fileID: 7899295289814158179, guid: b0ca42ef165ba4840ac4e50060e297dd, type: 3}
+    - target: {fileID: -4403376396233618975, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: magmaVeinPrefab
+      value: 
+      objectReference: {fileID: 7899295289814158179, guid: c392df72b49d34b408ed61e2d1ce73c6, type: 3}
+    - target: {fileID: -4403376396233618975, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: rockBlockPrefab
+      value: 
+      objectReference: {fileID: 600282509763008403, guid: c39505194160f9a44ad277827f9f862d, type: 3}
+    - target: {fileID: -4403376396233618975, guid: 1965784be397d3f4bac827792b24b849, type: 3}
       propertyPath: waterCubePrefab
       value: 
       objectReference: {fileID: 600282509763008403, guid: 750ae8e795d056b489ab7dfcc949ad0b, type: 3}
@@ -33816,6 +33828,10 @@ PrefabInstance:
       propertyPath: grassBlockPrefab
       value: 
       objectReference: {fileID: 2176977582781369841, guid: 6f216dfabe136994d9565f4893d0ce60, type: 3}
+    - target: {fileID: -4403376396233618975, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: magmaBlockPrefab
+      value: 
+      objectReference: {fileID: 600282509763008403, guid: 19f7469521bd0a44e90e7a239e2421a7, type: 3}
     - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
       propertyPath: m_RootOrder
       value: 2

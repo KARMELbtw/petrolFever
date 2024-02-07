@@ -6,10 +6,14 @@ MonoImporter:
   defaultReferences:
   - dirtCubePrefab: {fileID: 3904943155693376493, guid: e82eca1643da77f47bcc52337d7a6b11, type: 3}
   - oilCubePrefab: {fileID: 3904943155693376493, guid: e5eae7fe6ac113a4fae7af9c2f3217ae, type: 3}
-  - oilVeinPrefab: {fileID: 7899295289814158179, guid: 69bf7df8e958e424fac262b48f46ce66, type: 3}
+  - grassBlockPrefab: {fileID: 1115175866435674372, guid: 7931f11019dceb44aba8c06963179b9c, type: 3}
+  - rockBlockPrefab: {fileID: 600282509763008403, guid: c39505194160f9a44ad277827f9f862d, type: 3}
+  - magmaBlockPrefab: {fileID: 600282509763008403, guid: 19f7469521bd0a44e90e7a239e2421a7, type: 3}
   - waterCubePrefab: {fileID: 600282509763008403, guid: 750ae8e795d056b489ab7dfcc949ad0b, type: 3}
+  - oilVeinPrefab: {fileID: 7899295289814158179, guid: 69bf7df8e958e424fac262b48f46ce66, type: 3}
   - waterVeinPrefab: {fileID: 7899295289814158179, guid: 6cf5633914d64944d944e69dac6e2d2a, type: 3}
-  - grassBlockPrefab: {instanceID: 0}
+  - rockVeinPrefab: {fileID: 7899295289814158179, guid: b0ca42ef165ba4840ac4e50060e297dd, type: 3}
+  - magmaVeinPrefab: {fileID: 7899295289814158179, guid: c392df72b49d34b408ed61e2d1ce73c6, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
