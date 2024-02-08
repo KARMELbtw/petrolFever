@@ -137,6 +137,7 @@ public class ChunkGeneration : MonoBehaviour
         occupiedPositions.Add(startingPosition.x + " " + startingPosition.y + " " + startingPosition.z);
 
         for (int i = 0; i < veinSize - 1; i++) {
+            int counter = 0;
             int whichDirection = Random.Next(1, 3);
 
             currentPosition = updateCurrentPosition(currentPosition, startingPosition, whichWall, whichDirection, veinMaxHeight, veinMaxWidth);
@@ -154,6 +155,11 @@ public class ChunkGeneration : MonoBehaviour
             else {
                 gridManager.leftSetValue((int)currentPosition.y, (int)currentPosition.z, 1);
             }
+
+            if(counter > 100) {
+                break;
+            }
+            counter++;
         }
     }
     private void GenerateWaterVein(Vector3 startingPosition, int whichWall) {
@@ -181,6 +187,7 @@ public class ChunkGeneration : MonoBehaviour
         occupiedPositions.Add(startingPosition.x + " " + startingPosition.y + " " + startingPosition.z);
 
         for (int i = 0; i < veinSize - 1; i++) {
+            int counter = 0;
             int whichDirection = Random.Next(1, 3);
 
             currentPosition = updateCurrentPosition(currentPosition, startingPosition, whichWall, whichDirection, veinMaxHeight, veinMaxWidth);
@@ -198,6 +205,11 @@ public class ChunkGeneration : MonoBehaviour
             else {
                 gridManager.leftSetValue((int)currentPosition.y, (int)currentPosition.z, 2);
             }
+
+            if(counter > 100) {
+                break;
+            }
+            counter++;
         }
     }
     private void GenerateRockVein(Vector3 startingPosition, int whichWall) {
@@ -225,6 +237,7 @@ public class ChunkGeneration : MonoBehaviour
         occupiedPositions.Add(startingPosition.x + " " + startingPosition.y + " " + startingPosition.z);
 
         for (int i = 0; i < veinSize - 1; i++) {
+            int counter = 0;
             int whichDirection = Random.Next(1, 3);
 
             currentPosition = updateCurrentPosition(currentPosition, startingPosition, whichWall, whichDirection, veinMaxHeight, veinMaxWidth);
@@ -242,6 +255,11 @@ public class ChunkGeneration : MonoBehaviour
             else {
                 gridManager.leftSetValue((int)currentPosition.y, (int)currentPosition.z, 2);
             }
+
+            if(counter > 100) {
+                break;
+            }
+            counter++;
         }
     }
     private void GenerateMagmaVein(Vector3 startingPosition, int whichWall) {
@@ -269,6 +287,7 @@ public class ChunkGeneration : MonoBehaviour
         occupiedPositions.Add(startingPosition.x + " " + startingPosition.y + " " + startingPosition.z);
 
         for (int i = 0; i < veinSize - 1; i++) {
+            int counter = 0;
             int whichDirection = Random.Next(1, 3);
 
             currentPosition = updateCurrentPosition(currentPosition, startingPosition, whichWall, whichDirection, veinMaxHeight, veinMaxWidth);
@@ -286,6 +305,11 @@ public class ChunkGeneration : MonoBehaviour
             else {
                 gridManager.leftSetValue((int)currentPosition.y, (int)currentPosition.z, 2);
             }
+
+            if(counter > 100) {
+                break;
+            }
+            counter++;
         }
     }
 
