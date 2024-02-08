@@ -40,6 +40,7 @@ public class ChunkGeneration : MonoBehaviour
     }
     private Vector3 updateCurrentPosition(Vector3 currentPosition, Vector3 startingPosition, int whichWall, int whichDirection, int veinMaxHeight, int veinMaxWidth) {
         //prawa sciana
+        int counter = 0;
         int shift = 0;
         if (whichWall == 0) {
             switch (whichDirection) {
@@ -50,8 +51,13 @@ public class ChunkGeneration : MonoBehaviour
                         currentPosition.x + shift > this.transform.position.x + chunkWidth ||
                         currentPosition.x + shift > startingPosition.x + veinMaxWidth / 2 ||
                         currentPosition.x + shift < startingPosition.x - veinMaxWidth / 2 ||
-                        shift == 0) {
+                        shift == 0)
+                    {
                         shift = Random.Next(-1, 2);
+                        if(counter > 100) {
+                            break;
+                        }
+                        counter++;
                     }
 
                     //przeunięcie pozycji w osi x o shift
@@ -65,8 +71,13 @@ public class ChunkGeneration : MonoBehaviour
                         currentPosition.y + shift > this.transform.position.y + chunkHeight - 3 ||
                         currentPosition.y + shift > startingPosition.y + veinMaxHeight / 2 ||
                         currentPosition.y + shift < startingPosition.y - veinMaxHeight / 2 ||
-                        shift == 0) {
+                        shift == 0)
+                    {
                         shift = Random.Next(-1, 2);
+                        if(counter > 100) {
+                            break;
+                        }
+                        counter++;
                     }
 
                     //przeunięcie pozycji w górę lub dół o shift
@@ -85,8 +96,13 @@ public class ChunkGeneration : MonoBehaviour
                         currentPosition.z + shift > this.transform.position.z + chunkDepth ||
                         currentPosition.z + shift > startingPosition.z + veinMaxWidth / 2 ||
                         currentPosition.z + shift < startingPosition.z - veinMaxWidth / 2 ||
-                        shift == 0) {
+                        shift == 0)
+                    {
                         shift = Random.Next(-1, 2);
+                        if(counter > 100) {
+                            break;
+                        }
+                        counter++;
                     }
 
                     //przeunięcie pozycji w osi z o shift
@@ -100,8 +116,13 @@ public class ChunkGeneration : MonoBehaviour
                         currentPosition.y + shift > this.transform.position.y + chunkHeight - 3 ||
                         currentPosition.y + shift > startingPosition.y + veinMaxHeight / 2 ||
                         currentPosition.y + shift < startingPosition.y - veinMaxHeight / 2 ||
-                        shift == 0) {
+                        shift == 0)
+                    {
                         shift = Random.Next(-1, 2);
+                        if(counter > 100) {
+                            break;
+                        }
+                        counter++;
                     }
 
                     //przeunięcie pozycji w górę lub dół o shift
@@ -145,7 +166,7 @@ public class ChunkGeneration : MonoBehaviour
             if(!isOccupied(currentPosition, startingPosition)) {
                 Instantiate(oilCubePrefab, currentPosition, Quaternion.identity, oilVeinParent.transform);
             } else {
-                i--;
+                //i--;
             }
             occupiedPositions.Add(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z);
 
@@ -155,11 +176,6 @@ public class ChunkGeneration : MonoBehaviour
             else {
                 gridManager.leftSetValue((int)currentPosition.y, (int)currentPosition.z, 1);
             }
-
-            if(counter > 100) {
-                break;
-            }
-            counter++;
         }
     }
     private void GenerateWaterVein(Vector3 startingPosition, int whichWall) {
@@ -195,7 +211,7 @@ public class ChunkGeneration : MonoBehaviour
             if(!isOccupied(currentPosition, startingPosition)) {
                 Instantiate(waterCubePrefab, currentPosition, Quaternion.identity, waterVeinParent.transform);
             } else {
-                i--;
+                //i--;
             }
             occupiedPositions.Add(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z);
 
@@ -205,11 +221,6 @@ public class ChunkGeneration : MonoBehaviour
             else {
                 gridManager.leftSetValue((int)currentPosition.y, (int)currentPosition.z, 2);
             }
-
-            if(counter > 100) {
-                break;
-            }
-            counter++;
         }
     }
     private void GenerateRockVein(Vector3 startingPosition, int whichWall) {
@@ -245,7 +256,7 @@ public class ChunkGeneration : MonoBehaviour
             if(!isOccupied(currentPosition, startingPosition)) {
                 Instantiate(rockBlockPrefab, currentPosition, Quaternion.identity, rockVeinParent.transform);
             } else {
-                i--;
+                //i--;
             }
             occupiedPositions.Add(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z);
 
@@ -254,12 +265,7 @@ public class ChunkGeneration : MonoBehaviour
             }
             else {
                 gridManager.leftSetValue((int)currentPosition.y, (int)currentPosition.z, 2);
-            }
-
-            if(counter > 100) {
-                break;
-            }
-            counter++;
+            } 
         }
     }
     private void GenerateMagmaVein(Vector3 startingPosition, int whichWall) {
@@ -295,7 +301,7 @@ public class ChunkGeneration : MonoBehaviour
             if(!isOccupied(currentPosition, startingPosition)) {
                 Instantiate(magmaBlockPrefab, currentPosition, Quaternion.identity, magmaVeinParent.transform);
             } else {
-                i--;
+                //i--;
             }
             occupiedPositions.Add(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z);
 
@@ -305,11 +311,6 @@ public class ChunkGeneration : MonoBehaviour
             else {
                 gridManager.leftSetValue((int)currentPosition.y, (int)currentPosition.z, 2);
             }
-
-            if(counter > 100) {
-                break;
-            }
-            counter++;
         }
     }
 
@@ -362,7 +363,7 @@ public class ChunkGeneration : MonoBehaviour
             }
         }
 
-        //Generowanie Magmy
+        // Generowanie Magmy
         int amountOfMagmaVeins = 1;
 
         for (int i = 0; i < amountOfMagmaVeins; i++) {
