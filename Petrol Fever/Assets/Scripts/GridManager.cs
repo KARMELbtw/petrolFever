@@ -37,10 +37,11 @@ public class GridManager : MonoBehaviour
         newBuildingSript.depth = buildingTemplate.depth;
         newBuildingSript.buildingName = buildingTemplate.buildingName;
         newBuildingSript.price = buildingTemplate.price;
-        
-        for (int x = 0; x < buildingTemplate.depth; x++) { 
-            for (int z = 0; z < buildingTemplate.width; z++) { 
-                topSetValue((int)position.x + x,(int)position.z + z, newBuilding);
+        if (buildingTemplate.mustPlaceOnTop) {
+            for (int x = 0; x < buildingTemplate.depth; x++) { 
+                for (int z = 0; z < buildingTemplate.width; z++) { 
+                    topSetValue((int)position.x + x,(int)position.z + z, newBuilding);
+                }
             }
         }
     }
@@ -98,7 +99,7 @@ public class GridManager : MonoBehaviour
             return;
         }
 
-        //Debug.Log("leftSetValue: " + y + " " + z + " " + value);
+        Debug.Log("leftSetValue: " + y + " " + z + " " + value);
         leftGrid[y, z] = value;
     }
 
@@ -111,27 +112,46 @@ public class GridManager : MonoBehaviour
             return;
         }
 
-        //Debug.Log("rightSetValue: " + y + " " + x + " " + value);
+        Debug.Log("rightSetValue: " + y + " " + x + " " + value);
         rightGrid[y, x] = value;
     }
 
     public void topSetValue(int x, int z, GameObject building) {
-        Vector3 position = this.transform.position;
         if (x < 0 || x >= topGrid.GetLength(0) || z < 0 || z >= topGrid.GetLength(1)) {
             Debug.LogWarning("Index out of bounds in topSetValue: " + x + " " + z);
             return;
         }
-
-        //Debug.Log("topSetValue: " + x + " " + z + " " + building);
+        Debug.Log("topSetValue: " + x + " " + z + " " + building);
         topGrid[x, z] = building;
     }
 
     public GameObject topGetBuilging(int x, int z) {
-        Vector3 position = this.transform.position;
         if (x < 0 || x >= topGrid.GetLength(0) || z < 0 || z >= topGrid.GetLength(1)) {
             Debug.LogWarning("Index out of bounds in topGetValue: " + x + " " + z);
             return null;
         }
         return topGrid[x, z];
+    }
+    public int leftGetValue(int y, int z) {
+        Vector3 position = this.transform.position;
+        y = (int)(y - position.y);
+        z = (int)(z - position.z);
+        if (y < 0 || y >= leftGrid.GetLength(0) || z < 0 || z >= leftGrid.GetLength(1)) {
+            Debug.LogError("Index out of bounds in leftGetValue: " + y + " " + z);
+            return -1;
+        }
+
+        return leftGrid[y, z];
+    }
+    public int rightGetValue(int y, int x) {
+        Vector3 position = this.transform.position;
+        y = (int)(y - position.y);
+        x = (int)(x - position.x);
+        if (y < 0 || y >= rightGrid.GetLength(0) || x < 0 || x >= rightGrid.GetLength(1)) {
+            Debug.LogError("Index out of bounds in rightGetValue: " + y + " " + x);
+            return -1;
+        }
+
+        return rightGrid[y, x];
     }
 }

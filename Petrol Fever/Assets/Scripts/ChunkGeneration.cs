@@ -24,19 +24,35 @@ public class ChunkGeneration : MonoBehaviour
     public int chunkWidth = 15;
     public int chunkDepth = 15;
     public int chunkHeight = 25;
-    public List<string> occupiedPositions = new List<string>();
+    // public List<string> occupiedPositions = new List<string>();
 
     private void Awake() {
         gridManager = this.GetComponent<GridManager>();
     }
-    private bool isOccupied(Vector3 currentPosition, Vector3 startingPosition) {
-        bool isOccupied = false;
-        foreach(string occupiedPosition in occupiedPositions) {
-            if(occupiedPosition == currentPosition.x + " " + currentPosition.y + " " + currentPosition.z) {
-                return true;
-            }
+    // private bool isOccupied(Vector3 currentPosition, Vector3 startingPosition) {
+    //     bool isOccupied = false;
+    //     foreach(string occupiedPosition in occupiedPositions) {
+    //         if(occupiedPosition == currentPosition.x + " " + currentPosition.y + " " + currentPosition.z) {
+    //             return true;
+    //         }
+    //     }
+    //     return isOccupied;
+    // }
+    private bool isOccupied(Vector3 position, int whichWall) {
+        if (whichWall == 0) {
+            return gridManager.rightGetValue((int)position.y, (int)position.x ) != 0;
         }
-        return isOccupied;
+        else {
+            return gridManager.leftGetValue((int)position.y, (int)position.z) != 0;
+        }
+    }
+    private void setGridValue(Vector3 position, int whichWall, int value) {
+        if (whichWall == 0) {
+            gridManager.rightSetValue((int)position.y, (int)position.x , value);
+        }
+        else {
+            gridManager.leftSetValue((int)position.y, (int)position.z, value);
+        }
     }
     private Vector3 updateCurrentPosition(Vector3 currentPosition, Vector3 startingPosition, int whichWall, int whichDirection, int veinMaxHeight, int veinMaxWidth) {
         //prawa sciana
@@ -145,37 +161,27 @@ public class ChunkGeneration : MonoBehaviour
         oilVeinParent.name = "Oil Vein " + position.x + " , " + position.y + " , " + position.z;
 
         Instantiate(oilCubePrefab, startingPosition, Quaternion.identity, oilVeinParent.transform);
-        if (whichWall == 0) {
-            gridManager.rightSetValue((int)startingPosition.y, (int)startingPosition.x, 1);
-        }
-        else {
-            gridManager.leftSetValue((int)startingPosition.y, (int)startingPosition.z, 1);
-        }
+        
+        setGridValue(startingPosition, whichWall, 1);
 
         Vector3 currentPosition = startingPosition;
         
         int veinSize = Random.Next(veinMinSize, veinMaxSize);
-        occupiedPositions.Add(startingPosition.x + " " + startingPosition.y + " " + startingPosition.z);
 
         for (int i = 0; i < veinSize - 1; i++) {
-            int counter = 0;
+            
             int whichDirection = Random.Next(1, 3);
 
             currentPosition = updateCurrentPosition(currentPosition, startingPosition, whichWall, whichDirection, veinMaxHeight, veinMaxWidth);
 
-            if(!isOccupied(currentPosition, startingPosition)) {
-                Instantiate(oilCubePrefab, currentPosition, Quaternion.identity, oilVeinParent.transform);
-            } else {
-                //i--;
+            Debug.Log("Oil block at: " + currentPosition.x + " " + currentPosition.y + " " + currentPosition.z);
+            if(isOccupied(currentPosition, whichWall)){
+                Debug.LogWarning(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z + " is occupied");
+                continue;
             }
-            occupiedPositions.Add(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z);
-
-            if (whichWall == 0) {
-                gridManager.rightSetValue((int)currentPosition.y, (int)currentPosition.x, 1);
-            }
-            else {
-                gridManager.leftSetValue((int)currentPosition.y, (int)currentPosition.z, 1);
-            }
+            Instantiate(oilCubePrefab, currentPosition, Quaternion.identity, oilVeinParent.transform);
+            
+            setGridValue(currentPosition, whichWall, 1);
         }
     }
     private void GenerateWaterVein(Vector3 startingPosition, int whichWall) {
@@ -190,37 +196,25 @@ public class ChunkGeneration : MonoBehaviour
         waterVeinParent.name =
             "Water Vein " + waterVeinParent.transform.position.x + ", " + waterVeinParent.transform.position.y + ", " + waterVeinParent.transform.position.z;
         Instantiate(waterCubePrefab, startingPosition, Quaternion.identity, waterVeinParent.transform);
-        if (whichWall == 0) {
-            gridManager.rightSetValue((int)startingPosition.y, (int)startingPosition.x, 2);
-        }
-        else {
-            gridManager.leftSetValue((int)startingPosition.y, (int)startingPosition.z, 2);
-        }
 
         Vector3 currentPosition = startingPosition;
 
         int veinSize = Random.Next(veinMinSize, veinMaxSize);
-        occupiedPositions.Add(startingPosition.x + " " + startingPosition.y + " " + startingPosition.z);
-
+        
         for (int i = 0; i < veinSize - 1; i++) {
-            int counter = 0;
+            
             int whichDirection = Random.Next(1, 3);
 
             currentPosition = updateCurrentPosition(currentPosition, startingPosition, whichWall, whichDirection, veinMaxHeight, veinMaxWidth);
 
-            if(!isOccupied(currentPosition, startingPosition)) {
-                Instantiate(waterCubePrefab, currentPosition, Quaternion.identity, waterVeinParent.transform);
-            } else {
-                //i--;
+            Debug.Log("Water block at: " + currentPosition.x + " " + currentPosition.y + " " + currentPosition.z);
+            if(isOccupied(currentPosition, whichWall)) {
+                Debug.LogWarning(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z + " is occupied");
+                continue;
             }
-            occupiedPositions.Add(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z);
 
-            if (whichWall == 0) {
-                gridManager.rightSetValue((int)currentPosition.y, (int)currentPosition.x, 2);
-            }
-            else {
-                gridManager.leftSetValue((int)currentPosition.y, (int)currentPosition.z, 2);
-            }
+            Instantiate(waterCubePrefab, currentPosition, Quaternion.identity, waterVeinParent.transform);
+            setGridValue(currentPosition, whichWall, 2);
         }
     }
     private void GenerateRockVein(Vector3 startingPosition, int whichWall) {
@@ -235,37 +229,26 @@ public class ChunkGeneration : MonoBehaviour
         rockVeinParent.name =
             "Rock Vein " + rockVeinParent.transform.position.x + ", " + rockVeinParent.transform.position.y + ", " + rockVeinParent.transform.position.z;
         Instantiate(rockBlockPrefab, startingPosition, Quaternion.identity, rockVeinParent.transform);
-        if (whichWall == 0) {
-            gridManager.rightSetValue((int)startingPosition.y, (int)startingPosition.x, 2);
-        }
-        else {
-            gridManager.leftSetValue((int)startingPosition.y, (int)startingPosition.z, 2);
-        }
-
+       
         Vector3 currentPosition = startingPosition;
 
         int veinSize = Random.Next(veinMinSize, veinMaxSize);
-        occupiedPositions.Add(startingPosition.x + " " + startingPosition.y + " " + startingPosition.z);
-
+        setGridValue(startingPosition, whichWall, 2);
+        
         for (int i = 0; i < veinSize - 1; i++) {
-            int counter = 0;
+            
             int whichDirection = Random.Next(1, 3);
 
             currentPosition = updateCurrentPosition(currentPosition, startingPosition, whichWall, whichDirection, veinMaxHeight, veinMaxWidth);
 
-            if(!isOccupied(currentPosition, startingPosition)) {
-                Instantiate(rockBlockPrefab, currentPosition, Quaternion.identity, rockVeinParent.transform);
-            } else {
-                //i--;
-            }
-            occupiedPositions.Add(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z);
-
-            if (whichWall == 0) {
-                gridManager.rightSetValue((int)currentPosition.y, (int)currentPosition.x, 2);
-            }
-            else {
-                gridManager.leftSetValue((int)currentPosition.y, (int)currentPosition.z, 2);
+            Debug.Log("Rock block at: " + currentPosition.x + " " + currentPosition.y + " " + currentPosition.z);
+            if(isOccupied(currentPosition, whichWall)) {
+                Debug.LogWarning(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z + " is occupied");
+                continue;
             } 
+            Instantiate(rockBlockPrefab, currentPosition, Quaternion.identity, rockVeinParent.transform);
+            setGridValue(currentPosition, whichWall, 2);
+            
         }
     }
     private void GenerateMagmaVein(Vector3 startingPosition, int whichWall) {
@@ -280,37 +263,28 @@ public class ChunkGeneration : MonoBehaviour
         magmaVeinParent.name =
             "Magma Vein " + magmaVeinParent.transform.position.x + ", " + magmaVeinParent.transform.position.y + ", " + magmaVeinParent.transform.position.z;
         Instantiate(magmaBlockPrefab, startingPosition, Quaternion.identity, magmaVeinParent.transform);
-        if (whichWall == 0) {
-            gridManager.rightSetValue((int)startingPosition.y, (int)startingPosition.x, 2);
-        }
-        else {
-            gridManager.leftSetValue((int)startingPosition.y, (int)startingPosition.z, 2);
-        }
+        setGridValue(startingPosition, whichWall, 3);
+        
 
         Vector3 currentPosition = startingPosition;
 
         int veinSize = Random.Next(veinMinSize, veinMaxSize);
-        occupiedPositions.Add(startingPosition.x + " " + startingPosition.y + " " + startingPosition.z);
 
         for (int i = 0; i < veinSize - 1; i++) {
-            int counter = 0;
+            
             int whichDirection = Random.Next(1, 3);
 
             currentPosition = updateCurrentPosition(currentPosition, startingPosition, whichWall, whichDirection, veinMaxHeight, veinMaxWidth);
 
-            if(!isOccupied(currentPosition, startingPosition)) {
-                Instantiate(magmaBlockPrefab, currentPosition, Quaternion.identity, magmaVeinParent.transform);
-            } else {
-                //i--;
-            }
-            occupiedPositions.Add(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z);
+            Debug.Log("Magma block at: " + currentPosition.x + " " + currentPosition.y + " " + currentPosition.z );
+            if(isOccupied(currentPosition, whichWall)) {
+                Debug.LogWarning(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z + " is occupied");
+                continue;
+            } 
+            Instantiate(magmaBlockPrefab, currentPosition, Quaternion.identity, magmaVeinParent.transform);
 
-            if (whichWall == 0) {
-                gridManager.rightSetValue((int)currentPosition.y, (int)currentPosition.x, 2);
-            }
-            else {
-                gridManager.leftSetValue((int)currentPosition.y, (int)currentPosition.z, 2);
-            }
+            setGridValue(currentPosition, whichWall, 2);
+            
         }
     }
 
@@ -322,11 +296,10 @@ public class ChunkGeneration : MonoBehaviour
         GameObject dirtChunk = (GameObject)Instantiate(dirtCubePrefab, startingPosition + chunkSizeV3 / 2 - new Vector3(0, 0.1f), Quaternion.identity, this.transform);
         dirtChunk.name = "Dirt of " + this.name;
         dirtChunk.transform.localScale = chunkSizeV3;
-
+        
         GameObject chunkGrass = new GameObject();
         chunkGrass.name = "chunkGrass";
         chunkGrass.transform.SetParent(this.transform);
-
         for(int z2 = 0; z2 < chunkDepth; z2++) {
             for(int x2 = 0; x2 < chunkWidth; x2++) {
                 Instantiate(grassBlockPrefab, new Vector3(x2, chunkHeight-0.4999f, z2), Quaternion.identity, chunkGrass.transform);
@@ -447,5 +420,6 @@ public class ChunkGeneration : MonoBehaviour
                     whichWall);
             }
         }
+        Debug.Log("Successfully generated chunk at " + this.transform.position);
     }
 }

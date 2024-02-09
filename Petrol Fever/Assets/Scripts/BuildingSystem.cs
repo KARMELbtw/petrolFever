@@ -64,16 +64,18 @@ public class BuildingSystem : MonoBehaviour
         GridManager chunkgridManager = chunkHit.GetComponent<GridManager>();
             
         if (yGrid < 25 && buildings[currentBuilding].mustPlaceOnTop) {
-            Debug.Log("This Building can't be placed on top of " + chunkHit.name + " at " + rayHitPosition);
+            Debug.Log("This Building must be placed on top of " + chunkHit.name + " at " + rayHitPosition);
             return;
         }
 
-        if (chunkgridManager.canPlaceBuilding(xGrid, zGrid, buildings[currentBuilding]) == false) {
-            Debug.Log("Building can't be placed on " + this.name + " at " + rayHitPosition + " grid: " + xGrid + " " + zGrid);
-            return;
+        if (buildings[currentBuilding].mustPlaceOnTop) {
+            if (chunkgridManager.canPlaceBuilding(xGrid, zGrid, buildings[currentBuilding]) == false) {
+                Debug.Log("Building can't be placed on " + this.name + " at " + rayHitPosition + " grid: " + xGrid + " " + zGrid);
+                return;
+            }
+            Debug.Log("Building can be placed on " + this.name + " at " + rayHitPosition + " grid: " + xGrid + " " + zGrid);
         }
             
-        Debug.Log("Building can be placed on " + this.name + " at " + rayHitPosition + " grid: " + xGrid + " " + zGrid);
         amountOfMoney -= buildings[currentBuilding].price;
         chunkgridManager.InitializeBuilding(new Vector3(xGrid, yGrid, zGrid), buildings[currentBuilding]);
     }
