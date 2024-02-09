@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour
     // Camera controller that allows to move camera with mouse and zoom in/out with mouse wheel
     void Update() {
         if (SceneChanger.IsLookingAtChunk) {
-            if (Input.GetMouseButton(0)) {
+            if (Input.GetMouseButton(2)) {
                 float x = Input.GetAxis("Mouse X") / cameraSpeed;
                 float y = Input.GetAxis("Mouse Y") / cameraSpeed;
                 transform.position += new Vector3((-x - y) / zoom, 0, (x - y) / zoom);

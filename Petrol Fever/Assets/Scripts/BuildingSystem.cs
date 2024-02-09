@@ -8,7 +8,7 @@ public class BuildingSystem : MonoBehaviour
 {   
     [SerializeField]
     private List<BuildingTemplate> buildings;
-    private int currentBuilding = 0;
+    public static int currentBuilding {get; private set;} = 666;
     
     [SerializeField]
     private int returnPercentage = 80;
@@ -122,12 +122,14 @@ public class BuildingSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1)) {
-            if (amountOfMoney < buildings[currentBuilding].price) {
-                Debug.Log("Not enough money to build " + buildings[currentBuilding].buildingName);
-                return;
+        if (Input.GetMouseButtonDown(0)) {
+            if (currentBuilding != 666) {
+                if (amountOfMoney < buildings[currentBuilding].price) {
+                    Debug.Log("Not enough money to build " + buildings[currentBuilding].buildingName);
+                    return;
+                } 
+                BuildBuilding();
             }
-            BuildBuilding();
         }
 
         if (Input.GetKeyDown(KeyCode.R)) {
@@ -140,6 +142,10 @@ public class BuildingSystem : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha2)) {
             currentBuilding = 1;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.F)) {
+            currentBuilding = 666;
         }
     }
 }
