@@ -19,7 +19,7 @@ namespace Tests.editMode
             int yGrid = 0;
 
             // Act
-            bool result = gridManager.canPlaceBuilding(xGrid, yGrid, building);
+            bool result = gridManager.canPlaceBuildingTop(xGrid, yGrid, building);
 
             // Assert
             Assert.IsTrue(result);
@@ -40,7 +40,7 @@ namespace Tests.editMode
             gridManager.topSetValue(xGrid, yGrid, new GameObject());
 
             // Act
-            bool result = gridManager.canPlaceBuilding(xGrid, yGrid, building);
+            bool result = gridManager.canPlaceBuildingTop(xGrid, yGrid, building);
 
             // Assert
             Assert.IsFalse(result);
@@ -60,7 +60,7 @@ namespace Tests.editMode
             int yGrid = 0;
 
             // Act
-            bool result = gridManager.canPlaceBuilding(xGrid, yGrid, building);
+            bool result = gridManager.canPlaceBuildingTop(xGrid, yGrid, building);
 
             // Assert
             Assert.IsFalse(result);

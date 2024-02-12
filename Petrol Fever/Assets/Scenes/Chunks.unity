@@ -1314,6 +1314,7 @@ MonoBehaviour:
   buildingImages:
   - {fileID: 2800000, guid: ceb66c18eff95ab49af94c0ca251235c, type: 3}
   - {fileID: 2800000, guid: 2f8d7905793da0f44a72dde0564fcd2b, type: 3}
+  - {fileID: 2800000, guid: 1817a93da47812240a4a3afa4c872d02, type: 3}
 --- !u!114 &47561621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15180,7 +15181,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cddb57d5d0da4740b8b89b69598ff98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildings: []
+  buildings:
+  - {fileID: 11400000, guid: 1539beaf32e0493449538e69a6cced85, type: 2}
+  - {fileID: 11400000, guid: bc7826268aefaf7498d261fb34a6e62e, type: 2}
+  - {fileID: 11400000, guid: 579f711a749320b4c8202f536e0cb053, type: 2}
   returnPercentage: 80
 --- !u!1001 &687117280
 PrefabInstance:

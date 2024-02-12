@@ -22,25 +22,67 @@ public class GridManager : MonoBehaviour
     }
 
     // Funkcja do stawiania budynku w danym miejscu
-    public void InitializeBuilding(Vector3 position, BuildingTemplate buildingTemplate) {
+    public void InitializeTopBuilding(Vector3 position, BuildingTemplate buildingTemplate) {
+        // Pozycja świata
         Vector3 worldPosition = position + this.transform.position;
-        
         Debug.Log("Building: " + buildingTemplate.name + " at " + worldPosition);
+        // Stworzenie nowego budynku
         GameObject newBuilding = Instantiate(buildingTemplate.prefab, worldPosition, Quaternion.identity);
         
+        // Przypisanie rodzica i nazwy
         newBuilding.transform.parent = this.transform.GetChild(0);
         newBuilding.name = buildingTemplate.name + " " + position.x + " " + position.z;
         
+        // Przypisania parametrów budynku do skryptu BuildingScript
         BuildingScript newBuildingSript = newBuilding.GetComponent<BuildingScript>();
         newBuildingSript.originGrid = new Vector2(position.x, position.z);
         newBuildingSript.width = buildingTemplate.width;
         newBuildingSript.depth = buildingTemplate.depth;
         newBuildingSript.buildingName = buildingTemplate.buildingName;
         newBuildingSript.price = buildingTemplate.price;
+        
         if (buildingTemplate.mustPlaceOnTop) {
             for (int x = 0; x < buildingTemplate.depth; x++) { 
                 for (int z = 0; z < buildingTemplate.width; z++) { 
                     topSetValue((int)position.x + x,(int)position.z + z, newBuilding);
+                }
+            }
+            return;
+        }
+       
+    }
+    public void InitializeSideBuilding(Vector3 position, BuildingTemplate buildingTemplate) {
+        bool onLeft = position.x == 0 && position.z != 0;
+        // Pozycja świata
+        Vector3 worldPosition = position + this.transform.position;
+        Debug.Log("Building: " + buildingTemplate.name + " at " + worldPosition);
+        // Stworzenie nowego budynku
+        Vector3 offset = new Vector3(0,0.01f,0) + (onLeft ? new Vector3(0,0,-0.5f) : new Vector3(-0.5f,0,0));
+        GameObject newBuilding = Instantiate(buildingTemplate.prefab, worldPosition - offset, Quaternion.identity);
+        
+        // Przypisanie rodzica i nazwy
+        newBuilding.transform.parent = this.transform.GetChild(0);
+        newBuilding.name = buildingTemplate.name + " " + position.x + " " + position.z + " " + position.y;
+        
+        // Przypisania parametrów budynku do skryptu BuildingScript
+        BuildingScript newBuildingSript = newBuilding.GetComponent<BuildingScript>();
+        newBuildingSript.originGrid = (onLeft) ? new Vector2(position.y, position.z) : new Vector2(position.y, position.x);
+
+        newBuildingSript.width = buildingTemplate.width;
+        newBuildingSript.depth = buildingTemplate.depth;
+        newBuildingSript.buildingName = buildingTemplate.buildingName;
+        newBuildingSript.price = buildingTemplate.price;
+        
+        if (onLeft) {
+            for (int y = 0; y < buildingTemplate.depth; y++) { 
+                for (int z = 0; z < buildingTemplate.width; z++) { 
+                    leftSetValue((int)position.y + y,(int)position.z + z, 3);
+                }
+            }
+        } else {
+            for (int y = 0; y < buildingTemplate.depth; y++) { 
+                for (int x = 0; x < buildingTemplate.width; x++) { 
+                    rightSetValue((int)position.y + y,(int)position.x + x, 3);
                 }
             }
         }
@@ -61,7 +103,7 @@ public class GridManager : MonoBehaviour
     }
     
     // Funkcja do sprawdzenia czy można postawić budynek w danym miejscu
-    public bool canPlaceBuilding(int xGrid, int yGrid, BuildingTemplate buildingTemplate) {
+    public bool canPlaceBuildingTop(int xGrid, int yGrid, BuildingTemplate buildingTemplate) {
         for (int x = 0; x < buildingTemplate.depth; x++) {
             for (int y = 0; y < buildingTemplate.width; y++) {
                 if (xGrid + x >= chunkGeneration.chunkWidth || yGrid + y >= chunkGeneration.chunkDepth) {

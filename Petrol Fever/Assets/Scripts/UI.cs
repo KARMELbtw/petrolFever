@@ -25,8 +25,7 @@ public class UI : MonoBehaviour
         if (BuildingSystem.currentBuilding != 666) {
             currentbuildingImageDisplay.sprite = Sprite.Create(buildingImages[BuildingSystem.currentBuilding], new Rect(0, 0, buildingImages[BuildingSystem.currentBuilding].width, buildingImages[BuildingSystem.currentBuilding].height), new Vector2(0.5f, 0.5f));
             currentbuildingImageDisplay.color = new Color(1,1,1,1);
-        }
-        else {
+        } else {
             currentbuildingImageDisplay.sprite = null;
             currentbuildingImageDisplay.color = new Color(0,0,0,0);
         }

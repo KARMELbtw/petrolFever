@@ -293,7 +293,7 @@ public class ChunkGeneration : MonoBehaviour
         Vector3 startingPosition = this.transform.position;
         Vector3 chunkSizeV3 = new Vector3(chunkDepth, chunkHeight, chunkWidth);
 
-        GameObject dirtChunk = (GameObject)Instantiate(dirtCubePrefab, startingPosition + chunkSizeV3 / 2 - new Vector3(0, 0.1f), Quaternion.identity, this.transform);
+        GameObject dirtChunk = (GameObject)Instantiate(dirtCubePrefab, startingPosition + chunkSizeV3 / 2 - new Vector3(0,0.002f,0), Quaternion.identity, this.transform);
         dirtChunk.name = "Dirt of " + this.name;
         dirtChunk.transform.localScale = chunkSizeV3;
         
@@ -302,10 +302,10 @@ public class ChunkGeneration : MonoBehaviour
         chunkGrass.transform.SetParent(this.transform);
         for(int z2 = 0; z2 < chunkDepth; z2++) {
             for(int x2 = 0; x2 < chunkWidth; x2++) {
-                Instantiate(grassBlockPrefab, new Vector3(x2, chunkHeight-0.4999f, z2), Quaternion.identity, chunkGrass.transform);
+                Instantiate(grassBlockPrefab, new Vector3(x2, chunkHeight, z2), Quaternion.identity, chunkGrass.transform);
             }
         }
-        chunkGrass.transform.position = new Vector3(chunkGrass.transform.position.x + 0.5f, 0.4f, chunkGrass.transform.position.z + 0.5f);
+        chunkGrass.transform.position = new Vector3(chunkGrass.transform.position.x + 0.5f, 0, chunkGrass.transform.position.z + 0.5f);
 
         //generowanie wody
         int x, y, z;

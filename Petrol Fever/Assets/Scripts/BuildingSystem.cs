@@ -29,55 +29,71 @@ public class BuildingSystem : MonoBehaviour
     }
 
     private void Awake() {
-        BuildingTemplate[] temp = Resources.LoadAll<BuildingTemplate>("");
-        if (temp.Length == 0) {
+        // BuildingTemplate[] temp = Resources.LoadAll<BuildingTemplate>("");
+        if (buildings == null) {
             Debug.LogError("Failed to load buildings from Resources");
         }
-        buildings = new List<BuildingTemplate>(temp);
+        // buildings = new List<BuildingTemplate>(temp);
     }
 
     private void BuildBuilding() {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         int layerMask = 1 << 3;
-            
+        
+        // Strał raycastem w miejsce kliknięcia
+        // Sprawdzenie czy raycast trafił w coś
         if (!Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, layerMask)) {
             Debug.Log("Raycast didn't hit anything");
             return;
         }
 
-        // Check if the raycast hit the current GameObject
+        // Sprawdzenie czy raycast trafił w chunk
         if (!hitInfo.transform.gameObject.transform.CompareTag("Chunk")) {
             Debug.Log("Raycast hit something else: "+ hitInfo.transform.gameObject);
             return;
         }
 
+        // Pobranie chunka i pozycji w który trafił raycast
         GameObject chunkHit = hitInfo.transform.gameObject;
         Vector3 rayHitPosition = hitInfo.point;
         Debug.Log("Position of ray hit: " + rayHitPosition);
+        // Pobranie pozycji chunka w który trafił raycast
         Vector3 chunkPosition = chunkHit.transform.position;
+        // Obliczenie pozycji w siatce chunka 
         int xGrid = (int)(rayHitPosition.x - chunkPosition.x);
         int yGrid = (int)(rayHitPosition.y - chunkPosition.y);
         int zGrid = (int)(rayHitPosition.z - chunkPosition.z);
         Debug.Log("Grid position of ray: x: " + xGrid + " y: " + yGrid + " z: " + zGrid);
             
+        // Pobranie skryptu GridManager z chunka
         GridManager chunkgridManager = chunkHit.GetComponent<GridManager>();
-            
+        
+        // Sprawdzenie czy budenk jest stawiane na dobrej stronie
         if (yGrid < 25 && buildings[currentBuilding].mustPlaceOnTop) {
             Debug.Log("This Building must be placed on top of " + chunkHit.name + " at " + rayHitPosition);
             return;
+        } else if (yGrid >= 25 && !buildings[currentBuilding].mustPlaceOnTop) {
+            Debug.Log("This Building must be placed on side of " + chunkHit.name + " at " + rayHitPosition);
+            return;
         }
-
+        
+        // Sprawdzenie czy miejsce nie jest zajęte
         if (buildings[currentBuilding].mustPlaceOnTop) {
-            if (chunkgridManager.canPlaceBuilding(xGrid, zGrid, buildings[currentBuilding]) == false) {
+            if (chunkgridManager.canPlaceBuildingTop(xGrid, zGrid, buildings[currentBuilding]) == false) {
                 Debug.Log("Building can't be placed on " + this.name + " at " + rayHitPosition + " grid: " + xGrid + " " + zGrid);
                 return;
             }
             Debug.Log("Building can be placed on " + this.name + " at " + rayHitPosition + " grid: " + xGrid + " " + zGrid);
+            chunkgridManager.InitializeTopBuilding(new Vector3(xGrid, yGrid, zGrid), buildings[currentBuilding]);
+        } else {
+            // TODO: Sprawdzenie czy można postawić budynek na boku
+            chunkgridManager.InitializeSideBuilding(new Vector3(xGrid, yGrid, zGrid), buildings[currentBuilding]);
         }
-            
+        
+        
+        // Stawianie budynku
         amountOfMoney -= buildings[currentBuilding].price;
-        chunkgridManager.InitializeBuilding(new Vector3(xGrid, yGrid, zGrid), buildings[currentBuilding]);
     }
     
     private void SellBuilding() {
@@ -143,7 +159,10 @@ public class BuildingSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2)) {
             currentBuilding = 1;
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.Alpha3) ) {
+            currentBuilding = 2;
+        }
         if (Input.GetKeyDown(KeyCode.F)) {
             currentBuilding = 666;
         }
