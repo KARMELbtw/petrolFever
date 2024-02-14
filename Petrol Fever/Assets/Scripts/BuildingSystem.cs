@@ -61,9 +61,9 @@ public class BuildingSystem : MonoBehaviour
         // Pobranie pozycji chunka w który trafił raycast
         Vector3 chunkPosition = chunkHit.transform.position;
         // Obliczenie pozycji w siatce chunka 
-        int xGrid = (int)(rayHitPosition.x - chunkPosition.x);
+        int xGrid = (int)Math.Round(rayHitPosition.x - chunkPosition.x);
         int yGrid = (int)(rayHitPosition.y - chunkPosition.y);
-        int zGrid = (int)(rayHitPosition.z - chunkPosition.z);
+        int zGrid = (int)Math.Round(rayHitPosition.z - chunkPosition.z);
         Debug.Log("Grid position of ray: x: " + xGrid + " y: " + yGrid + " z: " + zGrid);
             
         // Pobranie skryptu GridManager z chunka
@@ -87,7 +87,11 @@ public class BuildingSystem : MonoBehaviour
             Debug.Log("Building can be placed on " + this.name + " at " + rayHitPosition + " grid: " + xGrid + " " + zGrid);
             chunkgridManager.InitializeTopBuilding(new Vector3(xGrid, yGrid, zGrid), buildings[currentBuilding]);
         } else {
-            // TODO: Sprawdzenie czy można postawić budynek na boku
+            if (chunkgridManager.canPlaceBuildingSide(yGrid, (rayHitPosition.x == 0)?zGrid:xGrid, buildings[currentBuilding], (rayHitPosition.x == 0)?0:1) == false) {
+                Debug.Log("Building can't be placed on " + this.name + " at " + rayHitPosition + " grid: " + xGrid + " " + zGrid);
+                return;
+            }
+            Debug.Log("Building can be placed on " + this.name + " at " + rayHitPosition + " grid: " + yGrid + " " + zGrid);
             chunkgridManager.InitializeSideBuilding(new Vector3(xGrid, yGrid, zGrid), buildings[currentBuilding]);
         }
         

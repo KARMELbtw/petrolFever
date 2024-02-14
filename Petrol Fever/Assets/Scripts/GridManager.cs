@@ -57,7 +57,7 @@ public class GridManager : MonoBehaviour
         Vector3 worldPosition = position + this.transform.position;
         Debug.Log("Building: " + buildingTemplate.name + " at " + worldPosition);
         // Stworzenie nowego budynku
-        Vector3 offset = new Vector3(0,0.01f,0) + (onLeft ? new Vector3(0,0,-0.5f) : new Vector3(-0.5f,0,0));
+        Vector3 offset = new Vector3(0,0.51f,0);
         GameObject newBuilding = Instantiate(buildingTemplate.prefab, worldPosition - offset, Quaternion.identity);
         
         // Przypisanie rodzica i nazwy
@@ -115,6 +115,32 @@ public class GridManager : MonoBehaviour
             }
         }
 
+        return true;
+    }
+
+    public bool canPlaceBuildingSide(int xGrid, int yGrid, BuildingTemplate buildingTemplate, int side) {
+        for (int x = 0; x < buildingTemplate.depth; x++) {
+            for (int y = 0; y < buildingTemplate.width; y++) {
+                if (side == 0) {
+                    if (xGrid + x >= chunkGeneration.chunkHeight || yGrid + y >= chunkGeneration.chunkDepth) {
+                        return false;
+                    }
+
+                    if (leftGetValue(xGrid + x, yGrid + y) != 0) {
+                        return false;
+                    }
+                }
+                else {
+                    if (xGrid + x >= chunkGeneration.chunkHeight || yGrid + y >= chunkGeneration.chunkWidth) {
+                        return false;
+                    }
+
+                    if (rightGetValue(xGrid + x, yGrid + y) != 0) {
+                        return false;
+                    }
+                }
+            }
+        }
         return true;
     }
 
