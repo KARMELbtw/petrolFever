@@ -5,25 +5,33 @@ using UnityEngine.UI;
 
 public class HorsePenUI : MonoBehaviour
 {
-    public Button buyDeerButton;
+    public Canvas deerUI;
+    bool isShown = false;
+    
     
     void OnMouseDown()
     {
-        // Kod do wykonania po kliknięciu myszą na obiekcie
         Debug.Log("Clicked on " + gameObject.name);
-        showHorsePenUI();
+
+        if(!isShown) {
+            showHorsePenUI();
+        } else {
+            hideHorsePenUI();
+        }
     }
     
     void showHorsePenUI()
     {
-        RectTransform buyDeerButtonRect = buyDeerButton.GetComponent<RectTransform>();
-        buyDeerButtonRect.anchoredPosition = new Vector2(-200, 100);
+        RectTransform deerUIRect = deerUI.GetComponent<RectTransform>();
+        deerUIRect.anchoredPosition = new Vector3(0, 0, 0);
+        isShown = true;
     }
     
-    void hideHorsePenUI()
+    public void hideHorsePenUI()
     {
-        RectTransform buyDeerButtonRect = buyDeerButton.GetComponent<RectTransform>();
-        buyDeerButtonRect.anchoredPosition = new Vector2(500, 500);
+        RectTransform deerUIRect = deerUI.GetComponent<RectTransform>();
+        deerUIRect.anchoredPosition = new Vector3(0, 600f, 0);
+        isShown = false;
     }
     
     // Start is called before the first frame update

@@ -24,20 +24,20 @@ public class ChunkGeneration : MonoBehaviour
     public int chunkWidth = 15;
     public int chunkDepth = 15;
     public int chunkHeight = 25;
-    // public List<string> occupiedPositions = new List<string>();
+    public List<string> occupiedPositions = new List<string>();
 
     private void Awake() {
         gridManager = this.GetComponent<GridManager>();
     }
-    // private bool isOccupied(Vector3 currentPosition, Vector3 startingPosition) {
-    //     bool isOccupied = false;
-    //     foreach(string occupiedPosition in occupiedPositions) {
-    //         if(occupiedPosition == currentPosition.x + " " + currentPosition.y + " " + currentPosition.z) {
-    //             return true;
-    //         }
-    //     }
-    //     return isOccupied;
-    // }
+    private bool isOccupied(Vector3 currentPosition, Vector3 startingPosition) {
+        bool isOccupied = false;
+        foreach(string occupiedPosition in occupiedPositions) {
+            if(occupiedPosition == currentPosition.x + " " + currentPosition.y + " " + currentPosition.z) {
+                return true;
+            }
+        }
+        return isOccupied;
+    }
     private bool isOccupied(Vector3 position, int whichWall) {
         if (whichWall == 0) {
             return gridManager.rightGetValue((int)position.y, (int)position.x ) != 0;
