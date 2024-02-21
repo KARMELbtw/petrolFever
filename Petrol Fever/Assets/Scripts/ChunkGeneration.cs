@@ -300,9 +300,9 @@ public class ChunkGeneration : MonoBehaviour
         GameObject chunkGrass = new GameObject();
         chunkGrass.name = "chunkGrass";
         chunkGrass.transform.SetParent(this.transform);
-        for(int z2 = 0; z2 < chunkDepth; z2++) {
-            for(int x2 = 0; x2 < chunkWidth; x2++) {
-                Instantiate(grassBlockPrefab, new Vector3(x2, chunkHeight, z2), Quaternion.identity, chunkGrass.transform);
+        for(int z2 = (int)this.transform.position.z; z2 < chunkDepth + (int)this.transform.position.z; z2++) {
+            for(int x2 = (int)this.transform.position.x; x2 < chunkWidth + (int)this.transform.position.x; x2++) {
+                Instantiate(grassBlockPrefab, new Vector3(x2 - 0.01f, chunkHeight - 0.5f, z2 - 0.01f), Quaternion.identity, chunkGrass.transform);
             }
         }
         chunkGrass.transform.position = new Vector3(chunkGrass.transform.position.x + 0.5f, 0, chunkGrass.transform.position.z + 0.5f);
