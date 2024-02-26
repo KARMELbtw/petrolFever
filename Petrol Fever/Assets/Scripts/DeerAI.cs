@@ -15,47 +15,43 @@ public class DeerAI : MonoBehaviour
         // Calculate rotation to the target
         Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
 
-        // Set rotation to face the target immediately
-        transform.rotation = targetRotation;
-        transform.Rotate(270, 180, 0);
-
         // Move to the target position
         float movementDuration = 1f;
         float movementElapsedTime = 0f;
-        Vector3 startPosition = transform.position;
+        Vector3 startPosition = transform.localPosition;
 
         while (movementElapsedTime < movementDuration)
         {
-            transform.position = Vector3.Lerp(startPosition, targetPosition, movementElapsedTime / movementDuration);
+            transform.localPosition = Vector3.Lerp(startPosition, targetPosition, movementElapsedTime / movementDuration);
             movementElapsedTime += Time.deltaTime;
             yield return null;
         }
 
         // Ensure reaching the exact target position
-        transform.position = targetPosition;
+        transform.localPosition = targetPosition;
     }
 
     public void Move(float x, float z)
     {
-        Vector3 targetPosition = new Vector3(x, 15.5f, z);
+        Vector3 targetPosition = new Vector3(x, 15.24f, z);
         StartCoroutine(RotateAndMove(targetPosition));
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        randomX = Random.Range(-54f, -45f);
-        randomZ = Random.Range(-51f, -42f);
+        randomX = Random.Range(-3f, -3f);
+        randomZ = Random.Range(-2.795f, 3.3f);
         nextMove = Random.Range(2500, 5000);
-        this.transform.position = new Vector3(randomX,15.5f,randomZ);
+        this.transform.localPosition = new Vector3(randomX,-0.5f,randomZ);
     }
 
     // Update is called once per frame
     void Update()
     {
         if(i >= nextMove) {
-            randomX = Random.Range(-54f, -45f);
-            randomZ = Random.Range(-51f, -42f);
+            randomX = Random.Range(-3f, -3f);
+            randomZ = Random.Range(-2.795f, 3.3f);
             nextMove = Random.Range(2500, 5000);
             Move(randomX, randomZ);
             i = 0;

@@ -15236,6 +15236,7 @@ GameObject:
   - component: {fileID: 681230366}
   - component: {fileID: 681230370}
   - component: {fileID: 681230369}
+  - component: {fileID: 681230371}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -15346,6 +15347,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bc7826268aefaf7498d261fb34a6e62e, type: 2}
   - {fileID: 11400000, guid: 579f711a749320b4c8202f536e0cb053, type: 2}
   returnPercentage: 80
+--- !u!114 &681230371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681230365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c96d5c9dc63af043a57b03e6e4c9c67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deer: {fileID: -5304457597003473624, guid: 22c40f069ade0d5408292ca363b228b0, type: 3}
 --- !u!1001 &687117280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22018,6 +22032,94 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5547575362409851475, guid: 7931f11019dceb44aba8c06963179b9c, type: 3}
   m_PrefabInstance: {fileID: 1036018133}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+--- !u!1001 &1045338012
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -4403376396233618975, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: rockVeinPrefab
+      value: 
+      objectReference: {fileID: 7899295289814158179, guid: b0ca42ef165ba4840ac4e50060e297dd, type: 3}
+    - target: {fileID: -4403376396233618975, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: magmaVeinPrefab
+      value: 
+      objectReference: {fileID: 7899295289814158179, guid: c392df72b49d34b408ed61e2d1ce73c6, type: 3}
+    - target: {fileID: -4403376396233618975, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: rockBlockPrefab
+      value: 
+      objectReference: {fileID: 600282509763008403, guid: c39505194160f9a44ad277827f9f862d, type: 3}
+    - target: {fileID: -4403376396233618975, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: waterCubePrefab
+      value: 
+      objectReference: {fileID: 600282509763008403, guid: 750ae8e795d056b489ab7dfcc949ad0b, type: 3}
+    - target: {fileID: -4403376396233618975, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: waterVeinPrefab
+      value: 
+      objectReference: {fileID: 7899295289814158179, guid: 6cf5633914d64944d944e69dac6e2d2a, type: 3}
+    - target: {fileID: -4403376396233618975, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: grassBlockPrefab
+      value: 
+      objectReference: {fileID: 600282509763008403, guid: 9a2662edc18ca0b49b5ce23a1adb4ab0, type: 3}
+    - target: {fileID: -4403376396233618975, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: magmaBlockPrefab
+      value: 
+      objectReference: {fileID: 600282509763008403, guid: 19f7469521bd0a44e90e7a239e2421a7, type: 3}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5994376326257153378, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_Name
+      value: Chunk (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+>>>>>>> Stashed changes
 --- !u!1001 &1046112525
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32799,7 +32901,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 28.198, y: 256.885, z: -91.896}
 --- !u!1001 &1509343248
 PrefabInstance:
@@ -33339,7 +33441,7 @@ PrefabInstance:
       objectReference: {fileID: 600282509763008403, guid: 19f7469521bd0a44e90e7a239e2421a7, type: 3}
     - target: {fileID: 1391406528674394155, guid: 1965784be397d3f4bac827792b24b849, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
       propertyPath: m_RootOrder
@@ -38766,6 +38868,91 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5547575362409851475, guid: 7931f11019dceb44aba8c06963179b9c, type: 3}
   m_PrefabInstance: {fileID: 1741441938}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1745588977
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -4403376396233618975, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: rockVeinPrefab
+      value: 
+      objectReference: {fileID: 7899295289814158179, guid: b0ca42ef165ba4840ac4e50060e297dd, type: 3}
+    - target: {fileID: -4403376396233618975, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: magmaVeinPrefab
+      value: 
+      objectReference: {fileID: 7899295289814158179, guid: c392df72b49d34b408ed61e2d1ce73c6, type: 3}
+    - target: {fileID: -4403376396233618975, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: rockBlockPrefab
+      value: 
+      objectReference: {fileID: 600282509763008403, guid: c39505194160f9a44ad277827f9f862d, type: 3}
+    - target: {fileID: -4403376396233618975, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: waterCubePrefab
+      value: 
+      objectReference: {fileID: 600282509763008403, guid: 750ae8e795d056b489ab7dfcc949ad0b, type: 3}
+    - target: {fileID: -4403376396233618975, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: waterVeinPrefab
+      value: 
+      objectReference: {fileID: 7899295289814158179, guid: 6cf5633914d64944d944e69dac6e2d2a, type: 3}
+    - target: {fileID: -4403376396233618975, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: grassBlockPrefab
+      value: 
+      objectReference: {fileID: 600282509763008403, guid: 9a2662edc18ca0b49b5ce23a1adb4ab0, type: 3}
+    - target: {fileID: -4403376396233618975, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: magmaBlockPrefab
+      value: 
+      objectReference: {fileID: 600282509763008403, guid: 19f7469521bd0a44e90e7a239e2421a7, type: 3}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5994376326257153378, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_Name
+      value: Chunk (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1965784be397d3f4bac827792b24b849, type: 3}
 --- !u!1001 &1751055807
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39225,7 +39412,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 357831814345387002, guid: 125ae958bca11804cb5532c209b6e862, type: 3}
       propertyPath: m_RootOrder
+<<<<<<< Updated upstream
       value: 4
+=======
+      value: 7
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 357831814345387002, guid: 125ae958bca11804cb5532c209b6e862, type: 3}
       propertyPath: m_LocalScale.x
@@ -42630,15 +42821,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 22c40f069ade0d5408292ca363b228b0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 22c40f069ade0d5408292ca363b228b0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 22c40f069ade0d5408292ca363b228b0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 22c40f069ade0d5408292ca363b228b0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
