@@ -16,5 +16,5 @@ MonoBehaviour:
   price: 500
   prefab: {fileID: 2770554051045934235, guid: 9d7cde944ee4c404c9eed377716341eb, type: 3}
   mustPlaceOnTop: 0
-  width: 2
-  depth: 2
+  width: 1
+  depth: 1

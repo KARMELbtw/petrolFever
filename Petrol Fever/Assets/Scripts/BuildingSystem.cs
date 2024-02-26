@@ -81,17 +81,17 @@ public class BuildingSystem : MonoBehaviour
         // Sprawdzenie czy miejsce nie jest zajęte
         if (buildings[currentBuilding].mustPlaceOnTop) {
             if (chunkgridManager.canPlaceBuildingTop(xGrid, zGrid, buildings[currentBuilding]) == false) {
-                Debug.Log("Building can't be placed on " + this.name + " at " + rayHitPosition + " grid: " + xGrid + " " + zGrid);
+                Debug.Log("Building can't be placed on " + chunkgridManager.gameObject.name + " at " + rayHitPosition + " grid: " + xGrid + " " + zGrid);
                 return;
             }
-            Debug.Log("Building can be placed on " + this.name + " at " + rayHitPosition + " grid: " + xGrid + " " + zGrid);
+            Debug.Log("Building can be placed on " + chunkgridManager.gameObject.name + " at " + rayHitPosition + " grid: " + xGrid + " " + zGrid);
             chunkgridManager.InitializeTopBuilding(new Vector3(xGrid, yGrid, zGrid), buildings[currentBuilding]);
         } else {
             if (chunkgridManager.canPlaceBuildingSide(yGrid, (rayHitPosition.x == 0)?zGrid:xGrid, buildings[currentBuilding], (rayHitPosition.x == 0)?0:1) == false) {
-                Debug.Log("Building can't be placed on " + this.name + " at " + rayHitPosition + " grid: " + xGrid + " " + zGrid);
+                Debug.Log("Building can't be placed on " + chunkgridManager.gameObject.name + " at " + rayHitPosition + " grid: " + yGrid + " " + zGrid);
                 return;
             }
-            Debug.Log("Building can be placed on " + this.name + " at " + rayHitPosition + " grid: " + yGrid + " " + zGrid);
+            Debug.Log("Building can be placed on " + chunkgridManager.gameObject.name + " at " + rayHitPosition + " grid: " + yGrid + " " + zGrid);
             chunkgridManager.InitializeSideBuilding(new Vector3(xGrid, yGrid, zGrid), buildings[currentBuilding]);
         }
         
@@ -128,7 +128,7 @@ public class BuildingSystem : MonoBehaviour
         GridManager chunkgridManager = chunkHit.GetComponent<GridManager>();
 
         if (chunkgridManager.topGetBuilging(xGrid,zGrid) == null) {
-            Debug.Log("There is no building to sell on " + this.name + " at " + rayHitPosition + " grid: " + xGrid + " " + zGrid);
+            Debug.Log("There is no building to sell on " + chunkgridManager.gameObject.name + " at " + rayHitPosition + " grid: " + xGrid + " " + zGrid);
             return;
         }
         

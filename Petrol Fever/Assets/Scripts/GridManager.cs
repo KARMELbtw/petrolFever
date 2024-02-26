@@ -76,13 +76,13 @@ public class GridManager : MonoBehaviour
         if (onLeft) {
             for (int y = 0; y < buildingTemplate.depth; y++) { 
                 for (int z = 0; z < buildingTemplate.width; z++) { 
-                    leftSetValue((int)position.y + y,(int)position.z + z, 3);
+                    leftSetValue((int)position.y + y,(int)position.z + z + (int)this.transform.position.z, 3);
                 }
             }
         } else {
             for (int y = 0; y < buildingTemplate.depth; y++) { 
                 for (int x = 0; x < buildingTemplate.width; x++) { 
-                    rightSetValue((int)position.y + y,(int)position.x + x, 3);
+                    rightSetValue((int)position.y + y,(int)position.x + x + (int)this.transform.position.x, 3);
                 }
             }
         }
@@ -126,7 +126,7 @@ public class GridManager : MonoBehaviour
                         return false;
                     }
 
-                    if (leftGetValue(xGrid + x, yGrid + y) != 0) {
+                    if (leftGetValue(xGrid + x, yGrid + y + (int)this.transform.position.z) != 0) {
                         return false;
                     }
                 }
@@ -135,7 +135,7 @@ public class GridManager : MonoBehaviour
                         return false;
                     }
 
-                    if (rightGetValue(xGrid + x, yGrid + y) != 0) {
+                    if (rightGetValue(xGrid + x, yGrid + y + (int)this.transform.position.x) != 0) {
                         return false;
                     }
                 }
