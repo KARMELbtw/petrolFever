@@ -15067,6 +15067,7 @@ GameObject:
   - component: {fileID: 681230366}
   - component: {fileID: 681230370}
   - component: {fileID: 681230369}
+  - component: {fileID: 681230371}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -15177,6 +15178,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bc7826268aefaf7498d261fb34a6e62e, type: 2}
   - {fileID: 11400000, guid: 579f711a749320b4c8202f536e0cb053, type: 2}
   returnPercentage: 80
+--- !u!114 &681230371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681230365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c96d5c9dc63af043a57b03e6e4c9c67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deer: {fileID: 5092657495774029911, guid: 795c1717004c9d5429a6d378d41435c2, type: 3}
 --- !u!1001 &687117280
 PrefabInstance:
   m_ObjectHideFlags: 0
