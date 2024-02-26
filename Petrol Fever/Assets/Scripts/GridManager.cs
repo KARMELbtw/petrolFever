@@ -12,8 +12,8 @@ public class GridManager : MonoBehaviour
     private GameObject[,] topGrid;
 
     public void InitializeGrids() {
-        leftGrid = new int[chunkGeneration.chunkHeight + 1, chunkGeneration.chunkWidth + 1];
-        rightGrid = new int[chunkGeneration.chunkHeight + 1, chunkGeneration.chunkDepth + 1];
+        leftGrid = new int[chunkGeneration.chunkHeight, chunkGeneration.chunkWidth + 1];
+        rightGrid = new int[chunkGeneration.chunkHeight, chunkGeneration.chunkDepth + 1];
         topGrid = new GameObject[chunkGeneration.chunkDepth + 1, chunkGeneration.chunkWidth + 1];
     }
 
@@ -40,16 +40,14 @@ public class GridManager : MonoBehaviour
         newBuildingSript.depth = buildingTemplate.depth;
         newBuildingSript.buildingName = buildingTemplate.buildingName;
         newBuildingSript.price = buildingTemplate.price;
-        
-        if (buildingTemplate.mustPlaceOnTop) {
-            for (int x = 0; x < buildingTemplate.depth; x++) { 
-                for (int z = 0; z < buildingTemplate.width; z++) { 
-                    topSetValue((int)position.x + x,(int)position.z + z, newBuilding);
-                }
+
+        if (!buildingTemplate.mustPlaceOnTop)
+            Debug.LogError("Building " + buildingTemplate.name + " must be placed on side, not on top!");
+        for (int x = 0; x < buildingTemplate.depth; x++) {
+            for (int z = 0; z < buildingTemplate.width; z++) {
+                topSetValue((int)position.x + x, (int)position.z + z, newBuilding);
             }
-            return;
         }
-       
     }
     public void InitializeSideBuilding(Vector3 position, BuildingTemplate buildingTemplate) {
         bool onLeft = position.x == 0 && position.z != 0;
@@ -118,26 +116,42 @@ public class GridManager : MonoBehaviour
         return true;
     }
 
-    public bool canPlaceBuildingSide(int xGrid, int yGrid, BuildingTemplate buildingTemplate, int side) {
+    public bool canPlaceBuildingSide(int yGrid, int xGrid, BuildingTemplate buildingTemplate, int side) {
         for (int x = 0; x < buildingTemplate.depth; x++) {
             for (int y = 0; y < buildingTemplate.width; y++) {
                 if (side == 0) {
-                    if (xGrid + x >= chunkGeneration.chunkHeight || yGrid + y >= chunkGeneration.chunkDepth) {
+                    if (yGrid + x >= chunkGeneration.chunkHeight || xGrid + y >= chunkGeneration.chunkDepth) {
                         return false;
                     }
 
-                    if (leftGetValue(xGrid + x, yGrid + y + (int)this.transform.position.z) != 0) {
+                    if (leftGetValue(yGrid + x, xGrid + y + (int)this.transform.position.z) != 0) {
                         return false;
                     }
                 }
                 else {
-                    if (xGrid + x >= chunkGeneration.chunkHeight || yGrid + y >= chunkGeneration.chunkWidth) {
+                    if (yGrid + x >= chunkGeneration.chunkHeight || xGrid + y >= chunkGeneration.chunkWidth) {
                         return false;
                     }
 
-                    if (rightGetValue(xGrid + x, yGrid + y + (int)this.transform.position.x) != 0) {
+                    if (rightGetValue(yGrid + x, xGrid + y + (int)this.transform.position.x) != 0) {
                         return false;
                     }
+                }
+            }
+        }
+
+        if (yGrid != leftGrid.GetLength(0)-1) {
+            for (int y = yGrid+1; y < leftGrid.GetLength(0)-1; y++) {
+                if (side == 0) {
+                    if (leftGetValue(y, xGrid) != 3) {
+                        return false;
+                    }
+                }
+                else {
+                    if (rightGetValue(y, xGrid) != 3) {
+                        return false;
+                    }
+                
                 }
             }
         }
