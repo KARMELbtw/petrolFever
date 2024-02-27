@@ -69,7 +69,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 25}
+  m_AnchoredPosition: {x: 0, y: 24.98}
   m_SizeDelta: {x: 17, y: 17}
   m_Pivot: {x: 0, y: 0}
 --- !u!223 &4665864435624901168
@@ -282,6 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textComponent: {fileID: 7487904421466928141}
+  chunkPrefab: {fileID: 5994376326257153378}
 --- !u!1 &1742271940816995045
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,6 +294,7 @@ GameObject:
   - component: {fileID: 8183559259984356172}
   - component: {fileID: 1709830061625188697}
   - component: {fileID: 3937421649949339194}
+  - component: {fileID: 3465223335384703981}
   m_Layer: 3
   m_Name: Left Panel
   m_TagString: Untagged
@@ -359,6 +361,62 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 40
+--- !u!114 &3465223335384703981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742271940816995045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 7487904421466928141}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 766921407953063880}
+        m_TargetAssemblyTypeName: newChunkBuy, Scripts
+        m_MethodName: buyLeftChunk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &2179135759733770381
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,9 +564,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oilVeinPrefab: {fileID: 7899295289814158179, guid: 69bf7df8e958e424fac262b48f46ce66, type: 3}
   oilCubePrefab: {fileID: 3904943155693376493, guid: e5eae7fe6ac113a4fae7af9c2f3217ae, type: 3}
-  grassBlockPrefab: {fileID: 0}
-  rockBlockPrefab: {fileID: 0}
-  rockVeinPrefab: {fileID: 0}
+  grassBlockPrefab: {fileID: 600282509763008403, guid: 9a2662edc18ca0b49b5ce23a1adb4ab0, type: 3}
+  rockBlockPrefab: {fileID: 600282509763008403, guid: c39505194160f9a44ad277827f9f862d, type: 3}
+  rockVeinPrefab: {fileID: 7899295289814158179, guid: b0ca42ef165ba4840ac4e50060e297dd, type: 3}
   chunkWidth: 15
   chunkDepth: 15
   chunkHeight: 25
@@ -537,6 +595,7 @@ GameObject:
   - component: {fileID: 8017239364645236296}
   - component: {fileID: 7138264934691329878}
   - component: {fileID: 2952257781929769718}
+  - component: {fileID: 6316467383325061340}
   m_Layer: 3
   m_Name: Right Panel
   m_TagString: Untagged
@@ -603,6 +662,62 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 40
+--- !u!114 &6316467383325061340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6031750780024347070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 5253773966421619667}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5370452239615451540}
+        m_TargetAssemblyTypeName: newChunkBuy, Scripts
+        m_MethodName: buyRightChunk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &7976989859972701333
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,3 +867,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textComponent: {fileID: 5253773966421619667}
+  chunkPrefab: {fileID: 5994376326257153378}

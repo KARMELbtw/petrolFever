@@ -21,5 +21,8 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    public static int newChunkCost = 15000;
+    public static int newChunkCost = 1000;
+    
+    public static int numberOfLeftChunks = 0;
+    public static int numberOfRightChunks = 0;
 }

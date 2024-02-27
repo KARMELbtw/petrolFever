@@ -79,6 +79,7 @@ public class BuildingSystem : MonoBehaviour
             }
             Debug.Log("Building can be placed on " + chunkgridManager.gameObject.name + " at " + rayHitPosition + " grid: " + yGrid + " " + zGrid);
             chunkgridManager.InitializeSideBuilding(new Vector3(xGrid, yGrid, zGrid), building);
+            GameManager.amountOfMoney -= building.price;
         }
     }
     
@@ -118,7 +119,7 @@ public class BuildingSystem : MonoBehaviour
         
         chunkgridManager.deleteBulding(xGrid, zGrid, out int deletedBuildingPrice);
         GameManager.amountOfMoney += deletedBuildingPrice * returnPercentage / 100;
-
+        
     }
 
     void placeDeer(BuildingTemplate deer) {
@@ -161,7 +162,7 @@ public class BuildingSystem : MonoBehaviour
         }
         
         chunkgridManager.InitializeDeer(new Vector3(xGrid, yGrid, zGrid), deer);
-        
+        GameManager.amountOfMoney -= deer.price;
     }
     // Update is called once per frame
     void Update()
@@ -179,7 +180,6 @@ public class BuildingSystem : MonoBehaviour
                 } else { 
                     BuildBuilding(buildingInHand);
                 }
-                GameManager.amountOfMoney -= buildingInHand.price;
             }
         }
 
