@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HorsePenUI : MonoBehaviour
+public class DeerPenUI : MonoBehaviour
 {
     public Canvas deerUI;
     bool isShown = false;
@@ -11,13 +11,7 @@ public class HorsePenUI : MonoBehaviour
     
     void OnMouseDown()
     {
-        Debug.Log("Clicked on " + gameObject.name);
-
-        if(!isShown) {
-            showHorsePenUI();
-        } else {
-            hideHorsePenUI();
-        }
+        showHorsePenUI();
     }
     
     void showHorsePenUI()
