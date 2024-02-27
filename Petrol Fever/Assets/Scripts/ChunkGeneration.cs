@@ -394,9 +394,7 @@ public class ChunkGeneration : MonoBehaviour
 
         //generowanie ropy
         int amountOfOilVeins = Random.Next(3, 6);
-
-        Debug.Log(this.transform.position);
-
+        
         for (int i = 0; i < amountOfOilVeins; i++) {
             int whichWall = Random.Next(0, 2) == 0 ? 0 : 1;
             //prawa ściana
