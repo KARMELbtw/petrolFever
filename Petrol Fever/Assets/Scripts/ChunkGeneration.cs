@@ -173,7 +173,7 @@ public class ChunkGeneration : MonoBehaviour
 
             currentPosition = updateCurrentPosition(currentPosition, startingPosition, whichWall, whichDirection, veinMaxHeight, veinMaxWidth);
 
-            Debug.Log("Oil block at: " + currentPosition.x + " " + currentPosition.y + " " + currentPosition.z);
+            // Debug.Log("Oil block at: " + currentPosition.x + " " + currentPosition.y + " " + currentPosition.z);
             if(isOccupied(currentPosition, whichWall)){
                 Debug.LogWarning(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z + " is occupied");
                 continue;
@@ -240,7 +240,7 @@ public class ChunkGeneration : MonoBehaviour
 
             currentPosition = updateCurrentPosition(currentPosition, startingPosition, whichWall, whichDirection, veinMaxHeight, veinMaxWidth);
 
-            Debug.Log("Rock block at: " + currentPosition.x + " " + currentPosition.y + " " + currentPosition.z);
+            // Debug.Log("Rock block at: " + currentPosition.x + " " + currentPosition.y + " " + currentPosition.z);
             if(isOccupied(currentPosition, whichWall)) {
                 Debug.LogWarning(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z + " is occupied");
                 continue;

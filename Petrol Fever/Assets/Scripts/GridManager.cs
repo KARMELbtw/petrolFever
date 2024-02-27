@@ -192,7 +192,7 @@ public class GridManager : MonoBehaviour
             return;
         }
 
-        Debug.Log("leftSetValue: " + y + " " + z + " " + value);
+        // Debug.Log("leftSetValue: " + y + " " + z + " " + value);
         leftGrid[y, z] = value;
     }
 
@@ -205,7 +205,7 @@ public class GridManager : MonoBehaviour
             return;
         }
 
-        Debug.Log("rightSetValue: " + y + " " + x + " " + value);
+        // Debug.Log("rightSetValue: " + y + " " + x + " " + value);
         rightGrid[y, x] = value;
     }
 
@@ -214,7 +214,7 @@ public class GridManager : MonoBehaviour
             Debug.LogWarning("Index out of bounds in topSetValue: " + x + " " + z);
             return;
         }
-        Debug.Log("topSetValue: " + x + " " + z + " " + building);
+        // Debug.Log("topSetValue: " + x + " " + z + " " + building);
         topGrid[x, z] = building;
     }
 
