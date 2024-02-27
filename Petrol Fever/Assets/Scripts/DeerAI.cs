@@ -24,34 +24,34 @@ public class DeerAI : MonoBehaviour
         return new Vector3(x, transform.position.y, z);
     }
 
-    private void RotateTowardsTarget()
+    private void RotateTowardsTarget(Vector3 originPosition)
     {
-        Vector3 direction = targetPosition - transform.position;
+        Vector3 direction = targetPosition - originPosition;
         Quaternion targetRotation = Quaternion.LookRotation(direction);
-        targetRotation = Quaternion.Inverse(targetRotation);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     private void MoveTowardsTarget()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-    }
+{
+    Vector3 direction = (targetPosition - transform.position).normalized;
+    transform.position += direction * (speed * Time.deltaTime);
+}
 
     private IEnumerator MoveRandomly()
     {
         while (true)
         {
             targetPosition = PickRandomPosition();
+            Vector3 originPosition = transform.position;
             speed = Random.Range(minSpeed, maxSpeed);
-
-            while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
-            {
-                RotateTowardsTarget();
+            
+            while (Vector3.Distance(transform.position, targetPosition) > 0.1f) {
+                RotateTowardsTarget(originPosition);
                 MoveTowardsTarget();
                 yield return null;
             }
 
-            yield return new WaitForSeconds(Random.Range(1f, 3f));
+            yield return new WaitForSeconds(Random.Range(1f, 6f));
         }
     }
 }
