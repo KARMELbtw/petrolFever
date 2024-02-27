@@ -16,4 +16,8 @@ public class newChunkBuyUi : MonoBehaviour
     void Update() {
         textComponent.text = GameManager.newChunkCost.ToString("N0")+"$";
     }
+    
+    public void deleteSelf() {
+        Destroy(this.transform.parent.gameObject);
+    }
 }

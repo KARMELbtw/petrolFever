@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4665864435624901168}
   - component: {fileID: 6236404321156518114}
   - component: {fileID: 7884220186410044059}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Chunk Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 1054016665340250069}
   - component: {fileID: 7487904421466928141}
   - component: {fileID: 766921407953063880}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: newChunkPrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,9 +294,9 @@ GameObject:
   - component: {fileID: 1709830061625188697}
   - component: {fileID: 3937421649949339194}
   - component: {fileID: 3465223335384703981}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Left Panel
-  m_TagString: Untagged
+  m_TagString: BuyChunkButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -407,6 +407,18 @@ MonoBehaviour:
       - m_Target: {fileID: 3317723399583731131, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
         m_TargetAssemblyTypeName: buyChunk, Scripts
         m_MethodName: buyLeftChunk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 766921407953063880}
+        m_TargetAssemblyTypeName: newChunkBuyUi, Scripts
+        m_MethodName: deleteSelf
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -595,9 +607,9 @@ GameObject:
   - component: {fileID: 7138264934691329878}
   - component: {fileID: 2952257781929769718}
   - component: {fileID: 6316467383325061340}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Right Panel
-  m_TagString: Untagged
+  m_TagString: BuyChunkButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -717,6 +729,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5370452239615451540}
+        m_TargetAssemblyTypeName: newChunkBuyUi, Scripts
+        m_MethodName: deleteSelf
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7976989859972701333
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,7 +753,7 @@ GameObject:
   - component: {fileID: 7763781240498974833}
   - component: {fileID: 5253773966421619667}
   - component: {fileID: 5370452239615451540}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: newChunkPrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
