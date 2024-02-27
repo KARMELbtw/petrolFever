@@ -34224,14 +34224,10 @@ PrefabInstance:
       propertyPath: magmaBlockPrefab
       value: 
       objectReference: {fileID: 600282509763008403, guid: 19f7469521bd0a44e90e7a239e2421a7, type: 3}
-    - target: {fileID: 1391406528674394155, guid: 1965784be397d3f4bac827792b24b849, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1391406528674394155, guid: 1965784be397d3f4bac827792b24b849, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 24.98
-      objectReference: {fileID: 0}
+    - target: {fileID: 766921407953063880, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: chunkPrefab
+      value: 
+      objectReference: {fileID: 5994376326257153378, guid: 1965784be397d3f4bac827792b24b849, type: 3}
     - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -34284,6 +34280,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 681230367}
+    - target: {fileID: 5370452239615451540, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: chunkPrefab
+      value: 
+      objectReference: {fileID: 5994376326257153378, guid: 1965784be397d3f4bac827792b24b849, type: 3}
     - target: {fileID: 5994376326257153378, guid: 1965784be397d3f4bac827792b24b849, type: 3}
       propertyPath: m_Name
       value: Chunk
