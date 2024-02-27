@@ -1,61 +1,57 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DeerAI : MonoBehaviour
 {
-    private float randomX;
-    private float randomZ;
-    private int i = 1000;
-    private int nextMove;
-    private Quaternion rotation;
-    
-    IEnumerator RotateAndMove(Vector3 targetPosition)
+    public float minSpeed = 1f;
+    public float maxSpeed = 3f;
+    public float rotationSpeed = 2f;
+    public Vector3 minPosition = new Vector3(-10, 0, -10);
+    public Vector3 maxPosition = new Vector3(10, 0, 10);
+
+    private Vector3 targetPosition;
+    private float speed;
+
+    private void Start()
     {
-        // Calculate rotation to the target
-        Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
+        StartCoroutine(MoveRandomly());
+    }
 
-        // Move to the target position
-        float movementDuration = 1f;
-        float movementElapsedTime = 0f;
-        Vector3 startPosition = transform.localPosition;
+    private Vector3 PickRandomPosition()
+    {
+        float x = Random.Range(minPosition.x, maxPosition.x);
+        float z = Random.Range(minPosition.z, maxPosition.z);
+        return new Vector3(x, transform.position.y, z);
+    }
 
-        while (movementElapsedTime < movementDuration)
+    private void RotateTowardsTarget()
+    {
+        Vector3 direction = targetPosition - transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        targetRotation = Quaternion.Inverse(targetRotation);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+    }
+
+    private void MoveTowardsTarget()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+    }
+
+    private IEnumerator MoveRandomly()
+    {
+        while (true)
         {
-            transform.localPosition = Vector3.Lerp(startPosition, targetPosition, movementElapsedTime / movementDuration);
-            movementElapsedTime += Time.deltaTime;
-            yield return null;
+            targetPosition = PickRandomPosition();
+            speed = Random.Range(minSpeed, maxSpeed);
+
+            while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+            {
+                RotateTowardsTarget();
+                MoveTowardsTarget();
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(Random.Range(1f, 3f));
         }
-
-        // Ensure reaching the exact target position
-        transform.localPosition = targetPosition;
-    }
-
-    public void Move(float x, float z)
-    {
-        Vector3 targetPosition = new Vector3(x, 15.24f, z);
-        StartCoroutine(RotateAndMove(targetPosition));
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        randomX = Random.Range(-3f, -3f);
-        randomZ = Random.Range(-2.795f, 3.3f);
-        nextMove = Random.Range(2500, 5000);
-        this.transform.localPosition = new Vector3(randomX,-0.5f,randomZ);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(i >= nextMove) {
-            randomX = Random.Range(-3f, -3f);
-            randomZ = Random.Range(-2.795f, 3.3f);
-            nextMove = Random.Range(2500, 5000);
-            Move(randomX, randomZ);
-            i = 0;
-        }
-        i++;
     }
 }

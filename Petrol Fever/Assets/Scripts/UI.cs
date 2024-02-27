@@ -21,7 +21,7 @@ public class UI : MonoBehaviour
     void Update()
     { 
         //wypisanie zawartośći zmiennej amountOfMoney na ekran do pola amountOfMoneyDisplay typu text
-        amountOfMoneyDisplay.text = BuildingSystem.amountOfMoney+" $";
+        amountOfMoneyDisplay.text = GameManager.amountOfMoney+" $";
         if (BuildingSystem.currentBuilding != 666) {
             currentbuildingImageDisplay.sprite = Sprite.Create(buildingImages[BuildingSystem.currentBuilding], new Rect(0, 0, buildingImages[BuildingSystem.currentBuilding].width, buildingImages[BuildingSystem.currentBuilding].height), new Vector2(0.5f, 0.5f));
             currentbuildingImageDisplay.color = new Color(1,1,1,1);
