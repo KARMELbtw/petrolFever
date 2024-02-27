@@ -35069,6 +35069,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5547575362409851475, guid: 7931f11019dceb44aba8c06963179b9c, type: 3}
   m_PrefabInstance: {fileID: 1621227280}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1627433759 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: abfd1356b8c5be042a57e6c6dc058226, type: 3}
+  m_PrefabInstance: {fileID: 1675059422}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1627433760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627433759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5f013adc45cd1458f4f14757b8086a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drillUI: {fileID: 1168983482}
 --- !u!1001 &1628274641
 PrefabInstance:
   m_ObjectHideFlags: 0

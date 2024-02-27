@@ -42,7 +42,7 @@ public class DeerAI : MonoBehaviour
         previousSec = seconds;
 
         if(timeToFindOil <= seconds) {
-
+            
         }
     }
 
