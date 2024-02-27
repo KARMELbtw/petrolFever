@@ -49,6 +49,17 @@ public class GridManager : MonoBehaviour
             }
         }
     }
+    public void InitializeDeer(Vector3 position, BuildingTemplate deer) {
+        // Pozycja świata
+        Vector3 worldPosition = position + this.transform.position;
+        Debug.Log("Deer at " + worldPosition);
+        // Stworzenie nowego budynku
+        GameObject newDeer = Instantiate(deer.prefab, worldPosition, Quaternion.identity);
+        
+        // Przypisanie rodzica i nazwy
+        newDeer.transform.parent = this.transform.GetChild(0);
+        newDeer.name = "Deer " + position.x + " " + position.z;
+    }
     public void InitializeSideBuilding(Vector3 position, BuildingTemplate buildingTemplate) {
         bool onLeft = position.x == 0 && position.z != 0;
         // Pozycja świata
