@@ -33317,6 +33317,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1391406528674394155, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 24.98
+      objectReference: {fileID: 0}
     - target: {fileID: 1908106794628150904, guid: 1965784be397d3f4bac827792b24b849, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -33372,6 +33376,10 @@ PrefabInstance:
     - target: {fileID: 5994376326257153378, guid: 1965784be397d3f4bac827792b24b849, type: 3}
       propertyPath: m_Name
       value: Chunk
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183559259984356172, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1965784be397d3f4bac827792b24b849, type: 3}
