@@ -8,7 +8,6 @@ public class DeerPenUI : MonoBehaviour
     public Canvas deerUI;
     bool isShown = false;
     
-    
     void OnMouseDown()
     {
         showHorsePenUI();
