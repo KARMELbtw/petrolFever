@@ -9,11 +9,14 @@ using UnityEngine;
 
     private static int oilAmonutNow = 0;
     private static int oilMaxAmountCanHave = 0;
-    bool checkOilMaxWithNow()
+    public static bool checkOilMaxWithNow()
     {
        return oilAmonutNow < oilMaxAmountCanHave;
     }
-
+    public static void addOil(int amount)
+    {
+        oilAmonutNow += amount;
+    }
     public  static int amountOfMoney {
         get { return money; }
         set {

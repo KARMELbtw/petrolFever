@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Oil;
 using UnityEngine;
 
 public class ChunkGeneration : MonoBehaviour
@@ -142,6 +143,7 @@ public class ChunkGeneration : MonoBehaviour
 
         int veinMaxWidth = 4;
         int veinMaxHeight = 2;
+        int veinSize = Random.Next(veinMinSize, veinMaxSize);
 
         GameObject oilVeinParent = Instantiate(oilVeinPrefab, startingPosition, Quaternion.identity, this.transform);
         var position = oilVeinParent.transform.position;
@@ -153,8 +155,7 @@ public class ChunkGeneration : MonoBehaviour
 
         Vector3 currentPosition = startingPosition;
         
-        int veinSize = Random.Next(veinMinSize, veinMaxSize);
-
+        int oilBluckSum = 0;
         for (int i = 0; i < veinSize - 1; i++) {
             
             int whichDirection = Random.Next(1, 3);
@@ -166,6 +167,7 @@ public class ChunkGeneration : MonoBehaviour
                 Debug.LogWarning(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z + " is occupied");
                 continue;
             }
+            oilBluckSum++;
             oilCube = Instantiate(oilCubePrefab, currentPosition, Quaternion.identity, oilVeinParent.transform);
             
             setGridValue(currentPosition, whichWall, oilCube);
@@ -176,7 +178,9 @@ public class ChunkGeneration : MonoBehaviour
         } else {
             oilVeinParent.tag = "LeftWall";
         }
-
+        
+        oilVeinParent.GetComponent<oilLogic>().numberOfOilBlocks = oilBluckSum + 1;
+        
         oilVeins.Add(oilVeinParent);
     }
     // private void GenerateWaterVein(Vector3 startingPosition, int whichWall) {
