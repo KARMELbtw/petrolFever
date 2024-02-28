@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     //zadeklarowanie zmiennej globalnej amountOfMoney
-    private static int money = 300000;
+    private static int money = 30000;
 
     public static int amountOfMoney {
         get { return money; }
