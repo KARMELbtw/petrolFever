@@ -27,13 +27,13 @@ public class ChunkGeneration : MonoBehaviour
     }
     private bool isOccupied(Vector3 position, int whichWall) {
         if (whichWall == 0) {
-            return gridManager.rightGetValue((int)position.y, (int)position.x ) != 0;
+            return gridManager.rightGetValue((int)position.y, (int)position.x ) != null;
         }
         else {
-            return gridManager.leftGetValue((int)position.y, (int)position.z) != 0;
+            return gridManager.leftGetValue((int)position.y, (int)position.z) != null;
         }
     }
-    private void setGridValue(Vector3 position, int whichWall, int value) {
+    private void setGridValue(Vector3 position, int whichWall, GameObject value) {
         if (whichWall == 0) {
             gridManager.rightSetValue((int)position.y, (int)position.x , value);
         }
@@ -147,9 +147,9 @@ public class ChunkGeneration : MonoBehaviour
         var position = oilVeinParent.transform.position;
         oilVeinParent.name = "Oil Vein " + position.x + " , " + position.y + " , " + position.z;
 
-        Instantiate(oilCubePrefab, startingPosition, Quaternion.identity, oilVeinParent.transform);
+        GameObject oilCube = Instantiate(oilCubePrefab, startingPosition, Quaternion.identity, oilVeinParent.transform);
         
-        setGridValue(startingPosition, whichWall, 1);
+        setGridValue(startingPosition, whichWall, oilCube);
 
         Vector3 currentPosition = startingPosition;
         
@@ -166,9 +166,9 @@ public class ChunkGeneration : MonoBehaviour
                 Debug.LogWarning(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z + " is occupied");
                 continue;
             }
-            Instantiate(oilCubePrefab, currentPosition, Quaternion.identity, oilVeinParent.transform);
+            oilCube = Instantiate(oilCubePrefab, currentPosition, Quaternion.identity, oilVeinParent.transform);
             
-            setGridValue(currentPosition, whichWall, 1);
+            setGridValue(currentPosition, whichWall, oilCube);
         }
 
         if (whichWall == 0) {
@@ -223,12 +223,12 @@ public class ChunkGeneration : MonoBehaviour
             (GameObject)Instantiate(rockVeinPrefab, startingPosition, Quaternion.identity, this.transform);
         rockVeinParent.name =
             "Rock Vein " + rockVeinParent.transform.position.x + ", " + rockVeinParent.transform.position.y + ", " + rockVeinParent.transform.position.z;
-        Instantiate(rockBlockPrefab, startingPosition, Quaternion.identity, rockVeinParent.transform);
+        GameObject rockCube = Instantiate(rockBlockPrefab, startingPosition, Quaternion.identity, rockVeinParent.transform);
        
         Vector3 currentPosition = startingPosition;
 
         int veinSize = Random.Next(veinMinSize, veinMaxSize);
-        setGridValue(startingPosition, whichWall, 2);
+        setGridValue(startingPosition, whichWall, rockCube);
         
         for (int i = 0; i < veinSize - 1; i++) {
             
@@ -241,9 +241,9 @@ public class ChunkGeneration : MonoBehaviour
                 Debug.LogWarning(currentPosition.x + " " + currentPosition.y + " " + currentPosition.z + " is occupied");
                 continue;
             } 
-            Instantiate(rockBlockPrefab, currentPosition, Quaternion.identity, rockVeinParent.transform);
+            rockCube = Instantiate(rockBlockPrefab, currentPosition, Quaternion.identity, rockVeinParent.transform);
 
-            setGridValue(currentPosition, whichWall, 2);
+            setGridValue(currentPosition, whichWall, rockCube);
         }
 
         if (whichWall == 0) {

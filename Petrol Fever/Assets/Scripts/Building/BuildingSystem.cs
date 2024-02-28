@@ -7,7 +7,7 @@ public class BuildingSystem : MonoBehaviour
 {   
     [SerializeField]
     private List<BuildingTemplate> buildings;
-    public static int currentBuilding {get; private set;} = 666;
+    public static int currentBuilding {get; set;} = 666;
     
     [SerializeField]
     private int returnPercentage = 80;
@@ -79,8 +79,8 @@ public class BuildingSystem : MonoBehaviour
             }
             Debug.Log("Building can be placed on " + chunkgridManager.gameObject.name + " at " + rayHitPosition + " grid: " + yGrid + " " + zGrid);
             chunkgridManager.InitializeSideBuilding(new Vector3(xGrid, yGrid, zGrid), building);
-            GameManager.amountOfMoney -= building.price;
         }
+        GameManager.amountOfMoney -= building.price;
     }
     
     private void SellBuilding() {
@@ -114,8 +114,6 @@ public class BuildingSystem : MonoBehaviour
             Debug.Log("There is no building to sell on " + chunkgridManager.gameObject.name + " at " + rayHitPosition + " grid: " + xGrid + " " + zGrid);
             return;
         }
-        
-        
         
         chunkgridManager.deleteBulding(xGrid, zGrid, out int deletedBuildingPrice);
         GameManager.amountOfMoney += deletedBuildingPrice * returnPercentage / 100;
