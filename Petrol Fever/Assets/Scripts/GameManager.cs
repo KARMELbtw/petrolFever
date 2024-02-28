@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+ public class GameManager : MonoBehaviour
 {
     //zadeklarowanie zmiennej globalnej amountOfMoney
     private static int money = 30000;
 
+    private static int oilAmonutNow = 0;
     private static int oilMaxAmountCanHave = 0;
-    
+    bool checkOilMaxWithNow()
+    {
+       return oilAmonutNow < oilMaxAmountCanHave;
+    }
 
-    public static int amountOfMoney {
+    public  static int amountOfMoney {
         get { return money; }
         set {
             if (value > money) {
