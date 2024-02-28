@@ -17,32 +17,39 @@ public class DeerAI : MonoBehaviour
     private Vector3 targetPosition;
     private float speed;
     private float previousSec;
+    private bool foundOil;
 
     private void Start()
     {
         StartCoroutine(MoveRandomly());
         if(SceneChanger.IsLookingAtChunk) {
-            bool foundOil = false;
+            foundOil = false;
 
             if(Random.Range(1, 100) <= chanceToFindOil) {
                 foundOil = true;
             }
 
             timeToFindOil = Random.Range(minTimeToFindOil, maxTimeToFindOil);
+            Debug.Log(foundOil);
+            Debug.Log(timeToFindOil + "czas");
         }
     }
 
     private void Update() {
-        time += Time.deltaTime;
-        var seconds = (int)(time % 60);
+        if (foundOil) {
+            time += Time.deltaTime;
+            var seconds = (int)(time % 60);
 
-        if(seconds != previousSec)
-        Debug.Log(seconds);
+            if(seconds != previousSec)
+            Debug.Log(seconds);
 
-        previousSec = seconds;
+            previousSec = seconds;
 
-        if(timeToFindOil <= seconds) {
-            
+            if(timeToFindOil <= seconds) {
+                ChunkGeneration.RevealRandomOilVein(ChunkGeneration.oilVeins);
+                Debug.Log("Wykryto ropę");
+                foundOil = false;
+            }
         }
     }
 
