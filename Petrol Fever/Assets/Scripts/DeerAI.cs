@@ -8,51 +8,14 @@ public class DeerAI : MonoBehaviour
     public float rotationSpeed = 2f;
     public Vector3 minPosition = new Vector3(-10, 0, -10);
     public Vector3 maxPosition = new Vector3(10, 0, 10);
-    public int chanceToFindOil = 50;
-
-    private int minTimeToFindOil = 10;
-    private int maxTimeToFindOil = 20;
-    private int timeToFindOil;
-    private float time;
     private Vector3 targetPosition;
     private float speed;
-    private float previousSec;
-    private bool foundOil;
-
+    
     private void Start()
     {
         StartCoroutine(MoveRandomly());
-        if(SceneChanger.IsLookingAtChunk) {
-            foundOil = false;
-
-            if(Random.Range(1, 100) <= chanceToFindOil) {
-                foundOil = true;
-            }
-
-            timeToFindOil = Random.Range(minTimeToFindOil, maxTimeToFindOil);
-            Debug.Log(foundOil);
-            Debug.Log(timeToFindOil + "czas");
-        }
     }
-
-    private void Update() {
-        if (foundOil) {
-            time += Time.deltaTime;
-            var seconds = (int)(time % 60);
-
-            if(seconds != previousSec)
-            Debug.Log(seconds);
-
-            previousSec = seconds;
-
-            if(timeToFindOil <= seconds) {
-                ChunkGeneration.RevealRandomOilVein(ChunkGeneration.oilVeins);
-                Debug.Log("Wykryto ropę");
-                foundOil = false;
-            }
-        }
-    }
-
+    
     private Vector3 PickRandomPosition()
     {
         float x = Random.Range(minPosition.x, maxPosition.x);
@@ -68,10 +31,10 @@ public class DeerAI : MonoBehaviour
     }
 
     private void MoveTowardsTarget()
-{
+    {
     Vector3 direction = (targetPosition - transform.position).normalized;
     transform.position += direction * (speed * Time.deltaTime);
-}
+    }   
 
     private IEnumerator MoveRandomly()
     {
