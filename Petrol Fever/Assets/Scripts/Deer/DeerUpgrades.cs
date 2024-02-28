@@ -9,35 +9,39 @@ public class DeerUpgrades : MonoBehaviour
     public static int speedUpgradeLevel = 1;
     public static int costUpgradeLevel = 1;
     public static int chanceUpgradeLevel = 1;
-
     private static double costMultiplier = 1.5;
     public static GameObject speedLevel;
     public static GameObject costLevel;
     public static GameObject chancesLevel;
 
+    private static int cost;
+
     public static void upgradeDeerSpeed() {
-        if(speedUpgradeLevel < 5) {
+        cost = (int)(speedUpgradeLevel * costMultiplier) * 1000;
+        if(speedUpgradeLevel < 5 && GameManager.amountOfMoney >= cost) {
             DeerOilAi.minTimeToFindOil -= 1;
             DeerOilAi.maxTimeToFindOil -= 1;
-            GameManager.amountOfMoney -= (int)(speedUpgradeLevel * costMultiplier) * 1000;
+            GameManager.amountOfMoney -= cost;
             speedUpgradeLevel++;
             updateUI();
         }
     }
 
     public static void upgradeDeerCost() {
-        if(costUpgradeLevel < 5) {
+        cost = (int)(costUpgradeLevel * costMultiplier) * 1000;
+        if(costUpgradeLevel < 5 && GameManager.amountOfMoney >= cost) {
             deerCost -= 500;
-            GameManager.amountOfMoney -= (int)(speedUpgradeLevel * costMultiplier) * 1000;
+            GameManager.amountOfMoney -= cost;
             costUpgradeLevel++;
             updateUI();
         }
     }
 
     public static void upgradeDeerChance() {
-        if(chanceUpgradeLevel < 5) {
+        cost = (int)(speedUpgradeLevel * costMultiplier) * 1250;
+        if(chanceUpgradeLevel < 5 && GameManager.amountOfMoney >= cost) {
             DeerOilAi.chanceToFindOil += 10;
-            GameManager.amountOfMoney -= (int)(speedUpgradeLevel * costMultiplier) * 1250;
+            GameManager.amountOfMoney -= cost;
             chanceUpgradeLevel++;
             updateUI();
         }
