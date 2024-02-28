@@ -296,8 +296,10 @@ public class ChunkGeneration : MonoBehaviour
         GameObject oilVein = oilVeins[Random.Next(0, listSize)];
         if (oilVein.tag == "RightWall") {
             oilVein.transform.position = new Vector3(oilVein.transform.position.x, oilVein.transform.position.y, (float)(oilVein.transform.position.z - 0.5));
-        } else {
+        } else if (oilVein.tag == "LeftWall") {
             oilVein.transform.position = new Vector3((float)(oilVein.transform.position.x - 0.5), oilVein.transform.position.y, oilVein.transform.position.z);
+        } else {
+            oilVein.tag = null;
         }
     }
 
