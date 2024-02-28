@@ -545,6 +545,7 @@ MonoBehaviour:
   rotationSpeed: 398.67
   minPosition: {x: -45, y: 15, z: -43}
   maxPosition: {x: -53, y: 15, z: -50}
+  chanceToFindOil: 50
 --- !u!1 &6207136304394885092
 GameObject:
   m_ObjectHideFlags: 0

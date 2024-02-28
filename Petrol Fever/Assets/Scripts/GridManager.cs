@@ -34,7 +34,7 @@ public class GridManager : MonoBehaviour
         newBuilding.name = buildingTemplate.name + " " + position.x + " " + position.z;
         
         // Przypisania parametrów budynku do skryptu BuildingScript
-        BuildingScript newBuildingSript = newBuilding.GetComponent<BuildingScript>();
+        BuildingScript newBuildingSript = newBuilding.AddComponent<BuildingScript>();
         newBuildingSript.originGrid = new Vector2(position.x, position.z);
         newBuildingSript.width = buildingTemplate.width;
         newBuildingSript.depth = buildingTemplate.depth;
@@ -67,6 +67,11 @@ public class GridManager : MonoBehaviour
         Debug.Log("Building: " + buildingTemplate.name + " at " + worldPosition);
         // Stworzenie nowego budynku
         Vector3 offset = new Vector3(0,0.51f,0);
+        if (onLeft) {
+            offset += new Vector3(0,0,0.5f);
+        } else {
+            offset += new Vector3(0.5f,0,0);
+        }
         GameObject newBuilding = Instantiate(buildingTemplate.prefab, worldPosition - offset, Quaternion.identity);
         
         // Przypisanie rodzica i nazwy
@@ -74,7 +79,7 @@ public class GridManager : MonoBehaviour
         newBuilding.name = buildingTemplate.name + " " + position.x + " " + position.z + " " + position.y;
         
         // Przypisania parametrów budynku do skryptu BuildingScript
-        BuildingScript newBuildingSript = newBuilding.GetComponent<BuildingScript>();
+        BuildingScript newBuildingSript = newBuilding.AddComponent<BuildingScript>();
         newBuildingSript.originGrid = (onLeft) ? new Vector2(position.y, position.z) : new Vector2(position.y, position.x);
 
         newBuildingSript.width = buildingTemplate.width;
@@ -154,12 +159,12 @@ public class GridManager : MonoBehaviour
         if (yGrid != leftGrid.GetLength(0)-1) {
             for (int y = yGrid+1; y < leftGrid.GetLength(0)-1; y++) {
                 if (side == 0) {
-                    if (leftGetValue(y, xGrid) != 3) {
+                    if (leftGetValue(y, xGrid + (int)this.transform.position.z) != 3) {
                         return false;
                     }
                 }
                 else {
-                    if (rightGetValue(y, xGrid) != 3) {
+                    if (rightGetValue(y, xGrid + (int)this.transform.position.x) != 3) {
                         return false;
                     }
                 

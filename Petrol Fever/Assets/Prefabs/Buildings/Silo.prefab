@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9042660135028696571}
-  - component: {fileID: 5643125601246147362}
   m_Layer: 0
   m_Name: Silo
   m_TagString: Untagged
@@ -33,23 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5643125601246147362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5864699548947419389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edc0055cd6ad13145a903815b55e236e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  originGrid: {x: 0, y: 0}
-  width: 0
-  depth: 0
-  price: 0
-  buildingName: 
 --- !u!1001 &5852273156976286832
 PrefabInstance:
   m_ObjectHideFlags: 0
