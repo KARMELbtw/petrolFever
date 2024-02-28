@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour
     }
     
     public static int newChunkCost = 1000;
-    
     public static int numberOfLeftChunks = 0;
     public static int numberOfRightChunks = 0;
     public static int numberOfChunks = 0;
+    public static bool uiOpened = false;
 }

@@ -292,7 +292,7 @@ public class ChunkGeneration : MonoBehaviour
     // }
     public static void RevealRandomOilVein(List<GameObject> oilVeins) {
         int listSize = oilVeins.Count;
-
+    
         GameObject oilVein = oilVeins[Random.Next(0, listSize)];
         if (oilVein.tag == "RightWall") {
             oilVein.transform.position = new Vector3(oilVein.transform.position.x, oilVein.transform.position.y, (float)(oilVein.transform.position.z - 0.5));

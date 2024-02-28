@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingName: Deer
   price: 3000
-  prefab: {fileID: 5092657495774029911, guid: 795c1717004c9d5429a6d378d41435c2, type: 3}
+  prefab: {fileID: 5092657495774029911, guid: 538b12d26234822499fdec9680eddeb2, type: 3}
   mustPlaceOnTop: 1
   width: 1
   depth: 1

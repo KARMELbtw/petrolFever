@@ -15,9 +15,12 @@ public class DrillUI : MonoBehaviour
     
     void showDrillUI()
     {
-        RectTransform drillUIRect = drillUI.GetComponent<RectTransform>();
-        drillUIRect.anchoredPosition = new Vector3(0, 0, 0);
-        isShown = true;
+        if (GameManager.uiOpened == false) {
+            RectTransform drillUIRect = drillUI.GetComponent<RectTransform>();
+            drillUIRect.anchoredPosition = new Vector3(0, 0, 0);
+            isShown = true;
+            GameManager.uiOpened = true;
+        }
     }
     
     public void hideDrillUI()
@@ -25,6 +28,7 @@ public class DrillUI : MonoBehaviour
         RectTransform drillUIRect = drillUI.GetComponent<RectTransform>();
         drillUIRect.anchoredPosition = new Vector3(0, 600f, 0);
         isShown = false;
+        GameManager.uiOpened = false;
     }
 
     // Start is called before the first frame update

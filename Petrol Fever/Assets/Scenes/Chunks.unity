@@ -22917,6 +22917,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5547575362409851475, guid: 7931f11019dceb44aba8c06963179b9c, type: 3}
   m_PrefabInstance: {fileID: 1100081898}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1102815389 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3024386462025124566, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+  m_PrefabInstance: {fileID: 3024386462055903557}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1102815397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102815389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1596a465b395b7945900913f11c2e24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1105812144
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47529,6 +47546,98 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3024386461795779873, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386461795779873, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386461795779873, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1102815397}
+    - target: {fileID: 3024386461795779873, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386461795779873, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: upgradeDeerChance
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386461795779873, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DeerUpgrades, Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386461795779873, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386461795779878, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386461795779878, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386461795779879, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_Name
+      value: chanceUpgradeBtn
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386461835673693, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386462024638498, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386462024638498, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386462024638498, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386462024638498, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1102815397}
+    - target: {fileID: 3024386462024638498, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386462024638498, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386462024638498, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: upgradeDeerSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386462024638498, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DeerUpgrades, Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386462024638498, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386462024638499, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386462024638499, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -250
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386462025124573, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3024386462466273624, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -47601,9 +47710,61 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3024386462666836519, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_text
+      value: "Ulepsz Szans\u0119 na znalezienie ropy"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386463061354100, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 3024386463061354103, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1730427092}
+    - target: {fileID: 3024386463061354103, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: hideHorsePenUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386463061354103, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DeerPenUI, Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386463340137864, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386463340137864, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386463340137867, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386463340137867, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386463340137867, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1102815397}
+    - target: {fileID: 3024386463340137867, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386463340137867, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: upgradeDeerCost
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386463340137867, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DeerUpgrades, Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386463340137867, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
