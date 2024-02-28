@@ -7,7 +7,7 @@ public class BuildingSystem : MonoBehaviour
 {   
     [SerializeField]
     private List<BuildingTemplate> buildings;
-    public static int currentBuilding {get; private set;} = 666;
+    public static int currentBuilding {get; set;} = 666;
     
     [SerializeField]
     private int returnPercentage = 80;
