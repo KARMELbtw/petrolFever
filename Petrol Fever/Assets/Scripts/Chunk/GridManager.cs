@@ -7,13 +7,13 @@ public class GridManager : MonoBehaviour
 {
     [SerializeField] public ChunkGeneration chunkGeneration;
 
-    private int[,] leftGrid;
-    private int[,] rightGrid;
+    private GameObject[,] leftGrid;
+    private GameObject[,] rightGrid;
     private GameObject[,] topGrid;
 
     public void InitializeGrids() {
-        leftGrid = new int[chunkGeneration.chunkHeight, chunkGeneration.chunkWidth + 1];
-        rightGrid = new int[chunkGeneration.chunkHeight, chunkGeneration.chunkDepth + 1];
+        leftGrid = new GameObject[chunkGeneration.chunkHeight, chunkGeneration.chunkWidth + 1];
+        rightGrid = new GameObject[chunkGeneration.chunkHeight, chunkGeneration.chunkDepth + 1];
         topGrid = new GameObject[chunkGeneration.chunkDepth + 1, chunkGeneration.chunkWidth + 1];
     }
 
@@ -90,13 +90,13 @@ public class GridManager : MonoBehaviour
         if (onLeft) {
             for (int y = 0; y < buildingTemplate.depth; y++) { 
                 for (int z = 0; z < buildingTemplate.width; z++) { 
-                    leftSetValue((int)position.y + y,(int)position.z + z + (int)this.transform.position.z, 3);
+                    leftSetValue((int)position.y + y,(int)position.z + z + (int)this.transform.position.z, newBuilding);
                 }
             }
         } else {
             for (int y = 0; y < buildingTemplate.depth; y++) { 
                 for (int x = 0; x < buildingTemplate.width; x++) { 
-                    rightSetValue((int)position.y + y,(int)position.x + x + (int)this.transform.position.x, 3);
+                    rightSetValue((int)position.y + y,(int)position.x + x + (int)this.transform.position.x, newBuilding);
                 }
             }
         }
@@ -140,7 +140,7 @@ public class GridManager : MonoBehaviour
                         return false;
                     }
 
-                    if (leftGetValue(yGrid + x, xGrid + y + (int)this.transform.position.z) != 0) {
+                    if (leftGetValue(yGrid + x, xGrid + y + (int)this.transform.position.z) != null) {
                         return false;
                     }
                 }
@@ -149,25 +149,29 @@ public class GridManager : MonoBehaviour
                         return false;
                     }
 
-                    if (rightGetValue(yGrid + x, xGrid + y + (int)this.transform.position.x) != 0) {
+                    if (rightGetValue(yGrid + x, xGrid + y + (int)this.transform.position.x) != null) {
                         return false;
                     }
                 }
             }
         }
 
-        if (yGrid != leftGrid.GetLength(0)-1) {
-            for (int y = yGrid+1; y < leftGrid.GetLength(0)-1; y++) {
+        if (yGrid != leftGrid.GetLength(0)) {
+            for (int y = yGrid+1; y < leftGrid.GetLength(0); y++) {
                 if (side == 0) {
-                    if (leftGetValue(y, xGrid + (int)this.transform.position.z) != 3) {
+                    if (leftGetValue(y, xGrid + (int)this.transform.position.z) == null) {
                         return false;
                     }
-                }
-                else {
-                    if (rightGetValue(y, xGrid + (int)this.transform.position.x) != 3) {
+                    if (leftGetValue(y, xGrid + (int)this.transform.position.z).GetComponent<idScript>().id != 3) {
                         return false;
                     }
-                
+                } else {
+                    if (rightGetValue(y, xGrid + (int)this.transform.position.x) == null) {
+                        return false;
+                    }
+                    if (rightGetValue(y, xGrid + (int)this.transform.position.x).GetComponent<idScript>().id != 3) {
+                        return false;
+                    }
                 }
             }
         }
@@ -188,7 +192,7 @@ public class GridManager : MonoBehaviour
             chunkGeneration.chunkDepth / 2 + boxColiderOffset);
     }
 
-    public void leftSetValue(int y, int z, int value) {
+    public void leftSetValue(int y, int z, GameObject value) {
         Vector3 position = this.transform.position;
         y = (int)(y - position.y);
         z = (int)(z - position.z);
@@ -201,7 +205,7 @@ public class GridManager : MonoBehaviour
         leftGrid[y, z] = value;
     }
 
-    public void rightSetValue(int y, int x, int value) {
+    public void rightSetValue(int y, int x, GameObject value) {
         Vector3 position = this.transform.position;
         y = (int)(y - position.y);
         x = (int)(x - position.x);
@@ -230,24 +234,24 @@ public class GridManager : MonoBehaviour
         }
         return topGrid[x, z];
     }
-    public int leftGetValue(int y, int z) {
+    public GameObject leftGetValue(int y, int z) {
         Vector3 position = this.transform.position;
         y = (int)(y - position.y);
         z = (int)(z - position.z);
         if (y < 0 || y >= leftGrid.GetLength(0) || z < 0 || z >= leftGrid.GetLength(1)) {
             Debug.LogError("Index out of bounds in leftGetValue: " + y + " " + z);
-            return -1;
+            return null;
         }
 
         return leftGrid[y, z];
     }
-    public int rightGetValue(int y, int x) {
+    public GameObject rightGetValue(int y, int x) {
         Vector3 position = this.transform.position;
         y = (int)(y - position.y);
         x = (int)(x - position.x);
         if (y < 0 || y >= rightGrid.GetLength(0) || x < 0 || x >= rightGrid.GetLength(1)) {
             Debug.LogError("Index out of bounds in rightGetValue: " + y + " " + x);
-            return -1;
+            return null;
         }
 
         return rightGrid[y, x];
