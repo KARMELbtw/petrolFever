@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     //zadeklarowanie zmiennej globalnej amountOfMoney
     private static int money = 30000;
 
+    private static int oilMaxAmountCanHave = 0;
+    
+
     public static int amountOfMoney {
         get { return money; }
         set {
