@@ -117,7 +117,7 @@ public class BuildingSystem : MonoBehaviour
         
         chunkgridManager.deleteBulding(xGrid, zGrid, out int deletedBuildingPrice);
         GameManager.amountOfMoney += deletedBuildingPrice * returnPercentage / 100;
-        
+        this.gameObject.GetComponent<AudioSource>().Play();
     }
 
     void placeDeer(BuildingTemplate deer) {
