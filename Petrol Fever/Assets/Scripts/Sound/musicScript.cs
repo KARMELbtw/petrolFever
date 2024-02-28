@@ -19,13 +19,13 @@ public class musicScript : MonoBehaviour
     {
         if (!audioSource.isPlaying && !audioSource2.isPlaying)
         {
-            chance = Random.Range(0, 100);
+            chance = Random.Range(0, 1000);
             switch (chance) 
             {
-                case 21:
+                case 1:
                     audioSource.Play();
                     break;
-                case 42:
+                case 2:
                     audioSource2.Play();
                     break;
                 default:
