@@ -1,10 +1,16 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class musicScript : MonoBehaviour
 {
     private AudioSource audioSource;
     private AudioSource audioSource2;
     private int chance;
+
+    private void Awake() {
+        DontDestroyOnLoad(transform.gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()
