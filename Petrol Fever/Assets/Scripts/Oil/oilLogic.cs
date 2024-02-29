@@ -27,7 +27,8 @@ namespace Oil
         
         IEnumerator drilling()
         {
-            while (oilNow <= 0) {
+            while (true) {
+                yield return new WaitForSeconds(3);
                 if (GameManager.checkOilMaxWithNow()) { 
                     GameManager.addOil(1);
                 }
@@ -38,15 +39,16 @@ namespace Oil
                     material.color = new Color(material.color.r, material.color.g, material.color.b, (float)oilNow / capacity);
                 }
                 Debug.Log("Drilling");
-                yield return new WaitForSeconds(1);
+                if (oilNow <= 0) {
+                    Debug.Log("Drilling stopped");
+                    Destroy(this.gameObject);
+                }
             }
-            Debug.Log("Drilling stopped");
-            Destroy(this.gameObject);
         }
 
         void Start() {
             Random rnd = new Random();
-            capacity = numberOfOilBlocks * rnd.Next(5, 10);
+            capacity = numberOfOilBlocks * rnd.Next(10, 15);
             oilNow = capacity;
         }
     }
