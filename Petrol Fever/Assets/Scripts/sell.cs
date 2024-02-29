@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class sell : MonoBehaviour
 {
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    AudioSource audioSource;
+    public void sellOil() {
+        if (GameManager.oilAmonutNow <= 0) return;
+        GameManager.amountOfMoney += GameManager.oilAmonutNow * 10;
+        GameManager.oilAmonutNow = 0;
+        gameObject.GetComponent<AudioSource>().Play();
     }
 }
