@@ -106,14 +106,18 @@ public class GridManager : MonoBehaviour
             GameObject blockUnder = leftGetValue((int)position.y-1, (int)position.z);
             if (blockUnder != null) {
                 if (blockUnder.GetComponent<idScript>().id == 1) {
-                    blockUnder.GetComponent<oilLogic>().startDrilling();
+                    var parent = blockUnder.transform.parent;
+                    Debug.Log("Ropa wykryta "+position.x+" "+position.y+" "+position.z+" "+blockUnder.name+" "+parent.name+" "+parent.GetComponent<oilLogic>().name);
+                    parent.GetComponent<oilLogic>().startDrilling();
                 }
             }
         } else {
             GameObject blockUnder = rightGetValue((int)position.y-1, (int)position.x);
             if (blockUnder != null) {
                 if (blockUnder.GetComponent<idScript>().id == 1) {
-                    blockUnder.GetComponent<oilLogic>().startDrilling();
+                    var parent = blockUnder.transform.parent;
+                    Debug.Log("Ropa wykryta "+position.x+" "+position.y+" "+position.z+" "+blockUnder.name+" "+parent.name+" "+parent.GetComponent<oilLogic>().name);
+                    parent.GetComponent<oilLogic>().startDrilling();
                 }
             }
         }
