@@ -21,9 +21,8 @@ public  static int oilAmountNowSetGet {
             oilAmonutNow = value;
         }
 }
-    bool checkOilMaxWithNow()
+    public static bool checkOilMaxWithNow()
     {
-        return oilAmonutNow < oilMaxAmountCanHave;
        return oilAmonutNow < oilMaxAmountMax;
     }
     public static void addOil(int amount)
