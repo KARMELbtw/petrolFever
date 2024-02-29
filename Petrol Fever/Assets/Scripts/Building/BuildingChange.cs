@@ -5,20 +5,20 @@ using UnityEngine.UI;
 
 public class BuildingChange : MonoBehaviour
 {
-    [SerializeField] private Image buidling;
+    [SerializeField] private int buidlingId;
     public void changeBuilding() {
         Debug.Log("klikło");
-        switch(buidling.name) {
-            case "1 Building":
+        switch(buidlingId) {
+            case 1:
                 BuildingSystem.currentBuilding = 0;
                 break;
-            case "2 Building":
+            case 2:
                 BuildingSystem.currentBuilding = 1;
                 break;
-            case "3 Building":
+            case 3:
                 BuildingSystem.currentBuilding = 2;
                 break;
-            case "4 Building":
+            case 4:
                 BuildingSystem.currentBuilding = 3;
                 break;
             default:
