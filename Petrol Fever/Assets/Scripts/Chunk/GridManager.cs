@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Oil;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
@@ -100,7 +101,24 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
+
+        if (onLeft) {
+            GameObject blockUnder = leftGetValue((int)position.y-1, (int)position.z);
+            if (blockUnder != null) {
+                if (blockUnder.GetComponent<idScript>().id == 1) {
+                    blockUnder.GetComponent<oilLogic>().startDrilling();
+                }
+            }
+        } else {
+            GameObject blockUnder = rightGetValue((int)position.y-1, (int)position.x);
+            if (blockUnder != null) {
+                if (blockUnder.GetComponent<idScript>().id == 1) {
+                    blockUnder.GetComponent<oilLogic>().startDrilling();
+                }
+            }
+        }
     }
+    
     
     public void deleteBulding(int xGrid, int zGrid, out int deletedBuildingPrice) {
         GameObject building = topGetBuilging(xGrid, zGrid);
