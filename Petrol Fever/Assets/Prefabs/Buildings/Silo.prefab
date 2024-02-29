@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9042660135028696571}
   - component: {fileID: -8803428151999002937}
   - component: {fileID: -6619623769606952675}
+  - component: {fileID: 6132534084051320212}
   m_Layer: 0
   m_Name: Silo
   m_TagString: Untagged
@@ -142,7 +143,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ac6f9503398db4fbb8480ca4e4472f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  silosUI: {fileID: 0}
+--- !u!65 &6132534084051320212
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5864699548947419389}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 2.3, z: 2}
+  m_Center: {x: 1.5, y: 1.1, z: 1}
 --- !u!1001 &5852273156976286832
 PrefabInstance:
   m_ObjectHideFlags: 0
