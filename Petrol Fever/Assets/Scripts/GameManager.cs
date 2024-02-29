@@ -7,8 +7,8 @@ using UnityEngine;
     //zadeklarowanie zmiennej globalnej amountOfMoney
     private static int money = 30000;
 
-    private static int oilAmonutNow = 100;
-    private static int oilMaxAmountMax = 1110;
+    private static int oilAmonutNow = 0;
+    private static int oilMaxAmountMax = 0;
     public  static int oilMaxAmountMaxSetGet {
      get { return oilMaxAmountMax; }
         set {
