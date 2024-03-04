@@ -18,11 +18,13 @@ Widok izometryczny.
 - [x] wydobywanie ropy pompami
 - [ ] długość rury ograniczona można powiększyć ilością pomp/ulepszeniami
 #### Chunki:
-- [x] złoza ropy generowane losowo
+- [ ] cykl dnia i nocy
+- [x] złoża ropy generowane losowo
 - [x] możliwość kupienia nowych chunków max 6
 - [x] 10-25% szansy że chunk będzie mial w niektórych miejscach twardą skałę i trzeba będzie użyć twardszego wiertła żeby się przewiercić 
 #### Sprzedaż Ropy:
 - [ ] sprzedawanie ropy po zmieniających się cenach
+- [ ] wykres cen ropy
 ---
 ## Epickie i potężne koncept arty:
 | Widok Chunków | Widok Miasteczka |
