@@ -18,13 +18,13 @@ Widok izometryczny.
 #### Wydobywanie Ropy:
 - [ ] wyszukiwanie ropy za pomocą ludzi z patykami albo jeleni
 - [ ] jest gościu z wiertłem który odkrywa pasek terenu w dół 
-- [ ] wydobywanie ropy pompami
+- [x] wydobywanie ropy pompami
 - [ ] długość rury ograniczona można powiększyć ilością pomp/ulepszeniami
 #### Chunki:
 - [ ] 10% szansy że kupiony chunk będzie mial jezioro pod ziemią i trzeba będzie wodę wypompować
 - [x] złoza ropy generowane losowo
-- [ ] możliwość kupienia nowych chunków max 6
-- [ ] 10-25% szansy że chunk będzie mial w niektórych miejscach twardą skałę i trzeba będzie użyć twardszego wiertła żeby się przewiercić 
+- [x] możliwość kupienia nowych chunków max 6
+- [x] 10-25% szansy że chunk będzie mial w niektórych miejscach twardą skałę i trzeba będzie użyć twardszego wiertła żeby się przewiercić 
 - [ ] możliwość podniesienia chunków w górę aby lepiej widzieć inne
 #### Pociąg:
 - [ ] pociąg jadacy do miasta zasilany węglem
