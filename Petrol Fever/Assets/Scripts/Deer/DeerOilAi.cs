@@ -13,11 +13,12 @@ public class DeerOilAi : MonoBehaviour
     private int timeToFindOil;
     private float time;
     private bool foundOil;
-    private Vector3 targetPosition;
+    private Vector3 targetPosition = new Vector3(0, 25f, 0);
     private float minSpeed = 1f;
     private float maxSpeed = 3f;
     private float rotationSpeed = 2f;
     private float speed;
+    private bool first = true;
 
     private Vector3 PickRandomPosition()
     {
@@ -30,17 +31,23 @@ public class DeerOilAi : MonoBehaviour
     {
         while (true)
         {
-            targetPosition = PickRandomPosition();
+            targetPosition = PickRandomPosition();   
             Vector3 originPosition = transform.position;
             speed = Random.Range(minSpeed, maxSpeed);
             
             while (Vector3.Distance(transform.position, targetPosition) > 0.1f) {
+                if (first) {
+                    first = false;
+                    break;
+                }
+                Debug.Log(first);
                 RotateTowardsTarget(originPosition);
                 MoveTowardsTarget();
                 yield return null;
             }
 
             yield return new WaitForSeconds(Random.Range(1f, 2f));
+        
         }
     }
 
@@ -48,7 +55,6 @@ public class DeerOilAi : MonoBehaviour
     {
         Vector3 direction = targetPosition - originPosition;
         Quaternion targetRotation = Quaternion.LookRotation(-direction);
-        Debug.Log(targetRotation);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
@@ -71,8 +77,6 @@ public class DeerOilAi : MonoBehaviour
 
         float x = Random.Range(minPosition.x, maxPosition.x);
         float z = Random.Range(minPosition.z, maxPosition.z);
-
-        Debug.Log(minPosition + " " + maxPosition);     
 
         foundOil = false;
         if(Random.Range(1, 100) <= chanceToFindOil) {
