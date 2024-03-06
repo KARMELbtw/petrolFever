@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class SilosUI : MonoBehaviour
 {
     private GameObject silosUI;
     private RectTransform silosUIRect;
     bool isShown = false;
+    private Text amountOfOilDisplay;
+    private Text amountOfOilMaxDisplay;
     
     
     void OnMouseDown()
@@ -35,11 +39,15 @@ public class SilosUI : MonoBehaviour
     {
         silosUI = GameObject.Find("silosUI");
         silosUIRect = silosUI.GetComponent<RectTransform>();
+        amountOfOilDisplay = GameObject.Find("Litry1").GetComponent<Text>();
+        amountOfOilMaxDisplay =  GameObject.Find("Litry2").GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        amountOfOilDisplay.text = GameManager.AmountOfOilNowSetGet.ToString("N0");
+        amountOfOilMaxDisplay.text = GameManager.AmountOfOilMaxSetGet.ToString("N0");
         if (Input.GetKeyDown(KeyCode.Escape) && isShown == true) {
             hidesilosUI();
         }

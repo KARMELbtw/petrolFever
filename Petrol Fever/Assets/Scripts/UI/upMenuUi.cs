@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI : MonoBehaviour
+public class upMenuUi : MonoBehaviour
 {
     //zadeklarowanie amountOfMoneyText w edytorze aby moc potem edytować lement text
     private Text amountOfMoneyDisplay;
-    private Text amountOfOilDisplay;
-    private Text amountOfOilMaxDisplay;
+    private Text clockDisplay;
     
     // Start is called before the first frame updates
     void Start()
     {
-        amountOfOilDisplay = GameObject.Find("Litry1").GetComponent<Text>();
-        amountOfOilMaxDisplay =  GameObject.Find("Litry2").GetComponent<Text>();
         amountOfMoneyDisplay = GameObject.Find("amountOfMoneyDisplay").GetComponent<Text>();
+        clockDisplay = GameObject.Find("Clock").GetComponent<Text>();
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {   
         //wypisanie zawartośći zmiennej amountOfMoney na ekran do pola amountOfMoneyDisplay typu text
-        amountOfOilDisplay.text = GameManager.oilAmountNowSetGet.ToString("N0");
-        amountOfOilMaxDisplay.text = GameManager.oilMaxAmountMaxSetGet.ToString("N0");
         amountOfMoneyDisplay.text = GameManager.amountOfMoney.ToString("N0");
+        
+        // Wypisanie czasu
+        // Debug.Log("Hours: " + GameManager.currentTime.Hours + " Minutes: " + GameManager.currentTime.Minutes);
+        clockDisplay.text = GameManager.currentTime.Hours.ToString("D2") + ":" + GameManager.currentTime.Minutes.ToString("D2");
     }
 }

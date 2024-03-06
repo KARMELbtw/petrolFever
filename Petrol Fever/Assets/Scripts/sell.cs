@@ -6,9 +6,9 @@ public class sell : MonoBehaviour
 {
     AudioSource audioSource;
     public void sellOil() {
-        if (GameManager.oilAmonutNow <= 0) return;
-        GameManager.amountOfMoney += GameManager.oilAmonutNow * 10;
-        GameManager.oilAmonutNow = 0;
+        if (GameManager.AmountOfOilNowSetGet <= 0) return;
+        GameManager.amountOfMoney += GameManager.AmountOfOilNowSetGet * 10;
+        GameManager.AmountOfOilNowSetGet = 0;
         gameObject.GetComponent<AudioSource>().Play();
     }
 }

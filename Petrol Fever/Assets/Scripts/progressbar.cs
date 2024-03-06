@@ -21,8 +21,8 @@ public class progressbar : MonoBehaviour
     void Update()
     {
 
-    max = GameManager.oilMaxAmountMaxSetGet;
-    current = GameManager.oilAmountNowSetGet;
+    max = GameManager.AmountOfOilMaxSetGet;
+    current = GameManager.AmountOfOilNowSetGet;
         getCurrentFill();
     }
     void getCurrentFill()
