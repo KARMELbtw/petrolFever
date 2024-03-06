@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class dayCycle : MonoBehaviour
 {
-    public float rotationSpeed = 10f;
+    public float rotationSpeed = 50f;
     public Color startColor = Color.blue;
     public Color endColor = Color.black;
-    public float duration = 5f;
+    public float duration = 25f;
 
     // Start is called before the first frame update
     void Start()
