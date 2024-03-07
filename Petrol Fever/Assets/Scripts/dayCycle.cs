@@ -15,7 +15,7 @@ public class dayCycle : MonoBehaviour
     [SerializeField]
     private int secondOffset = 60;
     [SerializeField]
-    private static int dayDuration = 24;
+    private int dayDuration = 24;
 
     private Camera mainCamera;
     // Start is called before the first frame update
