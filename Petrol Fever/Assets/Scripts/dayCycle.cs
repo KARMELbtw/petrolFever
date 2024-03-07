@@ -62,6 +62,7 @@ public class dayCycle : MonoBehaviour
             // Reset the time
             if (GameManager.currentTime.TotalHours >= dayDuration) {
                 GameManager.currentTime = TimeSpan.FromHours(0);
+                transform.rotation = Quaternion.Euler(90, 0, 0);
             }
             i++;
             GameManager.currentTime += TimeSpan.FromSeconds(secondOffset);

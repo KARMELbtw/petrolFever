@@ -7,6 +7,7 @@ public class LightFlickering : MonoBehaviour
     public float minIntensity = 0.5f; // The minimum intensity of the light
     public float maxIntensity = 2f; // The maximum intensity of the light
     public float flickerSpeed = 0.07f; // The speed of the flicker
+    private bool isOn = false;
 
     // Start is called before the first frame update
     void Start()
@@ -15,8 +16,27 @@ public class LightFlickering : MonoBehaviour
         {
             lightSource = GetComponent<Light>();
         }
-
-        StartCoroutine(FlickerLight());
+    }
+    
+    void Update()
+    {
+        if (GameManager.currentTime.TotalHours > 19 || GameManager.currentTime.TotalHours < 6)
+        {
+            if (!isOn)
+            {
+                isOn = true;
+                StartCoroutine(FlickerLight());
+            }
+        }
+        else
+        {
+            if (isOn)
+            {
+                lightSource.intensity = 0.0f;
+                isOn = false;
+                StopCoroutine(FlickerLight());
+            }
+        }
     }
 
     IEnumerator FlickerLight()
