@@ -22,7 +22,7 @@ public class upMenuUi : MonoBehaviour
         amountOfMoneyDisplay.text = GameManager.amountOfMoney.ToString("N0");
         
         // Wypisanie czasu
-        // Debug.Log("Hours: " + GameManager.currentTime.Hours + " Minutes: " + GameManager.currentTime.Minutes);
+        // Debug.Log("Hours: " + GameManager.currentTime.Hours + " Minutes: " + GameManager.currentTime.Minutes + " Seconds: " + GameManager.currentTime.Seconds);
         clockDisplay.text = GameManager.currentTime.Hours.ToString("D2") + ":" + GameManager.currentTime.Minutes.ToString("D2");
     }
 }
