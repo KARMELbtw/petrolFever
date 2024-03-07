@@ -103,7 +103,7 @@ public class GridManager : MonoBehaviour
         }
 
         if (onLeft) {
-            GameObject blockUnder = leftGetValue((int)position.y-1, (int)position.z);
+            GameObject blockUnder = leftGetValue((int)position.y-1, (int)(position.z + transform.position.z));
             if (blockUnder != null) {
                 if (blockUnder.GetComponent<idScript>().id == 1) {
                     var parent = blockUnder.transform.parent;
@@ -112,7 +112,7 @@ public class GridManager : MonoBehaviour
                 }
             }
         } else {
-            GameObject blockUnder = rightGetValue((int)position.y-1, (int)position.x);
+            GameObject blockUnder = rightGetValue((int)position.y-1, (int)(position.x + transform.position.x));
             if (blockUnder != null) {
                 if (blockUnder.GetComponent<idScript>().id == 1) {
                     var parent = blockUnder.transform.parent;
