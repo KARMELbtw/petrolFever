@@ -14,6 +14,8 @@ public class dayCycle : MonoBehaviour
     private Color endColor = Color.black;
     [SerializeField]
     private int secondOffset = 60;
+    [SerializeField]
+    private static int dayDuration = 24;
 
     private Camera mainCamera;
     // Start is called before the first frame update
@@ -37,33 +39,33 @@ public class dayCycle : MonoBehaviour
         float timeDiff;
         while (i<1000)
         {
-            // Pierwsza połowa dnia
-            while (GameManager.currentTime.Seconds < GameManager.dayDuration / 2)
+            // Rano
+            while (GameManager.currentTime.TotalHours >= 4 && GameManager.currentTime.TotalHours <= 7)
             {
-                timeDiff = (float)GameManager.currentTime.Seconds / GameManager.dayDuration;
-                // Debug.Log("Current Time: " + GameManager.currentTime.Seconds + " TimeDiff: " + timeDiff + " GameManager.dayDuration: " + GameManager.dayDuration);
-                mainCamera.backgroundColor = Color.Lerp(startColor, endColor, timeDiff);
+                timeDiff = ((float)GameManager.currentTime.TotalHours - 4) / 3;
+                Debug.Log("Current Time: " + GameManager.currentTime.TotalHours + " TimeDiff: " + timeDiff + " 3");
+                mainCamera.backgroundColor = Color.Lerp(endColor, startColor, timeDiff);
                 GameManager.currentTime += TimeSpan.FromSeconds(secondOffset);
-                // Debug.Log("Pierwsza połowa dnia");
                 yield return new WaitForSeconds(1);
             }
             
-            // Druga połowa dnia
-            while (GameManager.currentTime.Seconds < GameManager.dayDuration)
+            // Wieczór
+            while (GameManager.currentTime.TotalHours >= 18 && GameManager.currentTime.TotalHours <= 21)
             {
-                timeDiff = (float)GameManager.currentTime.Seconds / GameManager.dayDuration;
-                // Debug.Log("Current Time: " + GameManager.currentTime.Seconds + " TimeDiff: " + timeDiff + " GameManager.dayDuration: " + GameManager.dayDuration);
-                mainCamera.backgroundColor = Color.Lerp(endColor, startColor, timeDiff);
+                timeDiff = ((float)GameManager.currentTime.TotalHours - 18) / 3;
+                Debug.Log("Current Time: " + GameManager.currentTime.TotalHours + " TimeDiff: " + timeDiff + " 3");
+                mainCamera.backgroundColor = Color.Lerp(startColor, endColor, timeDiff);
                 GameManager.currentTime += TimeSpan.FromSeconds(secondOffset);
-                // Debug.Log("Druga połowa dnia");
                 yield return new WaitForSeconds(1);
             }
             
             // Reset the time
-            if (GameManager.currentTime.Seconds >= GameManager.dayDuration) {
-                GameManager.currentTime = TimeSpan.FromSeconds(0);
+            if (GameManager.currentTime.TotalHours >= dayDuration) {
+                GameManager.currentTime = TimeSpan.FromHours(0);
             }
             i++;
+            GameManager.currentTime += TimeSpan.FromSeconds(secondOffset);
+            yield return new WaitForSeconds(1);
         }
     }
 }

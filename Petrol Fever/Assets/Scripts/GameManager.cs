@@ -49,6 +49,5 @@ public class GameManager : MonoBehaviour
     public static int numberOfRightChunks = 0;
     public static int numberOfChunks = 0;
     public static bool uiOpened = false;
-    public static TimeSpan currentTime = TimeSpan.FromSeconds(0);
-    public static int dayDuration = 86400;
+    public static TimeSpan currentTime = TimeSpan.FromHours(11);
 }
