@@ -15,6 +15,7 @@ MonoBehaviour:
   buildingName: Deer
   price: 1500
   prefab: {fileID: 5092657495774029911, guid: 538b12d26234822499fdec9680eddeb2, type: 3}
+  previewPrefab: {fileID: 5092657495774029911, guid: 5ffe130645ac54f4ba4fbc7072c5eff6, type: 3}
   mustPlaceOnTop: 1
   width: 1
   depth: 1

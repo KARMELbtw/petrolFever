@@ -12,7 +12,9 @@ public class BuildingSystem : MonoBehaviour
     [SerializeField]
     private int returnPercentage = 80;
 
-
+    private bool firstIteration = true;
+    private Vector3 mousePos;
+    private GameObject preview;
     private RaycastHit shootRay(out bool didHit) {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         didHit = true;
@@ -74,9 +76,6 @@ public class BuildingSystem : MonoBehaviour
             return false;
         }
         GameManager.amountOfMoney -= building.price;
-        if (building.buildingName == "Pipe") {
-            this.gameObject.GetComponent<AudioSource>().Play();
-        }
         return true;
     }
     private void Awake() {
@@ -109,6 +108,7 @@ public class BuildingSystem : MonoBehaviour
                 return false;
             }
             chunkgridManager.InitializeSideBuilding(new Vector3(xGrid, yGrid, zGrid), building);
+            
         }
 
         return true;
@@ -161,19 +161,72 @@ public class BuildingSystem : MonoBehaviour
         chunkgridManager.InitializeDeer(new Vector3(xGrid, yGrid, zGrid), deer);
         return true;
     }
-    
+
+    GameObject showPreview(BuildingTemplate building) {
+        RaycastHit raycastHit = shootRay(out bool didHit);
+        if (!didHit) return null;
+        // Sprawdzenie czy budenk jest stawiane na dobrej stronie
+        
+        GameObject chunkHit = raycastHit.transform.gameObject;
+        // Obliczenie pozycji w siatce chunka 
+        Vector3 raycastPosition = raycastHit.point;
+        Vector3 chunkPosition = chunkHit.transform.position;
+        
+        int xGrid = (int)Math.Round(raycastPosition.x - chunkPosition.x);
+        int yGrid = (int)(raycastPosition.y - chunkPosition.y);
+        int zGrid = (int)Math.Round(raycastPosition.z - chunkPosition.z);
+        
+        if (yGrid < 25 && building.mustPlaceOnTop) {
+            return null;
+        } else if (yGrid >= 25 && !building.mustPlaceOnTop) {
+            return null;
+        }
+        GridManager chunkgridManager = chunkHit.GetComponent<GridManager>();
+        // Sprawdzenie czy miejsce nie jest zajęte
+        if (building.mustPlaceOnTop) {
+            if (chunkgridManager.canPlaceBuildingTop(xGrid, zGrid, building) == false) {
+                return null;
+            }
+        } else {
+            if (chunkgridManager.canPlaceBuildingSide(yGrid, ((raycastPosition.x == 0))?zGrid:xGrid, building, ((raycastPosition.x == 0))?0:1) == false) {
+                return null;
+            }
+        }
+        Vector3 offset = new Vector3(0,0.51f,0);
+        if (raycastPosition.x == 0) {
+            offset += new Vector3(0,0,0.5f);
+        } else {
+            offset += new Vector3(0.5f,0,0);
+        }
+        Vector3 previewPosition = new Vector3(xGrid + chunkPosition.x, yGrid + chunkPosition.y, zGrid + chunkPosition.z) - ((building.buildingName == "Pipe")?offset:Vector3.zero);
+        GameObject preview = Instantiate(building.previewPrefab, previewPosition, Quaternion.identity);
+        return preview;
+    }
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) {
-            if (currentBuilding != 666) {
+        if (currentBuilding != 666) {
+            
+            if (Input.mousePosition != mousePos) {
+                if (preview != null) {
+                    Destroy(preview);
+                }
+                preview = showPreview(buildings[currentBuilding]);
+            }
+            mousePos = Input.mousePosition;
+            
+            if (Input.GetMouseButtonDown(0)) {
                 BuildingTemplate buildingInHand = buildings[currentBuilding];
                 bool isBuildingPlaced = buildBuilding(buildingInHand);
                 if (isBuildingPlaced && buildings[currentBuilding].buildingName != "Pipe") {
                     currentBuilding = 666;
+                    if (preview != null) {
+                        Destroy(preview);
+                    }
                 }
             }
-        } else
+        }
+
         if (Input.GetKeyDown(KeyCode.R)) {
             SellBuilding();
         } else 
@@ -191,6 +244,9 @@ public class BuildingSystem : MonoBehaviour
         } else 
         if (Input.GetKeyDown(KeyCode.F)) {
             currentBuilding = 666;
+            if (preview != null) {
+                Destroy(preview);
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ MonoBehaviour:
   buildingName: Silo
   price: 4000
   prefab: {fileID: 5864699548947419389, guid: 98a4d110cc66d39448c9ef7b79072db7, type: 3}
+  previewPrefab: {fileID: 5864699548947419389, guid: 71c38c716520a504fbd297f9a03e185e, type: 3}
   mustPlaceOnTop: 1
   width: 2
   depth: 3
