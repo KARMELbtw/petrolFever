@@ -9,7 +9,7 @@ public class sell : MonoBehaviour
     public double sellMultiplier = 30;
     [SerializeField] private GameObject oilPriceTextGameObject;
     private Text oilPriceText;
-    private int i;
+    private int i = 0;
     public void sellOil() {
         if (GameManager.AmountOfOilNowSetGet <= 0) return;
         GameManager.amountOfMoney += GameManager.AmountOfOilNowSetGet * (int)sellMultiplier;
@@ -31,5 +31,6 @@ public class sell : MonoBehaviour
             oilPriceText.text = sellMultiplier.ToString();
             i = 0;
         }
+        i++;
     }
 }
