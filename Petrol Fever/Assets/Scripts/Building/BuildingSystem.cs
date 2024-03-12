@@ -11,19 +11,11 @@ public class BuildingSystem : MonoBehaviour
     
     [SerializeField]
     private int returnPercentage = 80;
-    
-    
 
-    private void Awake() {
-        // BuildingTemplate[] temp = Resources.LoadAll<BuildingTemplate>("");
-        if (buildings == null) {
-            Debug.LogError("Failed to load buildings from Resources");
-        }
-        // buildings = new List<BuildingTemplate>(temp);
-    }
 
-    private void BuildBuilding(BuildingTemplate building) {
+    private RaycastHit shootRay(out bool didHit) {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        didHit = true;
 
         int layerMask = 1 << 3;
         
@@ -31,13 +23,15 @@ public class BuildingSystem : MonoBehaviour
         // Sprawdzenie czy raycast trafił w coś
         if (!Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, layerMask)) {
             Debug.Log("Raycast didn't hit anything");
-            return;
+            didHit = false;
+            return hitInfo;
         }
 
         // Sprawdzenie czy raycast trafił w chunk
         if (!hitInfo.transform.gameObject.transform.CompareTag("Chunk")) {
             Debug.Log("Raycast hit something else: "+ hitInfo.transform.gameObject);
-            return;
+            didHit = false;
+            return hitInfo;
         }
 
         // Pobranie chunka i pozycji w który trafił raycast
@@ -45,42 +39,79 @@ public class BuildingSystem : MonoBehaviour
         Vector3 rayHitPosition = hitInfo.point;
         Debug.Log("Position of ray hit: " + rayHitPosition);
         // Pobranie pozycji chunka w który trafił raycast
-        Vector3 chunkPosition = chunkHit.transform.position;
+        return hitInfo;
+    }
+
+    private bool buildBuilding(BuildingTemplate building) {
+        if (GameManager.amountOfMoney < building.price) {
+            Debug.Log("Not enough money to build " + building.buildingName);
+            return false;
+        }
+
+        RaycastHit raycastHit = shootRay(out bool didHit);
+        
+        if (!didHit) {
+            return false;
+        }
+        GameObject chunkHit = raycastHit.transform.gameObject;
         // Obliczenie pozycji w siatce chunka 
-        int xGrid = (int)Math.Round(rayHitPosition.x - chunkPosition.x);
-        int yGrid = (int)(rayHitPosition.y - chunkPosition.y);
-        int zGrid = (int)Math.Round(rayHitPosition.z - chunkPosition.z);
+        Vector3 raycastPosition = raycastHit.point;
+        Vector3 chunkPosition = chunkHit.transform.position;
+        
+        int xGrid = (int)Math.Round(raycastPosition.x - chunkPosition.x);
+        int yGrid = (int)(raycastPosition.y - chunkPosition.y);
+        int zGrid = (int)Math.Round(raycastPosition.z - chunkPosition.z);
         Debug.Log("Grid position of ray: x: " + xGrid + " y: " + yGrid + " z: " + zGrid);
-            
-        // Pobranie skryptu GridManager z chunka
-        GridManager chunkgridManager = chunkHit.GetComponent<GridManager>();
+        bool isPlaced;
+        
+        if (building.buildingName == "Deer") {
+            isPlaced = placeDeer(building, chunkHit.GetComponent<GridManager>(), xGrid, yGrid, zGrid);
+        } else { 
+            isPlaced = placeBuilding(building ,chunkHit.GetComponent<GridManager>(), xGrid, yGrid, zGrid, (raycastPosition.x == 0));
+        }
+
+        if (!isPlaced) {
+            return false;
+        }
+        GameManager.amountOfMoney -= building.price;
+        if (building.buildingName == "Pipe") {
+            this.gameObject.GetComponent<AudioSource>().Play();
+        }
+        return true;
+    }
+    private void Awake() {
+        if (buildings == null) {
+            Debug.LogError("Failed to load buildings from Resources");
+        }
+    }
+
+    private bool placeBuilding(BuildingTemplate building, GridManager chunkgridManager, int xGrid, int yGrid, int zGrid, bool leftSide) {
         
         // Sprawdzenie czy budenk jest stawiane na dobrej stronie
         if (yGrid < 25 && building.mustPlaceOnTop) {
-            Debug.Log("This Building must be placed on top of " + chunkHit.name + " at " + rayHitPosition);
-            return;
+            Debug.Log("This Building must be placed on top");
+            return false;
         } else if (yGrid >= 25 && !building.mustPlaceOnTop) {
-            Debug.Log("This Building must be placed on side of " + chunkHit.name + " at " + rayHitPosition);
-            return;
+            Debug.Log("This Building must be placed on side ");
+            return false;
         }
         
         // Sprawdzenie czy miejsce nie jest zajęte
         if (building.mustPlaceOnTop) {
             if (chunkgridManager.canPlaceBuildingTop(xGrid, zGrid, building) == false) {
-                Debug.Log("Building can't be placed on " + chunkgridManager.gameObject.name + " at " + rayHitPosition + " grid: " + xGrid + " " + zGrid);
-                return;
+                Debug.Log("Building can't be placed on " + chunkgridManager.gameObject.name + " grid: " + xGrid + " " + zGrid);
+                return false;
             }
-            Debug.Log("Building can be placed on " + chunkgridManager.gameObject.name + " at " + rayHitPosition + " grid: " + xGrid + " " + zGrid);
             chunkgridManager.InitializeTopBuilding(new Vector3(xGrid, yGrid, zGrid), building);
         } else {
-            if (chunkgridManager.canPlaceBuildingSide(yGrid, (rayHitPosition.x == 0)?zGrid:xGrid, building, (rayHitPosition.x == 0)?0:1) == false) {
-                Debug.Log("Building can't be placed on " + chunkgridManager.gameObject.name + " at " + rayHitPosition + " grid: " + yGrid + " " + zGrid);
-                return;
+            if (chunkgridManager.canPlaceBuildingSide(yGrid, (leftSide)?zGrid:xGrid, building, (leftSide)?0:1) == false) {
+                Debug.Log("Building can't be placed on " + chunkgridManager.gameObject.name + " grid: " + yGrid + " " + zGrid);
+                return false;
             }
-            Debug.Log("Building can be placed on " + chunkgridManager.gameObject.name + " at " + rayHitPosition + " grid: " + yGrid + " " + zGrid);
             chunkgridManager.InitializeSideBuilding(new Vector3(xGrid, yGrid, zGrid), building);
         }
-        GameManager.amountOfMoney -= building.price;
+
+        return true;
     }
     
     private void SellBuilding() {
@@ -120,68 +151,29 @@ public class BuildingSystem : MonoBehaviour
         this.gameObject.GetComponent<AudioSource>().Play();
     }
 
-    void placeDeer(BuildingTemplate deer) {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        int layerMask = 1 << 3;
-        
-        // Strał raycastem w miejsce kliknięcia
-        // Sprawdzenie czy raycast trafił w coś
-        if (!Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, layerMask)) {
-            Debug.Log("Raycast didn't hit anything");
-            return;
-        }
-
-        // Sprawdzenie czy raycast trafił w chunk
-        if (!hitInfo.transform.gameObject.transform.CompareTag("Chunk")) {
-            Debug.Log("Raycast hit something else: "+ hitInfo.transform.gameObject);
-            return;
-        }
-
-        // Pobranie chunka i pozycji w który trafił raycast
-        GameObject chunkHit = hitInfo.transform.gameObject;
-        Vector3 rayHitPosition = hitInfo.point;
-        Debug.Log("Position of ray hit: " + rayHitPosition);
-        // Pobranie pozycji chunka w który trafił raycast
-        Vector3 chunkPosition = chunkHit.transform.position;
-        // Obliczenie pozycji w siatce chunka 
-        int xGrid = (int)Math.Round(rayHitPosition.x - chunkPosition.x);
-        int yGrid = (int)(rayHitPosition.y - chunkPosition.y);
-        int zGrid = (int)Math.Round(rayHitPosition.z - chunkPosition.z);
-        Debug.Log("Grid position of ray: x: " + xGrid + " y: " + yGrid + " z: " + zGrid);
-            
-        // Pobranie skryptu GridManager z chunka
-        GridManager chunkgridManager = chunkHit.GetComponent<GridManager>();
-        
+    private bool placeDeer(BuildingTemplate deer, GridManager chunkgridManager, int xGrid, int yGrid, int zGrid) {
         // Sprawdzenie czy jeleń jest stawiane na dobrej stronie
         if (yGrid < 25) {
-            Debug.Log("This Building must be placed on top of " + chunkHit.name + " at " + rayHitPosition);
-            return;
+            Debug.Log("This Building must be placed on top");
+            return false;
         }
         
         chunkgridManager.InitializeDeer(new Vector3(xGrid, yGrid, zGrid), deer);
-        GameManager.amountOfMoney -= deer.price;
+        return true;
     }
+    
     // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) {
             if (currentBuilding != 666) {
                 BuildingTemplate buildingInHand = buildings[currentBuilding];
-                if (GameManager.amountOfMoney < buildingInHand.price) {
-                    Debug.Log("Not enough money to build " + buildingInHand.buildingName);
-                    return;
-                }
-
-                if (buildingInHand.buildingName == "Deer") { 
-                    placeDeer(buildingInHand);  
-                } else { 
-                    BuildBuilding(buildingInHand);
+                bool isBuildingPlaced = buildBuilding(buildingInHand);
+                if (isBuildingPlaced && buildings[currentBuilding].buildingName != "Pipe") {
+                    currentBuilding = 666;
                 }
             }
-        }
-
-        
+        } else
         if (Input.GetKeyDown(KeyCode.R)) {
             SellBuilding();
         } else 
