@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pipe
   m_EditorClassIdentifier: 
   buildingName: Pipe
-  price: 500
+  price: 50
   prefab: {fileID: 4674735385663203183, guid: b3fbe2762bdb4d74785fff47dc857a20, type: 3}
   mustPlaceOnTop: 0
   width: 1

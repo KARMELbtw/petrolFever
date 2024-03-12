@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Silo
   m_EditorClassIdentifier: Scripts::Building
   buildingName: Silo
-  price: 5000
+  price: 4000
   prefab: {fileID: 5864699548947419389, guid: 98a4d110cc66d39448c9ef7b79072db7, type: 3}
   mustPlaceOnTop: 1
   width: 2
