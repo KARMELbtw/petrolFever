@@ -40,7 +40,6 @@ public class DeerOilAi : MonoBehaviour
                     first = false;
                     break;
                 }
-                Debug.Log(first);
                 RotateTowardsTarget(originPosition);
                 MoveTowardsTarget();
                 yield return null;
