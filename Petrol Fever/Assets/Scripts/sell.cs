@@ -19,7 +19,7 @@ public class sell : MonoBehaviour
     }
 
     void Start() {
-        Text oilPriceText = oilPriceTextGameObject.GetComponent<Text>();
+        oilPriceText = oilPriceTextGameObject.GetComponent<Text>();
         oilPriceText.text = sellMultiplier.ToString();
     }
     
@@ -28,7 +28,7 @@ public class sell : MonoBehaviour
         if (i >= 10)
         {
             sellMultiplier += 0.1;
-            oilPriceText.text = sellMultiplier.ToString();
+            oilPriceText.text = Mathf.Round((float)sellMultiplier).ToString();
             i = 0;
         }
         i++;
