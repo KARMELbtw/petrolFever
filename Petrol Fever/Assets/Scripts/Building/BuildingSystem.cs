@@ -24,14 +24,14 @@ public class BuildingSystem : MonoBehaviour
         // Strał raycastem w miejsce kliknięcia
         // Sprawdzenie czy raycast trafił w coś
         if (!Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, layerMask)) {
-            Debug.Log("Raycast didn't hit anything");
+            // Debug.Log("Raycast didn't hit anything");
             didHit = false;
             return hitInfo;
         }
 
         // Sprawdzenie czy raycast trafił w chunk
         if (!hitInfo.transform.gameObject.transform.CompareTag("Chunk")) {
-            Debug.Log("Raycast hit something else: "+ hitInfo.transform.gameObject);
+            // Debug.Log("Raycast hit something else: "+ hitInfo.transform.gameObject);
             didHit = false;
             return hitInfo;
         }
@@ -39,7 +39,7 @@ public class BuildingSystem : MonoBehaviour
         // Pobranie chunka i pozycji w który trafił raycast
         GameObject chunkHit = hitInfo.transform.gameObject;
         Vector3 rayHitPosition = hitInfo.point;
-        Debug.Log("Position of ray hit: " + rayHitPosition);
+        // Debug.Log("Position of ray hit: " + rayHitPosition);
         // Pobranie pozycji chunka w który trafił raycast
         return hitInfo;
     }
@@ -63,9 +63,9 @@ public class BuildingSystem : MonoBehaviour
         int xGrid = (int)Math.Round(raycastPosition.x - chunkPosition.x);
         int yGrid = (int)(raycastPosition.y - chunkPosition.y);
         int zGrid = (int)Math.Round(raycastPosition.z - chunkPosition.z);
+        
         Debug.Log("Grid position of ray: x: " + xGrid + " y: " + yGrid + " z: " + zGrid);
         bool isPlaced;
-        
         if (building.buildingName == "Deer") {
             isPlaced = placeDeer(building, chunkHit.GetComponent<GridManager>(), xGrid, yGrid, zGrid);
         } else { 
@@ -85,7 +85,12 @@ public class BuildingSystem : MonoBehaviour
     }
 
     private bool placeBuilding(BuildingTemplate building, GridManager chunkgridManager, int xGrid, int yGrid, int zGrid, bool leftSide) {
-        
+        if (building.name == "Oil Drill") {
+            if (xGrid != 0 && zGrid != 0) {
+                Debug.Log("Oil Drill must be placed on edges");
+                return false;
+            }
+        }
         // Sprawdzenie czy budenk jest stawiane na dobrej stronie
         if (yGrid < 25 && building.mustPlaceOnTop) {
             Debug.Log("This Building must be placed on top");
@@ -180,6 +185,11 @@ public class BuildingSystem : MonoBehaviour
             return null;
         } else if (yGrid >= 25 && !building.mustPlaceOnTop) {
             return null;
+        }
+        if (building.name == "Oil Drill") {
+            if (xGrid != 0 && zGrid != 0) {
+                return null;
+            }
         }
         GridManager chunkgridManager = chunkHit.GetComponent<GridManager>();
         // Sprawdzenie czy miejsce nie jest zajęte

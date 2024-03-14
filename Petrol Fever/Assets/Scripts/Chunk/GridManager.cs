@@ -157,30 +157,43 @@ public class GridManager : MonoBehaviour
     }
 
     public bool canPlaceBuildingSide(int yGrid, int xGrid, BuildingTemplate buildingTemplate, int side) {
-        for (int x = 0; x < buildingTemplate.depth; x++) {
-            for (int y = 0; y < buildingTemplate.width; y++) {
-                if (side == 0) {
-                    if (yGrid + x >= chunkGeneration.chunkHeight || xGrid + y >= chunkGeneration.chunkDepth) {
-                        return false;
-                    }
+        if (side == 0) {
+            if (yGrid >= chunkGeneration.chunkHeight || xGrid >= chunkGeneration.chunkDepth) {
+                return false;
+            }
 
-                    if (leftGetValue(yGrid + x, xGrid + y + (int)this.transform.position.z) != null) {
-                        return false;
-                    }
-                }
-                else {
-                    if (yGrid + x >= chunkGeneration.chunkHeight || xGrid + y >= chunkGeneration.chunkWidth) {
-                        return false;
-                    }
+            if (leftGetValue(yGrid, xGrid + (int)this.transform.position.z) != null) {
+                return false;
+            }
+        }
+        else {
+            if (yGrid >= chunkGeneration.chunkHeight || xGrid >= chunkGeneration.chunkWidth) {
+                return false;
+            }
 
-                    if (rightGetValue(yGrid + x, xGrid + y + (int)this.transform.position.x) != null) {
-                        return false;
-                    }
-                }
+            if (rightGetValue(yGrid, xGrid + (int)this.transform.position.x) != null) {
+                return false;
             }
         }
 
-        if (yGrid != leftGrid.GetLength(0)) {
+        if (yGrid == leftGrid.GetLength(0)-1) {
+            if (side == 0) {
+                if (topGetBuilging(0, xGrid-1) != null) {
+                    if (topGetBuilging(0, xGrid-1).CompareTag("Drill")) {
+                        return true;
+                    }
+                }
+            }
+            else {
+                if (topGetBuilging(xGrid-1,0) != null) {
+                    if (topGetBuilging(xGrid-1, 0).CompareTag("Drill")) {
+                        return true;
+                    }
+                    
+                }
+            }
+            return false;
+        } else {
             for (int y = yGrid+1; y < leftGrid.GetLength(0); y++) {
                 if (side == 0) {
                     if (leftGetValue(y, xGrid + (int)this.transform.position.z) == null) {
