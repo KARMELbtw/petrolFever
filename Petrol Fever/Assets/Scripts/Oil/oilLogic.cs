@@ -29,7 +29,7 @@ namespace Oil
         IEnumerator drilling()
         {
             while (true) {
-                yield return new WaitForSeconds(3);
+                yield return new WaitForSeconds(GameManager.drillingSpeed);
                 if (GameManager.checkOilMaxWithNow()) { 
                     GameManager.addOil(1);
                 }

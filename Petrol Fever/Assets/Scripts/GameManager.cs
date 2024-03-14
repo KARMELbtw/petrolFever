@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public static bool canDrillThroughRocks= false;
+    public static float drillingSpeed = 3f;
     public static int newChunkCost = 1000;
     public static int numberOfLeftChunks = 0;
     public static int numberOfRightChunks = 0;
