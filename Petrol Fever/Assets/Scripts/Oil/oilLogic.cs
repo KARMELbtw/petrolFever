@@ -39,6 +39,7 @@ namespace Oil
                     material = transform.GetChild(i).GetComponent<Renderer>().material;
                     material.color = new Color(material.color.r, material.color.g, material.color.b, (float)oilNow / capacity);
                 }
+                TutorialManager.firstOilDrilled = true;
                 Debug.Log("Drilling");
                 if (oilNow <= 0) {
                     Debug.Log("Drilling stopped");

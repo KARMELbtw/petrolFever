@@ -229,7 +229,7 @@ public class BuildingSystem : MonoBehaviour
                 BuildingTemplate buildingInHand = buildings[currentBuilding];
                 bool isBuildingPlaced = buildBuilding(buildingInHand);
                 if (isBuildingPlaced && buildings[currentBuilding].buildingName != "Pipe") {
-                    if (buildings[currentBuilding].buildingName == "Silos") {
+                    if (buildings[currentBuilding].buildingName == "Silo") {
                         TutorialManager.placedFirstSilos = true;
                     }
                     if (preview != null) {
