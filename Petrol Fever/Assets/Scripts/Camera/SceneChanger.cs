@@ -45,8 +45,5 @@ public class SceneChanger : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C)) {
             MoveCamera();
         }
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            SceneManager.LoadScene(sceneName:"Menu");
-        }
     }
 }

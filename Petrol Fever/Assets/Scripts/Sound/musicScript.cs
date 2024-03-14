@@ -21,6 +21,7 @@ public class musicScript : MonoBehaviour
         AudioSource[] sources = GetComponents<AudioSource>();
         audioSource = sources[0];
         audioSource2 = sources[1];
+        audioSource.Play();
         isMusicPlaying = true;
     }
 

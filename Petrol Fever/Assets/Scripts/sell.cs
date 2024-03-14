@@ -15,23 +15,22 @@ public class sell : MonoBehaviour
         GameManager.amountOfMoney += GameManager.AmountOfOilNowSetGet * (int)sellMultiplier;
         GameManager.AmountOfOilNowSetGet = 0;
         gameObject.GetComponent<AudioSource>().Play();
-        sellMultiplier = 30.0;
+        if(sellMultiplier - GameManager.AmountOfOilNowSetGet * 2 >= 2)
+            sellMultiplier -= GameManager.AmountOfOilNowSetGet * 2;
         TutorialManager.soldFirstOil = true;
     }
 
     void Start() {
         oilPriceText = oilPriceTextGameObject.GetComponent<Text>();
         oilPriceText.text = sellMultiplier.ToString();
+        StartCoroutine(morepricebetterMorerYASSlayHeil());
     }
     
-    void Update()
-    {
-        if (i >= 10)
-        {
+    IEnumerator morepricebetterMorerYASSlayHeil() {
+        while(true) {
             sellMultiplier += 0.1;
             oilPriceText.text = Mathf.Round((float)sellMultiplier).ToString();
-            i = 0;
+            yield return new WaitForSeconds(1);   
         }
-        i++;
     }
 }

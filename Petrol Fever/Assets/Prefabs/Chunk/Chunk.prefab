@@ -581,7 +581,6 @@ MonoBehaviour:
   chunkWidth: 15
   chunkDepth: 15
   chunkHeight: 25
-  occupiedPositions: []
 --- !u!114 &6594771835286260578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,6 +594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chunkGeneration: {fileID: -4403376396233618975}
+  placingParticlesPrefab: {fileID: 571058353005540421, guid: 2c6748a0a4a2041438ce08dc1075d297, type: 3}
 --- !u!1 &6031750780024347070
 GameObject:
   m_ObjectHideFlags: 0
