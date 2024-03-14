@@ -16,6 +16,7 @@ public class sell : MonoBehaviour
         GameManager.AmountOfOilNowSetGet = 0;
         gameObject.GetComponent<AudioSource>().Play();
         sellMultiplier = 30.0;
+        TutorialManager.soldFirstOil = true;
     }
 
     void Start() {

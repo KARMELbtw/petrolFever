@@ -103,22 +103,24 @@ public class GridManager : MonoBehaviour
         }
 
         if (onLeft) {
-            GameObject blockUnder = leftGetValue((int)position.y-1, (int)(position.z + transform.position.z));
+            GameObject blockUnder = leftGetValue((int)position.y-1, (int)(position.z + transform.position.z - 1));
             if (blockUnder != null) {
+                var parent = blockUnder.transform.parent;
                 if (blockUnder.GetComponent<idScript>().id == 1) {
-                    var parent = blockUnder.transform.parent;
-                    Debug.Log("Ropa wykryta "+position.x+" "+position.y+" "+position.z+" "+blockUnder.name+" "+parent.name+" "+parent.GetComponent<oilLogic>().name);
+                    Debug.Log("Ropa wykryta "+position.x+" "+(position.y - 1)+" "+position.z+" "+blockUnder.name+" "+parent.name+" "+parent.GetComponent<oilLogic>().name);
                     parent.GetComponent<oilLogic>().startDrilling();
                 }
+                parent.GetComponent<showingOreScript>().showOre();
             }
         } else {
-            GameObject blockUnder = rightGetValue((int)position.y-1, (int)(position.x + transform.position.x));
+            GameObject blockUnder = rightGetValue((int)position.y-1, (int)(position.x + transform.position.x - 1));
             if (blockUnder != null) {
+                var parent = blockUnder.transform.parent;
                 if (blockUnder.GetComponent<idScript>().id == 1) {
-                    var parent = blockUnder.transform.parent;
-                    Debug.Log("Ropa wykryta "+position.x+" "+position.y+" "+position.z+" "+blockUnder.name+" "+parent.name+" "+parent.GetComponent<oilLogic>().name);
+                    Debug.Log("Ropa wykryta "+position.x+" "+(position.y - 1)+" "+position.z+" "+blockUnder.name+" "+parent.name+" "+parent.GetComponent<oilLogic>().name);
                     parent.GetComponent<oilLogic>().startDrilling();
                 }
+                parent.GetComponent<showingOreScript>().showOre();
             }
         }
     }

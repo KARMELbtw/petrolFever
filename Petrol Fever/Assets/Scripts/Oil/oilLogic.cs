@@ -22,6 +22,7 @@ namespace Oil
             }
             isBeingDrilled = true;
             Debug.Log("Drilling started");
+            TutorialManager.firstOilDrilled = true;
             StartCoroutine(drilling());
         }
         
