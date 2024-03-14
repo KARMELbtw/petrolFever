@@ -7,6 +7,7 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     [SerializeField] public ChunkGeneration chunkGeneration;
+    [SerializeField] private ParticleSystem placingParticlesPrefab;
 
     private GameObject[,] leftGrid;
     private GameObject[,] rightGrid;
@@ -29,6 +30,11 @@ public class GridManager : MonoBehaviour
         Debug.Log("Building: " + buildingTemplate.name + " at " + worldPosition);
         // Stworzenie nowego budynku
         GameObject newBuilding = Instantiate(buildingTemplate.prefab, worldPosition, Quaternion.identity);
+        
+        ParticleSystem placingParticles = Instantiate(placingParticlesPrefab, worldPosition + new Vector3(1f, 0.2f, 1f), Quaternion.Euler(new Vector3(90f, 0, 0)));
+        placingParticles.Emit(30);
+        placingParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        Destroy(placingParticles, placingParticles.main.duration);
         
         // Przypisanie rodzica i nazwy
         newBuilding.transform.parent = this.transform.GetChild(0);

@@ -23972,7 +23972,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ba1a036556b204b4d93e2aa16ba57c0d, type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ba1a036556b204b4d93e2aa16ba57c0d, type: 3}
       propertyPath: m_LocalScale.x
@@ -30183,7 +30183,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ba1a036556b204b4d93e2aa16ba57c0d, type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ba1a036556b204b4d93e2aa16ba57c0d, type: 3}
       propertyPath: m_LocalScale.x
@@ -31182,7 +31182,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ba1a036556b204b4d93e2aa16ba57c0d, type: 3}
       propertyPath: m_RootOrder
-      value: 22
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ba1a036556b204b4d93e2aa16ba57c0d, type: 3}
       propertyPath: m_LocalScale.x
@@ -33811,6 +33811,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6594771835286260578, guid: 1965784be397d3f4bac827792b24b849, type: 3}
+      propertyPath: placingParticles
+      value: 
+      objectReference: {fileID: 571058353005540421, guid: 2c6748a0a4a2041438ce08dc1075d297, type: 3}
     - target: {fileID: 7976989859972701333, guid: 1965784be397d3f4bac827792b24b849, type: 3}
       propertyPath: m_Layer
       value: 5
