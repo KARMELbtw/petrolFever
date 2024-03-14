@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DeerOilAi : MonoBehaviour
 {   
-    public static int chanceToFindOil = 100;
-    public static int minTimeToFindOil = 1;
-    public static int maxTimeToFindOil = 1;
+    public static int chanceToFindOil = 75;
+    public static int minTimeToFindOil = 3;
+    public static int maxTimeToFindOil = 6;
 
     private Vector3 minPosition;
     private Vector3 maxPosition;
