@@ -23167,7 +23167,7 @@ Transform:
   - {fileID: 1874961672}
   - {fileID: 2030067162}
   m_Father: {fileID: 1510762918}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1070320035
 PrefabInstance:
@@ -33204,8 +33204,8 @@ Transform:
   - {fileID: 1730427091}
   - {fileID: 357277469}
   - {fileID: 1304036865}
-  - {fileID: 1830438458}
   - {fileID: 1069214333}
+  - {fileID: 1830438458}
   - {fileID: 1501574802}
   - {fileID: 1869282278}
   - {fileID: 1541254417}
@@ -33695,6 +33695,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sellMultiplier: 30
   oilPriceTextGameObject: {fileID: 102961891}
+--- !u!114 &1533746424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123432287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c698d6c1aa51bc47b3e139b831c75bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TownCameraPosition: {x: -34, y: 36, z: -23.5}
+  TownCameraRotation: {x: 45, y: 226.5, z: 0}
+  ChunkCameraPosition: {x: -20, y: 38, z: -20}
+  ChunkCameraRotation: {x: 31.5, y: 45, z: 0}
 --- !u!1001 &1535052689
 PrefabInstance:
   m_ObjectHideFlags: 0
