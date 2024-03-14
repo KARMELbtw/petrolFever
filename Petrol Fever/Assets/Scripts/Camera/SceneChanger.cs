@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
@@ -43,6 +44,9 @@ public class SceneChanger : MonoBehaviour
     void Update() {
         if (Input.GetKeyDown(KeyCode.C)) {
             MoveCamera();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            SceneManager.LoadScene(sceneName:"Menu");
         }
     }
 }

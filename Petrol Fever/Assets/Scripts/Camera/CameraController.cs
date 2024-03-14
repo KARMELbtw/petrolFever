@@ -33,6 +33,5 @@ public class CameraController : MonoBehaviour
             zoom += scroll;
         }
         transform.position += new Vector3(scroll * zoomSpeed, -scroll * zoomSpeed, scroll * zoomSpeed);
-            
     }
 }

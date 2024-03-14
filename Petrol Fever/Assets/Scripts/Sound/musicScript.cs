@@ -7,8 +7,11 @@ public class musicScript : MonoBehaviour
     private AudioSource audioSource;
     private AudioSource audioSource2;
     private int chance;
-
+    private static bool isMusicPlaying = false;
     private void Awake() {
+        if(isMusicPlaying) { 
+            Destroy(gameObject);
+        }
         DontDestroyOnLoad(transform.gameObject);
     }
 
@@ -18,6 +21,7 @@ public class musicScript : MonoBehaviour
         AudioSource[] sources = GetComponents<AudioSource>();
         audioSource = sources[0];
         audioSource2 = sources[1];
+        isMusicPlaying = true;
     }
 
     // Update is called once per frame
