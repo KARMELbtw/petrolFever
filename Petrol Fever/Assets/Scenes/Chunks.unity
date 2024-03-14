@@ -33569,8 +33569,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c698d6c1aa51bc47b3e139b831c75bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TownCameraPosition: {x: -34, y: 36, z: -23.5}
-  TownCameraRotation: {x: 45, y: 226.5, z: 0}
+  TownCameraPosition: {x: -34, y: 44, z: -23.5}
+  TownCameraRotation: {x: 45.000004, y: 226.49998, z: 0}
   ChunkCameraPosition: {x: -20, y: 38, z: -20}
   ChunkCameraRotation: {x: 31.5, y: 45, z: 0}
 --- !u!1001 &1535052689

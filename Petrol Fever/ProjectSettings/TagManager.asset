@@ -9,6 +9,7 @@ TagManager:
   - BuyChunkButton
   - RightWall
   - LeftWall
+  - Drill
   layers:
   - Default
   - TransparentFX
