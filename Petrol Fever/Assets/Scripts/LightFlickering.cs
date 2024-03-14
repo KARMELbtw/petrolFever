@@ -16,28 +16,9 @@ public class LightFlickering : MonoBehaviour
         {
             lightSource = GetComponent<Light>();
         }
+        StartCoroutine(FlickerLight());
     }
     
-    void Update()
-    {
-        if (GameManager.currentTime.TotalHours > 19 || GameManager.currentTime.TotalHours < 6)
-        {
-            if (!isOn)
-            {
-                isOn = true;
-                StartCoroutine(FlickerLight());
-            }
-        }
-        else
-        {
-            if (isOn)
-            {
-                lightSource.intensity = 0.0f;
-                isOn = false;
-                StopCoroutine(FlickerLight());
-            }
-        }
-    }
 
     IEnumerator FlickerLight()
     {
