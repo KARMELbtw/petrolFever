@@ -19,7 +19,7 @@ public class upMenuUi : MonoBehaviour
     void FixedUpdate()
     {   
         //wypisanie zawartośći zmiennej amountOfMoney na ekran do pola amountOfMoneyDisplay typu text
-        amountOfMoneyDisplay.text = GameManager.amountOfMoney.ToString("N0");
+        amountOfMoneyDisplay.text = GameManager.amountOfMoney.ToString("N0");   
         
         // Wypisanie czasu
         // Debug.Log("Hours: " + GameManager.currentTime.Hours + " Minutes: " + GameManager.currentTime.Minutes + " Seconds: " + GameManager.currentTime.Seconds);
