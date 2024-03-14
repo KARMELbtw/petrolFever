@@ -20,13 +20,6 @@ public class SceneChanger : MonoBehaviour
     //zadeklarowanie zmiennej do przechowywania informacji o tym czy kamera patrzy na chunki czy na miasto
     public static bool IsLookingAtChunk { get; private set; } = false;
     
-    void OnMouseDown()
-    {
-        // Kod do wykonania po kliknięciu myszą na obiekcie
-        Debug.Log("Clicked on " + gameObject.name);
-        MoveCamera();
-    }
-    
     void MoveCamera()
     {
         //zamiana kamer
@@ -45,5 +38,11 @@ public class SceneChanger : MonoBehaviour
             IsLookingAtChunk = true;
         }
 
+    }
+
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.C)) {
+            MoveCamera();
+        }
     }
 }
