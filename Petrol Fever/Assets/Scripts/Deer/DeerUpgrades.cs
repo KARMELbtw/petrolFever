@@ -59,10 +59,4 @@ public class DeerUpgrades : MonoBehaviour
         costLevel = GameObject.Find("costLevel");
         chancesLevel = GameObject.Find("chancesLevel");
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

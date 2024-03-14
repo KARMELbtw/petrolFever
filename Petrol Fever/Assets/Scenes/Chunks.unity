@@ -10147,7 +10147,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Mo\u017Cna kopa\u0107 przez kamie\u0144: Nie"
+  m_Text: "Mo\u017Cna kopa\u0107 przez kamie\u0144: NIE"
 --- !u!222 &424030944
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -26518,7 +26518,7 @@ GameObject:
   - component: {fileID: 1226395184}
   - component: {fileID: 1226395183}
   m_Layer: 5
-  m_Name: speedLevel
+  m_Name: drilingSpeedLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26541,8 +26541,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 50, y: 100}
-  m_SizeDelta: {x: 100, y: 25}
+  m_AnchoredPosition: {x: 100, y: 100}
+  m_SizeDelta: {x: 200, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1226395183
 MonoBehaviour:
@@ -26577,7 +26577,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Pr\u0119dko\u015B\u0107: 1/5"
+  m_Text: "Pr\u0119dko\u015B\u0107 Wydobycia: 1/5"
 --- !u!222 &1226395184
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -50294,6 +50294,34 @@ PrefabInstance:
       propertyPath: m_PixelsPerUnitMultiplier
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 3024386462541410193, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386462541410193, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386462541410193, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3024386462055903559}
+    - target: {fileID: 3024386462541410193, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386462541410193, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: upgradeDrillingThroughStone
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386462541410193, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: drillUpgrades, Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386462541410193, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3024386462541410198, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
       propertyPath: m_SizeDelta.x
       value: 200
@@ -50433,6 +50461,34 @@ PrefabInstance:
     - target: {fileID: 3024386463286329778, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386463286329779, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386463286329779, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386463286329779, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3024386462055903559}
+    - target: {fileID: 3024386463286329779, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386463286329779, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: upgradeDrillingSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386463286329779, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: drillUpgrades, Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024386463286329779, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3024386463340137864, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
       propertyPath: m_SizeDelta.x
@@ -51412,3 +51468,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+--- !u!1 &3024386462055903558 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3024386463090013436, guid: 9a759147f5c54d741b21745b6c1dcab4, type: 3}
+  m_PrefabInstance: {fileID: 3024386462055903557}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3024386462055903559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3024386462055903558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d48dc421fcb7ca74291b375e10f8ad72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

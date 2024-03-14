@@ -164,7 +164,7 @@ public class GridManager : MonoBehaviour
 
             GameObject placeOfPipe = leftGetValue(yGrid, xGrid + (int)this.transform.position.z);
             if (placeOfPipe != null) {
-                if (placeOfPipe.GetComponent<idScript>().id == 2 && false) {
+                if (placeOfPipe.GetComponent<idScript>().id == 2 && GameManager.canDrillThroughRocks) {
                     // TODO: kacper dodaj zmienną upgrade za false
                     return true;
                 }
@@ -178,7 +178,7 @@ public class GridManager : MonoBehaviour
 
             GameObject placeOfPipe = rightGetValue(yGrid, xGrid + (int)this.transform.position.x);
             if (placeOfPipe != null) {
-                if (placeOfPipe.GetComponent<idScript>().id == 2 && false) {
+                if (placeOfPipe.GetComponent<idScript>().id == 2 && GameManager.canDrillThroughRocks) {
                     // TODO: Kacper dodaj zmienną upgrade za false
                     return true;
                 }
