@@ -16,7 +16,7 @@ public class Toturial : MonoBehaviour
     {
         dialogDisplay = GameObject.Find("toturialText").GetComponent<TextMeshProUGUI>();
         
-        dialogDisplay.text = "Hej nazywam się Ignacy Łukasiewicz, pozwól że pokażę ci co i jak, naciśnij spację aby kontynuować.";
+        dialogDisplay.text = "Hej nazywam się Ignacy Łukasiewicz, pozwól że pokażę ci co i jak [naciśnij spację aby kontynuować]";
     }
 
     // Update is called once per frame

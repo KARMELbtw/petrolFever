@@ -14,12 +14,12 @@ public class SceneChanger : MonoBehaviour
     private Vector3 TownCameraRotation = new Vector3(45f, 226.5f, 0f);
     //chunki
     [SerializeField]
-    private Vector3 ChunkCameraPosition = new Vector3(-20f, 38f, -20f);
+    private Vector3 ChunkCameraPosition = new Vector3(-25f, 55f, -20f);
     [SerializeField]
     private Vector3 ChunkCameraRotation = new Vector3(31.5f, 45f, 0f);
     
     //zadeklarowanie zmiennej do przechowywania informacji o tym czy kamera patrzy na chunki czy na miasto
-    public static bool IsLookingAtChunk { get; private set; } = false;
+    public static bool IsLookingAtChunk { get; private set; } = true;
     
     void MoveCamera()
     {
