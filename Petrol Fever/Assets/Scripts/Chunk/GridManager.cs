@@ -162,7 +162,12 @@ public class GridManager : MonoBehaviour
                 return false;
             }
 
-            if (leftGetValue(yGrid, xGrid + (int)this.transform.position.z) != null) {
+            GameObject placeOfPipe = leftGetValue(yGrid, xGrid + (int)this.transform.position.z);
+            if (placeOfPipe != null) {
+                if (placeOfPipe.GetComponent<idScript>().id == 2 && false) {
+                    // TODO: kacper dodaj zmienną upgrade za false
+                    return true;
+                }
                 return false;
             }
         }
@@ -171,7 +176,12 @@ public class GridManager : MonoBehaviour
                 return false;
             }
 
-            if (rightGetValue(yGrid, xGrid + (int)this.transform.position.x) != null) {
+            GameObject placeOfPipe = rightGetValue(yGrid, xGrid + (int)this.transform.position.x);
+            if (placeOfPipe != null) {
+                if (placeOfPipe.GetComponent<idScript>().id == 2 && false) {
+                    // TODO: Kacper dodaj zmienną upgrade za false
+                    return true;
+                }
                 return false;
             }
         }
