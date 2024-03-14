@@ -93,6 +93,7 @@ public class DeerOilAi : MonoBehaviour
                 ChunkGeneration.RevealRandomOilVein(ChunkGeneration.oilVeins);
                 Debug.Log("Wykryto ropę");
                 foundOil = false;
+                TutorialManager.deerFoundOil = true;
             }
             Destroy(gameObject);
         }

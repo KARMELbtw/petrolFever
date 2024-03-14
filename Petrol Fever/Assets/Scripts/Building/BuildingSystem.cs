@@ -220,6 +220,9 @@ public class BuildingSystem : MonoBehaviour
                 bool isBuildingPlaced = buildBuilding(buildingInHand);
                 if (isBuildingPlaced && buildings[currentBuilding].buildingName != "Pipe") {
                     currentBuilding = 666;
+                    if (buildings[currentBuilding].buildingName == "Silos") {
+                        TutorialManager.placedFirstSilos = true;
+                    }
                     if (preview != null) {
                         Destroy(preview);
                     }
